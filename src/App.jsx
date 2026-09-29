@@ -98,14 +98,9 @@ export default function App() {
     if (isSupabaseConfigured && supabase) {
       await supabase.auth.signOut();
     }
-    localStorage.removeItem('SEGARIS_days');
-    localStorage.removeItem('SEGARIS_today_habits');
-    localStorage.removeItem('SEGARIS_active_tab');
-    localStorage.removeItem('SEGARIS_targets');
-    localStorage.removeItem('SEGARIS_history');
-    localStorage.removeItem('SEGARIS_setup_done');
-    localStorage.removeItem('SEGARIS_tz');
-    localStorage.removeItem('SEGARIS_start_date');
+    ['days', 'today_habits', 'active_tab', 'targets', 'history', 'setup_done', 'tz', 'start_date'].forEach(key => {
+      localStorage.removeItem(`NutriWise_${key}`);
+    });
     setCurrentUser(null);
   };
 
@@ -117,11 +112,11 @@ export default function App() {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#FAF9F6',
-        color: '#2F6323'
+        color: '#245A3B'
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-          <img src="/logo.png" alt="SEGARIS" style={{ width: '56px', height: '56px' }} />
-          <span style={{ fontWeight: 700, fontSize: '1rem', color: '#2F6323', fontFamily: 'var(--font-serif)' }}>Memuat SEGARIS...</span>
+          <img src="/logo.png" alt="NutriWise" style={{ width: '56px', height: '56px' }} />
+          <span style={{ fontWeight: 700, fontSize: '1rem', color: '#245A3B', fontFamily: 'var(--font-serif)' }}>Memuat NutriWise...</span>
         </div>
       </div>
     );
@@ -195,7 +190,7 @@ export default function App() {
                   <LogOut size={20} color="#DC2626" />
                 </div>
                 <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)', fontFamily: 'var(--font-serif)' }}>
-                  Keluar dari Akun SEGARIS?
+                  Keluar dari Akun NutriWise?
                 </h3>
               </div>
               <button

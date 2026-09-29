@@ -122,7 +122,7 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
 
   // Helper to generate user-scoped localStorage keys
   const getStorageKey = (baseKey) => {
-    return currentUser?.id ? `SEGARIS_${baseKey}_${currentUser.id}` : `SEGARIS_${baseKey}`;
+    return currentUser?.id ? `NutriWise_${baseKey}_${currentUser.id}` : `NutriWise_${baseKey}`;
   };
 
   // Load from Supabase / localStorage on mount & currentUser change
@@ -130,15 +130,15 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
     if (currentUser) {
       const meta = currentUser.user_metadata || {};
       const uid = currentUser.id;
-      const historyKey = `SEGARIS_history_${uid}`;
-      const targetsKey = `SEGARIS_targets_${uid}`;
-      const setupKey = `SEGARIS_setup_done_${uid}`;
-      const tzKey = `SEGARIS_tz_${uid}`;
-      const startKey = `SEGARIS_start_date_${uid}`;
+      const historyKey = `NutriWise_history_${uid}`;
+      const targetsKey = `NutriWise_targets_${uid}`;
+      const setupKey = `NutriWise_setup_done_${uid}`;
+      const tzKey = `NutriWise_tz_${uid}`;
+      const startKey = `NutriWise_start_date_${uid}`;
 
       let localHistory = {};
       try {
-        const localHistoryStr = localStorage.getItem(historyKey);
+        const localHistoryStr = (localStorage.getItem(historyKey) );
         if (localHistoryStr) localHistory = JSON.parse(localHistoryStr);
       } catch (e) {
         console.error('Error parsing local history:', e);
@@ -146,28 +146,28 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
 
       let localTargets = null;
       try {
-        const localTargetsStr = localStorage.getItem(targetsKey);
+        const localTargetsStr = (localStorage.getItem(targetsKey) );
         if (localTargetsStr) localTargets = JSON.parse(localTargetsStr);
       } catch (e) {
         console.error('Error parsing local targets:', e);
       }
       
-      const cloudTargets = meta.SEGARIS_targets;
+      const cloudTargets = meta.NutriWise_targets ;
       const savedTargets = cloudTargets || localTargets;
 
-      const cloudHistory = meta.SEGARIS_history || {};
+      const cloudHistory = meta.NutriWise_history  || {};
       const mergedHistory = {
         ...cloudHistory,
         ...localHistory
       };
 
       const hasLocalSetup = localStorage.getItem(setupKey) !== null;
-      const savedSetupDone = meta.SEGARIS_setup_done ?? (hasLocalSetup ? JSON.parse(localStorage.getItem(setupKey)) : false);
+      const savedSetupDone = meta.NutriWise_setup_done ?? (hasLocalSetup ? JSON.parse(localStorage.getItem(setupKey)) : false);
 
       // Normalize legacy TZ strings to IANA format
-      const rawTz = meta.SEGARIS_tz || localStorage.getItem(tzKey) || '';
+      const rawTz = meta.NutriWise_tz || localStorage.getItem(tzKey) || '';
       const savedTz = rawTz ? normalizeTzToIana(rawTz) : 'Asia/Jakarta';
-      const savedStartDate = meta.SEGARIS_start_date || localStorage.getItem(startKey) || new Date().toISOString();
+      const savedStartDate = meta.NutriWise_start_date || localStorage.getItem(startKey) || new Date().toISOString();
 
       // Ensure user-scoped local storage is in sync with merged data
       localStorage.setItem(historyKey, JSON.stringify(mergedHistory));
@@ -206,15 +206,15 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
   const loadRecommendedTargets = () => {
     let meta = currentUser?.user_metadata || {};
     let uid = currentUser?.id;
-    const quizKey = uid ? `SEGARIS_quiz_result_${uid}` : 'SEGARIS_quiz_result';
+    const quizKey = uid ? `NutriWise_quiz_result_${uid}` : 'NutriWise_quiz_result';
     
     let localQuiz = null;
     try {
-      const str = localStorage.getItem(quizKey) || localStorage.getItem('SEGARIS_quiz_result');
+      const str = localStorage.getItem(quizKey) ;
       if (str) localQuiz = JSON.parse(str);
     } catch(e){}
 
-    const savedQuiz = meta.SEGARIS_quiz_result || localQuiz;
+    const savedQuiz = meta.NutriWise_quiz_result  || localQuiz;
     if (savedQuiz && savedQuiz.recommendedTargets) {
       setRecommendedTargets(savedQuiz.recommendedTargets);
     } else {
@@ -228,8 +228,8 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
 
   useEffect(() => {
     const handleUpdate = () => loadRecommendedTargets();
-    window.addEventListener('segaris_quiz_updated', handleUpdate);
-    return () => window.removeEventListener('segaris_quiz_updated', handleUpdate);
+    window.addEventListener('nutriwise_quiz_updated', handleUpdate);
+    return () => window.removeEventListener('nutriwise_quiz_updated', handleUpdate);
   }, [currentUser]);
 
   // Flush pending changes to Supabase when user navigates away or component unmounts
@@ -241,11 +241,11 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
       if (currentUser && isSupabaseConfigured && supabase) {
         supabase.auth.updateUser({
           data: {
-            SEGARIS_targets: targetsRef.current,
-            SEGARIS_history: historyRef.current,
-            SEGARIS_setup_done: setupDoneRef.current,
-            SEGARIS_tz: timezoneRef.current,
-            SEGARIS_start_date: startDateRef.current
+            NutriWise_targets: targetsRef.current,
+            NutriWise_history: historyRef.current,
+            NutriWise_setup_done: setupDoneRef.current,
+            NutriWise_tz: timezoneRef.current,
+            NutriWise_start_date: startDateRef.current
           }
         }).catch(err => console.error('Unmount sync to Supabase failed:', err));
       }
@@ -384,11 +384,11 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
       try {
         await supabase.auth.updateUser({
           data: {
-            SEGARIS_targets: newTargets,
-            SEGARIS_history: newHistory,
-            SEGARIS_setup_done: newSetupDone,
-            SEGARIS_tz: newTz,
-            SEGARIS_start_date: newStart || startDate
+            NutriWise_targets: newTargets,
+            NutriWise_history: newHistory,
+            NutriWise_setup_done: newSetupDone,
+            NutriWise_tz: newTz,
+            NutriWise_start_date: newStart || startDate
           }
         });
       } catch (err) {
@@ -474,11 +474,11 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
           try {
             await supabase.auth.updateUser({
               data: {
-                SEGARIS_targets: targetsRef.current,
-                SEGARIS_history: updatedHistory,
-                SEGARIS_setup_done: setupDoneRef.current,
-                SEGARIS_tz: timezoneRef.current,
-                SEGARIS_start_date: startDateRef.current || localStorage.getItem(getStorageKey('start_date')) || new Date().toISOString()
+                NutriWise_targets: targetsRef.current,
+                NutriWise_history: updatedHistory,
+                NutriWise_setup_done: setupDoneRef.current,
+                NutriWise_tz: timezoneRef.current,
+                NutriWise_start_date: startDateRef.current || localStorage.getItem(getStorageKey('start_date')) || new Date().toISOString()
               }
             });
           } catch (err) {
@@ -620,7 +620,7 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
             {/* Left Card: Timezone & General Settings */}
             {!setupDone && (
             <div className="setup-card">
-              <h3><Clock size={20} color="#2F6323" /> 1. Zona Waktu &amp; Jadwal</h3>
+              <h3><Clock size={20} color="#245A3B" /> 1. Zona Waktu &amp; Jadwal</h3>
               <p className="setup-subtext">Penentuan pergantian hari otomatis disesuaikan dengan zona lokasi Anda.</p>
 
               {/* Auto-sync toggle — only active when TZ not yet saved (first-time setup) */}
@@ -688,7 +688,7 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
             {/* Right Card: Custom Target List Manager */}
             <div className="setup-card">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                <h3><Edit3 size={20} color="#2F6323" /> {setupDone ? 'Target Harian & Custom' : '2. Target Harian & Custom'}</h3>
+                <h3><Edit3 size={20} color="#245A3B" /> {setupDone ? 'Target Harian & Custom' : '2. Target Harian & Custom'}</h3>
                 <button 
                   type="button" 
                   onClick={() => setShowAddForm(!showAddForm)}
@@ -835,7 +835,7 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
           {!currentUser && (
             <div className="preview-mode-banner">
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <Lock size={20} color="#2F6323" />
+                <Lock size={20} color="#245A3B" />
                 <span>Mode Pratinjau: Masuk atau daftar akun untuk menyimpan progres Anda.</span>
               </div>
               <button onClick={() => setShowAuthPrompt(true)} className="btn-nav-combined" style={{ height: '36px', minWidth: '140px', fontSize: '0.85rem' }}>
@@ -1009,14 +1009,14 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
             <button className="modal-close" onClick={() => setShowAuthPrompt(false)}>
               <X size={20} />
             </button>
-            <div style={{ width: '64px', height: '64px', background: 'rgba(47, 99, 35, 0.12)', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-              <Lock color="#2F6323" size={32} />
+            <div style={{ width: '64px', height: '64px', background: 'rgba(36, 90, 59, 0.12)', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+              <Lock color="#245A3B" size={32} />
             </div>
             <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 700, marginBottom: '10px', color: 'var(--color-dark)' }}>
               Akses Fitur Terkunci
             </h3>
             <p style={{ color: 'var(--color-muted)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '24px' }}>
-              Silakan <strong>Masuk</strong> atau <strong>Daftar Akun SEGARIS</strong> terlebih dahulu untuk mengaktifkan pelacak harian 30-Day Health Challenge.
+              Silakan <strong>Masuk</strong> atau <strong>Daftar Akun NutriWise</strong> terlebih dahulu untuk mengaktifkan pelacak harian 30-Day Health Challenge.
             </p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
               <button onClick={() => setShowAuthPrompt(false)} className="btn-warning-outline" style={{ padding: '8px 20px', height: '44px' }}>Nanti Saja</button>

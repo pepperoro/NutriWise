@@ -30,8 +30,8 @@ export default function Navbar({ onOpenPrivacy, onOpenAuth, currentUser, onLogou
     <header className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-inner">
         <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick(''); }} className="navbar-logo">
-          <img src="/logo.png" alt="SEGARIS Logo" />
-          <span>SEGARIS</span>
+          <img src="/logo.png" alt="NutriWise Logo" />
+          <span>NutriWise</span>
         </a>
 
         <ul className={`navbar-menu ${mobileMenuOpen ? 'active' : ''}`}>
@@ -59,9 +59,9 @@ export default function Navbar({ onOpenPrivacy, onOpenAuth, currentUser, onLogou
           {/* CTA Action Item Inside Mobile Drawer (<= 1024px) */}
           <li className="mobile-drawer-cta">
             {currentUser ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', paddingTop: '10px', borderTop: '1px solid rgba(47, 99, 35, 0.15)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'var(--color-cream)', padding: '10px 16px', borderRadius: '30px', fontSize: '0.9rem', fontWeight: 700, border: '1px solid rgba(47, 99, 35, 0.2)' }}>
-                  <User size={16} color="#2F6323" />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', paddingTop: '10px', borderTop: '1px solid rgba(36, 90, 59, 0.15)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'var(--color-cream)', padding: '10px 16px', borderRadius: '30px', fontSize: '0.9rem', fontWeight: 700, border: '1px solid rgba(36, 90, 59, 0.2)' }}>
+                  <User size={16} color="#245A3B" />
                   <span>{displayName}</span>
                 </div>
                 <button 
@@ -91,8 +91,8 @@ export default function Navbar({ onOpenPrivacy, onOpenAuth, currentUser, onLogou
               <a href="#challenge" onClick={(e) => { e.preventDefault(); handleNavClick('#challenge'); }} className="btn-cta-outline" style={{ padding: '8px 18px', fontSize: '0.88rem' }}>
                 30-Day Challenge
               </a>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'var(--color-cream)', padding: '6px 14px', borderRadius: '30px', fontSize: '0.9rem', fontWeight: 700, border: '1px solid rgba(47, 99, 35, 0.2)' }}>
-                <User size={16} color="#2F6323" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'var(--color-cream)', padding: '6px 14px', borderRadius: '30px', fontSize: '0.9rem', fontWeight: 700, border: '1px solid rgba(36, 90, 59, 0.2)' }}>
+                <User size={16} color="#245A3B" />
                 <span>{displayName}</span>
               </div>
               <button 

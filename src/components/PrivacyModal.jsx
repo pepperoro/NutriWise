@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { ShieldCheck, Lock, HardDrive, EyeOff, X, UserCheck, Trash2 } from 'lucide-react';
 
 export default function PrivacyModal({ isOpen, onClose }) {
@@ -10,7 +10,7 @@ export default function PrivacyModal({ isOpen, onClose }) {
         {/* Header */}
         <div style={{ padding: '24px 32px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #F1F5F9', background: '#FFFFFF' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <ShieldCheck size={32} color="#2F6323" />
+            <ShieldCheck size={32} color="#245A3B" />
             <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', fontWeight: 800, margin: 0, color: 'var(--color-dark)' }}>
               Kebijakan Privasi &amp; Keamanan Data
             </h2>
@@ -27,12 +27,12 @@ export default function PrivacyModal({ isOpen, onClose }) {
         {/* Scrollable Body */}
         <div className="modal-card-body" style={{ padding: '24px 32px', overflowY: 'auto', flex: 1 }}>
           <p style={{ color: '#4A5568', marginBottom: '24px', fontSize: '0.94rem', lineHeight: 1.6 }}>
-            SEGARIS berkomitmen tinggi untuk melindungi privasi pengguna sesuai standar keamanan data digital nasional dan internasional. Kami memprioritaskan transparansi total atas data kesehatan Anda.
+            NutriWise berkomitmen tinggi untuk melindungi privasi pengguna sesuai standar keamanan data digital nasional dan internasional. Kami memprioritaskan transparansi total atas data kesehatan Anda.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <div style={{ display: 'flex', gap: '16px', background: 'var(--color-cream)', padding: '18px', borderRadius: '16px', border: '1px solid rgba(47, 99, 35, 0.12)' }}>
-              <HardDrive size={26} color="#558949" style={{ flexShrink: 0, marginTop: '2px' }} />
+            <div style={{ display: 'flex', gap: '16px', background: 'var(--color-cream)', padding: '18px', borderRadius: '16px', border: '1px solid rgba(36, 90, 59, 0.12)' }}>
+              <HardDrive size={26} color="#65904E" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <h4 style={{ fontWeight: 700, marginBottom: '4px', color: 'var(--color-dark)', fontSize: '0.98rem' }}>
                   1. Pemrosesan Lokal (Local-First Data Storage)
@@ -43,8 +43,8 @@ export default function PrivacyModal({ isOpen, onClose }) {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '16px', background: 'var(--color-cream)', padding: '18px', borderRadius: '16px', border: '1px solid rgba(47, 99, 35, 0.12)' }}>
-              <Lock size={26} color="#558949" style={{ flexShrink: 0, marginTop: '2px' }} />
+            <div style={{ display: 'flex', gap: '16px', background: 'var(--color-cream)', padding: '18px', borderRadius: '16px', border: '1px solid rgba(36, 90, 59, 0.12)' }}>
+              <Lock size={26} color="#65904E" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <h4 style={{ fontWeight: 700, marginBottom: '4px', color: 'var(--color-dark)', fontSize: '0.98rem' }}>
                   2. Enkripsi Sinkronisasi Cloud (Supabase)
@@ -55,26 +55,26 @@ export default function PrivacyModal({ isOpen, onClose }) {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '16px', background: 'var(--color-cream)', padding: '18px', borderRadius: '16px', border: '1px solid rgba(47, 99, 35, 0.12)' }}>
-              <EyeOff size={26} color="#558949" style={{ flexShrink: 0, marginTop: '2px' }} />
+            <div style={{ display: 'flex', gap: '16px', background: 'var(--color-cream)', padding: '18px', borderRadius: '16px', border: '1px solid rgba(36, 90, 59, 0.12)' }}>
+              <EyeOff size={26} color="#65904E" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <h4 style={{ fontWeight: 700, marginBottom: '4px', color: 'var(--color-dark)', fontSize: '0.98rem' }}>
                   3. Nir-Pelacakan &amp; Tanpa Iklan
                 </h4>
                 <p style={{ fontSize: '0.88rem', color: '#475569', lineHeight: 1.55, margin: 0 }}>
-                  SEGARIS tidak menggunakan tracker komersial, kuki pelacak pihak ketiga, atau menjual data profil kesehatan pribadi Anda kepada pengiklan mana pun.
+                  NutriWise tidak menggunakan tracker komersial, kuki pelacak pihak ketiga, atau menjual data profil kesehatan pribadi Anda kepada pengiklan mana pun.
                 </p>
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '16px', background: 'var(--color-cream)', padding: '18px', borderRadius: '16px', border: '1px solid rgba(47, 99, 35, 0.12)' }}>
-              <UserCheck size={26} color="#558949" style={{ flexShrink: 0, marginTop: '2px' }} />
+            <div style={{ display: 'flex', gap: '16px', background: 'var(--color-cream)', padding: '18px', borderRadius: '16px', border: '1px solid rgba(36, 90, 59, 0.12)' }}>
+              <UserCheck size={26} color="#65904E" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <h4 style={{ fontWeight: 700, marginBottom: '4px', color: 'var(--color-dark)', fontSize: '0.98rem' }}>
                   4. Kepatuhan Hukum (UU PDP No. 27/2022)
                 </h4>
                 <p style={{ fontSize: '0.88rem', color: '#475569', lineHeight: 1.55, margin: 0 }}>
-                  Sistem SEGARIS dirancang mengacu pada prinsip Perlindungan Data Pribadi Indonesia untuk menjamin hak kerahasiaan, integritas, dan ketersediaan data pengguna.
+                  Sistem NutriWise dirancang mengacu pada prinsip Perlindungan Data Pribadi Indonesia untuk menjamin hak kerahasiaan, integritas, dan ketersediaan data pengguna.
                 </p>
               </div>
             </div>

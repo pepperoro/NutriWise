@@ -153,15 +153,15 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
 
     const meta = currentUser.user_metadata || {};
     const uid = currentUser.id;
-    const bmiKey = `SEGARIS_bmi_data_${uid}`;
-    const quizKey = `SEGARIS_quiz_result_${uid}`;
+    const bmiKey = `NutriWise_bmi_data_${uid}`;
+    const quizKey = `NutriWise_quiz_result_${uid}`;
     
     // Load BMI Data
-    const bmiData = meta.SEGARIS_bmi_data || JSON.parse(localStorage.getItem(bmiKey) || 'null');
+    const bmiData = meta.NutriWise_bmi_data || JSON.parse(localStorage.getItem(bmiKey) || 'null');
     setUserBmiData(bmiData);
 
     // Load Quiz Result
-    const cloudQuiz = meta.SEGARIS_quiz_result;
+    const cloudQuiz = meta.NutriWise_quiz_result;
     const localQuiz = JSON.parse(localStorage.getItem(quizKey) || 'null');
     const existingResult = cloudQuiz || localQuiz;
     setSavedQuizResult(existingResult);
@@ -292,15 +292,15 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
 
     setSavedQuizResult(resultObj);
     setCurrentStep(10);
-    const quizKey = currentUser?.id ? `SEGARIS_quiz_result_${currentUser.id}` : 'SEGARIS_quiz_result';
+    const quizKey = currentUser?.id ? `NutriWise_quiz_result_${currentUser.id}` : 'NutriWise_quiz_result';
     localStorage.setItem(quizKey, JSON.stringify(resultObj));
-    window.dispatchEvent(new Event('segaris_quiz_updated'));
+    window.dispatchEvent(new Event('nutriwise_quiz_updated'));
 
     // Save to Supabase user_metadata if configured
     if (currentUser && isSupabaseConfigured && supabase) {
       try {
         await supabase.auth.updateUser({
-          data: { SEGARIS_quiz_result: resultObj }
+          data: { NutriWise_quiz_result: resultObj }
         });
       } catch (err) {
         console.error('Gagal menyinkronkan hasil kuis ke Supabase:', err);
@@ -390,7 +390,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
 
           <div className="quiz-features-grid">
             <div className="quiz-feature-item">
-              <Zap size={22} color="#2F6323" />
+              <Zap size={22} color="#245A3B" />
               <div>
                 <h4>9 Pertanyaan Singkat</h4>
                 <p>Hanya membutuhkan waktu 1–2 menit untuk diselesaikan.</p>
@@ -398,7 +398,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
             </div>
 
             <div className="quiz-feature-item">
-              <Activity size={22} color="#2F6323" />
+              <Activity size={22} color="#245A3B" />
               <div>
                 <h4>Algoritma Skor Berbobot</h4>
                 <p>Analisis 3 faktor risiko: Metabolik, Kardiovaskular, dan Genetik.</p>
@@ -406,7 +406,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
             </div>
 
             <div className="quiz-feature-item">
-              <Heart size={22} color="#2F6323" />
+              <Heart size={22} color="#245A3B" />
               <div>
                 <h4>Rekomendasi Personal</h4>
                 <p>Mendapatkan fokus perbaikan spesifik berbasis hasil jawaban Anda.</p>
@@ -484,7 +484,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
                   className={`quiz-option-card ${isSelected ? 'selected' : ''}`}
                 >
                   <div className="quiz-radio-indicator">
-                    {isSelected && <CheckCircle2 size={18} color="#2F6323" />}
+                    {isSelected && <CheckCircle2 size={18} color="#245A3B" />}
                   </div>
                   <span className="quiz-option-text">{opt.text}</span>
                 </div>
@@ -616,11 +616,11 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
               onClick={() => {
                 setAnswers({});
                 setSavedQuizResult(null);
-                const quizKey = currentUser?.id ? `SEGARIS_quiz_result_${currentUser.id}` : 'SEGARIS_quiz_result';
+                const quizKey = currentUser?.id ? `NutriWise_quiz_result_${currentUser.id}` : 'NutriWise_quiz_result';
                 localStorage.removeItem(quizKey);
                 if (currentUser && isSupabaseConfigured && supabase) {
                   supabase.auth.updateUser({
-                    data: { SEGARIS_quiz_result: null }
+                    data: { NutriWise_quiz_result: null }
                   });
                 }
                 setCurrentStep(1);

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { ClipboardCheck, Activity, Heart, ShieldAlert, ArrowRight, Lock, X } from 'lucide-react';
 
 export default function KuisTeaser({ onOpenAuth }) {
@@ -6,9 +6,9 @@ export default function KuisTeaser({ onOpenAuth }) {
 
   return (
     <section id="kuis-skrining" className="container" style={{ margin: '80px auto' }}>
-      <div className="quiz-card quiz-intro-card" style={{ background: '#FFFFFF', border: '1px solid rgba(47, 99, 35, 0.15)', borderRadius: '24px', padding: '40px', boxShadow: '0 12px 32px rgba(0, 0, 0, 0.05)' }}>
+      <div className="quiz-card quiz-intro-card" style={{ background: '#FFFFFF', border: '1px solid rgba(36, 90, 59, 0.15)', borderRadius: '24px', padding: '40px', boxShadow: '0 12px 32px rgba(0, 0, 0, 0.05)' }}>
         <div className="quiz-intro-header" style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div className="quiz-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-cream)', color: 'var(--color-forest)', padding: '6px 16px', borderRadius: '50px', fontWeight: 800, fontSize: '0.85rem', border: '1px solid rgba(47, 99, 35, 0.2)', marginBottom: '16px' }}>
+          <div className="quiz-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-cream)', color: 'var(--color-forest)', padding: '6px 16px', borderRadius: '50px', fontWeight: 800, fontSize: '0.85rem', border: '1px solid rgba(36, 90, 59, 0.2)', marginBottom: '16px' }}>
             <ClipboardCheck size={18} /> Skrining Mandiri PTM
           </div>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.2rem', fontWeight: 800, color: 'var(--color-dark)', marginBottom: '12px' }}>
@@ -21,7 +21,7 @@ export default function KuisTeaser({ onOpenAuth }) {
 
         <div className="quiz-highlights-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '36px' }}>
           <div className="quiz-highlight-item" style={{ background: '#FAF9F6', padding: '20px', borderRadius: '16px', border: '1px solid #E2E8F0', textAlign: 'left' }}>
-            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(47, 99, 35, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
+            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(36, 90, 59, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
               <Activity size={22} color="var(--color-forest)" />
             </div>
             <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px' }}>9 Pertanyaan Berbobot</h4>
@@ -31,7 +31,7 @@ export default function KuisTeaser({ onOpenAuth }) {
           </div>
 
           <div className="quiz-highlight-item" style={{ background: '#FAF9F6', padding: '20px', borderRadius: '16px', border: '1px solid #E2E8F0', textAlign: 'left' }}>
-            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(47, 99, 35, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
+            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(36, 90, 59, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
               <ShieldAlert size={22} color="var(--color-forest)" />
             </div>
             <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px' }}>Algoritma Skor Berbobot</h4>
@@ -41,7 +41,7 @@ export default function KuisTeaser({ onOpenAuth }) {
           </div>
 
           <div className="quiz-highlight-item" style={{ background: '#FAF9F6', padding: '20px', borderRadius: '16px', border: '1px solid #E2E8F0', textAlign: 'left' }}>
-            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(47, 99, 35, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
+            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(36, 90, 59, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
               <Heart size={22} color="var(--color-forest)" />
             </div>
             <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px' }}>Rekomendasi Personal</h4>
@@ -73,14 +73,14 @@ export default function KuisTeaser({ onOpenAuth }) {
             <button className="modal-close" onClick={() => setShowAuthPrompt(false)}>
               <X size={20} />
             </button>
-            <div style={{ width: '64px', height: '64px', background: 'rgba(47, 99, 35, 0.12)', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-              <Lock color="#2F6323" size={32} />
+            <div style={{ width: '64px', height: '64px', background: 'rgba(36, 90, 59, 0.12)', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+              <Lock color="#245A3B" size={32} />
             </div>
             <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 700, marginBottom: '10px', color: 'var(--color-dark)' }}>
               Akses Fitur Terkunci
             </h3>
             <p style={{ color: 'var(--color-muted)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '24px' }}>
-              Silakan <strong>Masuk</strong> atau <strong>Daftar Akun SEGARIS</strong> terlebih dahulu untuk memulai Kuis Skrining Risiko Kesehatan &amp; PTM.
+              Silakan <strong>Masuk</strong> atau <strong>Daftar Akun NutriWise</strong> terlebih dahulu untuk memulai Kuis Skrining Risiko Kesehatan &amp; PTM.
             </p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
               <button onClick={() => setShowAuthPrompt(false)} className="btn-warning-outline" style={{ padding: '8px 20px', height: '44px' }}>

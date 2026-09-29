@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, User, Mail, ShieldAlert, Check, Upload, Trash2, AlertTriangle } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
@@ -115,28 +115,28 @@ export default function ProfileModal({ isOpen, onClose, currentUser, onUpdateUse
       if (isSupabaseConfigured && supabase && currentUser?.id !== 'demo-user-123') {
         // Attempt account data cleanup
         await supabase.auth.updateUser({
-          data: { SEGARIS_days: [], SEGARIS_today_habits: {} }
+          data: { NutriWise_days: [], NutriWise_today_habits: {} }
         });
         await supabase.auth.signOut();
       }
       
-      localStorage.removeItem('SEGARIS_days');
-      localStorage.removeItem('SEGARIS_today_habits');
-      localStorage.removeItem('SEGARIS_targets');
-      localStorage.removeItem('SEGARIS_history');
-      localStorage.removeItem('SEGARIS_setup_done');
-      localStorage.removeItem('SEGARIS_tz');
-      localStorage.removeItem('SEGARIS_start_date');
-      localStorage.removeItem('SEGARIS_bmi_data');
-      localStorage.removeItem('SEGARIS_quiz_result');
+      localStorage.removeItem('NutriWise_days');
+      localStorage.removeItem('NutriWise_today_habits');
+      localStorage.removeItem('NutriWise_targets');
+      localStorage.removeItem('NutriWise_history');
+      localStorage.removeItem('NutriWise_setup_done');
+      localStorage.removeItem('NutriWise_tz');
+      localStorage.removeItem('NutriWise_start_date');
+      localStorage.removeItem('NutriWise_bmi_data');
+      localStorage.removeItem('NutriWise_quiz_result');
       if (currentUser?.id) {
-        localStorage.removeItem(`SEGARIS_targets_${currentUser.id}`);
-        localStorage.removeItem(`SEGARIS_history_${currentUser.id}`);
-        localStorage.removeItem(`SEGARIS_setup_done_${currentUser.id}`);
-        localStorage.removeItem(`SEGARIS_tz_${currentUser.id}`);
-        localStorage.removeItem(`SEGARIS_start_date_${currentUser.id}`);
-        localStorage.removeItem(`SEGARIS_bmi_data_${currentUser.id}`);
-        localStorage.removeItem(`SEGARIS_quiz_result_${currentUser.id}`);
+        localStorage.removeItem(`NutriWise_targets_${currentUser.id}`);
+        localStorage.removeItem(`NutriWise_history_${currentUser.id}`);
+        localStorage.removeItem(`NutriWise_setup_done_${currentUser.id}`);
+        localStorage.removeItem(`NutriWise_tz_${currentUser.id}`);
+        localStorage.removeItem(`NutriWise_start_date_${currentUser.id}`);
+        localStorage.removeItem(`NutriWise_bmi_data_${currentUser.id}`);
+        localStorage.removeItem(`NutriWise_quiz_result_${currentUser.id}`);
       }
 
       alert('Akun Anda telah berhasil dihapus secara permanen.');
@@ -162,7 +162,7 @@ export default function ProfileModal({ isOpen, onClose, currentUser, onUpdateUse
         </button>
 
         <h3 className="profile-modal-title">Edit Profil Akun</h3>
-        <p className="profile-modal-subtitle">Perbarui data diri &amp; foto profil SEGARIS Anda</p>
+        <p className="profile-modal-subtitle">Perbarui data diri &amp; foto profil NutriWise Anda</p>
 
         {message.text && (
           <div className={`auth-alert ${message.type === 'success' ? 'alert-success' : 'alert-error'}`}>
@@ -290,7 +290,7 @@ export default function ProfileModal({ isOpen, onClose, currentUser, onUpdateUse
 
               <h4>Peringatan Konfirmasi (1/2)</h4>
               <p>
-                Apakah Anda yakin ingin menghapus akun SEGARIS? Seluruh progres <strong>30-Day Health Challenge</strong>, statistik nutrisi, dan data pribadi Anda akan dihapus secara permanen.
+                Apakah Anda yakin ingin menghapus akun NutriWise? Seluruh progres <strong>30-Day Health Challenge</strong>, statistik nutrisi, dan data pribadi Anda akan dihapus secara permanen.
               </p>
 
               <div className="confirm-modal-buttons">

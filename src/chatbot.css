@@ -12,7 +12,7 @@
   background: linear-gradient(135deg, var(--color-forest), var(--color-sage));
   color: white;
   border: none;
-  box-shadow: 0 4px 16px rgba(47, 99, 35, 0.4);
+  box-shadow: 0 4px 16px rgba(36, 90, 59, 0.4);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@
 
 .chatbot-toggle-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(47, 99, 35, 0.5);
+  box-shadow: 0 6px 20px rgba(36, 90, 59, 0.5);
 }
 
 .chatbot-toggle-btn.hidden {
@@ -50,7 +50,7 @@
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
-  border: 1px solid rgba(47, 99, 35, 0.1);
+  border: 1px solid rgba(36, 90, 59, 0.1);
 }
 
 .chatbot-window.open {
@@ -140,7 +140,7 @@
   background: #ffffff;
   color: var(--color-dark);
   border-bottom-left-radius: 4px;
-  border: 1px solid rgba(47, 99, 35, 0.1);
+  border: 1px solid rgba(36, 90, 59, 0.1);
 }
 
 .chat-bubble.user {

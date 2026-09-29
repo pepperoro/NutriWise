@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { LogIn, UserPlus, X, Mail, Lock, User, ShieldCheck, CheckCircle, AlertCircle } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
@@ -25,8 +25,8 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess, currentUser 
         setTimeout(() => {
           const mockUser = {
             id: 'demo-user-123',
-            email: email || 'demo@SEGARIS.id',
-            user_metadata: { full_name: fullName || email.split('@')[0] || 'Pengguna SEGARIS' }
+            email: email || 'demo@nutriwise.id',
+            user_metadata: { full_name: fullName || email.split('@')[0] || 'Pengguna NutriWise' }
           };
           onAuthSuccess(mockUser);
           setLoading(false);
@@ -77,10 +77,10 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess, currentUser 
 
         <div style={{ textAlign: 'center', marginBottom: '24px' }}>
           <div style={{ width: '56px', height: '56px', background: 'var(--color-cream)', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
-            {isLogin ? <LogIn size={28} color="#2F6323" /> : <UserPlus size={28} color="#2F6323" />}
+            {isLogin ? <LogIn size={28} color="#245A3B" /> : <UserPlus size={28} color="#245A3B" />}
           </div>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', fontWeight: 700 }}>
-            {isLogin ? 'Masuk ke SEGARIS' : 'Buat Akun SEGARIS'}
+            {isLogin ? 'Masuk ke NutriWise' : 'Buat Akun NutriWise'}
           </h2>
           <p style={{ fontSize: '0.88rem', color: 'var(--color-muted)', marginTop: '4px' }}>
             {isLogin ? 'Akses laporan kesehatan & progres 30-Day Challenge Anda' : 'Mulai perjalanan gaya hidup sehat berkelanjutan'}
@@ -150,7 +150,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess, currentUser 
                 type="password"
                 className="form-input"
                 style={{ paddingLeft: '42px' }}
-                placeholder="••••••••"
+                placeholder="��������"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -194,7 +194,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess, currentUser 
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '0.78rem', color: '#94A3B8', marginTop: '16px' }}>
-          <ShieldCheck size={14} color="#558949" />
+          <ShieldCheck size={14} color="#65904E" />
           Dilindungi oleh Supabase Auth & Row Level Security (RLS)
         </div>
       </div>

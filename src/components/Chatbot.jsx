@@ -5,7 +5,7 @@ import '../chatbot.css';
 export default function Chatbot({ currentPage, onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'ai', content: 'Halo! Saya asisten AI SEGARIS. Ada yang bisa saya bantu terkait kesehatan, gaya hidup, atau fitur di website ini?' }
+    { role: 'ai', content: 'Halo! Saya asisten AI NutriWise. Ada yang bisa saya bantu terkait kesehatan, gaya hidup, atau fitur di website ini?' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -94,7 +94,7 @@ export default function Chatbot({ currentPage, onNavigate }) {
               <HeartPulse size={18} color="#fff" />
             </div>
             <div>
-              <h3 style={{ margin: 0, fontSize: '1rem', color: '#fff', fontWeight: 700 }}>Asisten SEGARIS</h3>
+              <h3 style={{ margin: 0, fontSize: '1rem', color: '#fff', fontWeight: 700 }}>Asisten NutriWise</h3>
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)' }}>Online • Siap membantu</p>
             </div>
           </div>

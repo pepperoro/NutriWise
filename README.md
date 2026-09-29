@@ -1,7 +1,6 @@
 <div align="center">
 
   # NutriWise
-
   ### *Sistem Edukasi Gaya Hidup & Nutrisi Sehat Terintegrasi*
   **"Masa Depan Sehat & Sejahtera Dimulai dari Langkah Kecil Hari Ini"**
 
@@ -43,7 +42,7 @@ Faktor utama yang memperburuk kondisi ini antara lain:
 2. **Ketiadaan Alat Skrining Mandiri yang Terjangkau & Holistik**: Kebanyakan masyarakat baru mengetahui kondisi kesehatannya ketika komplikasi klinis telah terjadi.
 3. **Barrier Aplikasi Kesehatan Konvensional**: Aplikasi yang ada seringkali rumit, berbayar mahal, dibanjiri iklan invasif, dan mengeksploitasi data privasi pengguna tanpa transparansi.
 
-**SEGARIS** hadir sebagai jembatan edukatif dan preventif interaktif: platform web kesehatan berbasis bukti medis (*evidence-based*) yang mudah diakses oleh seluruh lapisan masyarakat secara gratis, ramah pengguna, berorientasi privasi, dan menyenangkan.
+**NutriWise** hadir sebagai jembatan edukatif dan preventif interaktif: platform web kesehatan berbasis bukti medis (*evidence-based*) yang mudah diakses oleh seluruh lapisan masyarakat secara gratis, ramah pengguna, berorientasi privasi, dan menyenangkan.
 
 ---
 
@@ -52,16 +51,16 @@ Faktor utama yang memperburuk kondisi ini antara lain:
 Proyek ini secara spesifik mengusung subtema **SDGs 3: Kehidupan Sehat dan Sejahtera (Good Health and Well-Being)** dengan fokus kontribusi nyata pada:
 
 * **Target 3.4**: *Mengurangi sepertiga kematian dini akibat penyakit tidak menular (PTM) melalui pencegahan dan pengobatan, serta mempromosikan kesehatan mental dan kesejahteraan.*
-  > **Realisasi SEGARIS**: Menyediakan modul skrining mandiri faktor risiko PTM (Diabetes, Hipertensi, Jantung), kalkulasi energi & hidrasi terpersonalisasi, serta edukasi gizi preventif sebelum timbul gejala kronis.
+  > **Realisasi NutriWise**: Menyediakan modul skrining mandiri faktor risiko PTM (Diabetes, Hipertensi, Jantung), kalkulasi energi & hidrasi terpersonalisasi, serta edukasi gizi preventif sebelum timbul gejala kronis.
 * **Target 3.d**: *Memperkuat kapasitas deteksi dini, pengurangan risiko, dan pengelolaan risiko kesehatan nasional dan global.*
-  > **Realisasi SEGARIS**: Memberdayakan individu dengan data kesehatan objektif (BMI, TDEE, Profil Risiko) dan rekomendasi tindakan personal untuk perubahan gaya hidup bertahap.
+  > **Realisasi NutriWise**: Memberdayakan individu dengan data kesehatan objektif (BMI, TDEE, Profil Risiko) dan rekomendasi tindakan personal untuk perubahan gaya hidup bertahap.
 
 ---
 
 ## ✨ Fitur Utama & Inovasi Unggulan
 
 ### 1. 🧮 Kalkulator Kesehatan Klinis Interaktif (Multi-Parameter)
-Bukan sekadar kalkulator sederhana, modul kalkulator SEGARIS menggunakan formula medis standar internasional:
+Bukan sekadar kalkulator sederhana, modul kalkulator NutriWise menggunakan formula medis standar internasional:
 - **Indeks Massa Tubuh (BMI)**: Mengadopsi standar batas *Asia-Pacific WHO Guidelines*. Hasil kalkulasi secara cerdas terintegrasi (*auto-sync*) ke modul Kuis Skrining sebagai parameter objektif pertama.
 - **Kebutuhan Kalori Harian (TDEE & BMR)**: Dihitung menggunakan **Persamaan Mifflin-St Jeor** (standar emas klinis terkini yang lebih akurat dibandingkan rumus Harris-Benedict lama), dikombinasikan dengan faktor aktivitas fisik (*Physical Activity Level*).
 - **Kalkulator Kebutuhan Air (Hidrasi)**: Estimasi volume cairan berbasis berat badan (35 ml/kg) yang disesuaikan secara dinamis dengan intensitas beban aktivitas harian.
@@ -91,7 +90,7 @@ Bukan sekadar kalkulator sederhana, modul kalkulator SEGARIS menggunakan formula
 
 ```mermaid
 graph TD
-    User([Pengguna / Klien]) -->|Akses Web| App[SEGARIS Single Page App]
+    User([Pengguna / Klien]) -->|Akses Web| App[NutriWise Single Page App]
     
     subgraph "Client Layer (React 18 + Vite)"
         App --> ViewRouter{Status Autentikasi?}
@@ -124,9 +123,9 @@ graph TD
 
 ## 🛡️ Kebijakan Privasi & Keamanan Data Pengguna (Kepatuhan UU PDP)
 
-SEGARIS mengedepankan prinsip *Privacy-by-Design*:
+NutriWise mengedepankan prinsip *Privacy-by-Design*:
 
-| Prinsip Keamanan | Implementasi pada SEGARIS |
+| Prinsip Keamanan | Implementasi pada NutriWise |
 |---|---|
 | **Local-First Processing** | Perhitungan BMI, kalori, dan kebutuhan air dilakukan langsung di mesin pengguna (*client-side*). Data tidak dikirimkan ke server jika pengguna tidak login. |
 | **Kepatuhan Regulasi** | Dirancang dengan mengacu pada prinsip transparansi dan persetujuan **UU Perlindungan Data Pribadi (UU No. 27 Tahun 2022)**. |
@@ -138,7 +137,7 @@ SEGARIS mengedepankan prinsip *Privacy-by-Design*:
 
 ## 🎨 Desain UI/UX & Filosofi Estetika
 
-Desain antarmuka SEGARIS mengusung estetika **Modern Botanical & Clinical Elegance** yang menenangkan:
+Desain antarmuka NutriWise mengusung estetika **Modern Botanical & Clinical Elegance** yang menenangkan:
 * **Palet Warna Harmonis**:
   - `Forest Green (#2F6323)`: Menyimbolkan vitalitas, kesegaran, dan pertumbuhan kesehatan.
   - `Sage Green (#558949)`: Warna aksen sekunder yang ramah dan menyejukkan mata.
@@ -168,7 +167,7 @@ Desain antarmuka SEGARIS mengusung estetika **Modern Botanical & Clinical Elegan
 
 ## 🚀 Panduan Instalasi & Menjalankan Aplikasi
 
-Ikuti panduan ringkas berikut untuk menjalankan SEGARIS di lingkungan lokal (*local development*):
+Ikuti panduan ringkas berikut untuk menjalankan NutriWise di lingkungan lokal (*local development*):
 
 ### 1. Prasyarat Sistem
 * [Node.js](https://nodejs.org/) (versi 18.x atau yang lebih baru direkomendasikan)
@@ -177,8 +176,8 @@ Ikuti panduan ringkas berikut untuk menjalankan SEGARIS di lingkungan lokal (*lo
 
 ### 2. Kloning Repositori
 ```bash
-git clone https://github.com/dababayou/SEGARIS.git
-cd SEGARIS
+git clone https://github.com/dababayou/NutriWise.git
+cd NutriWise
 ```
 
 ### 3. Instalasi Dependensi
@@ -196,7 +195,7 @@ Sesuaikan kredensial Supabase Anda di dalam `.env`:
 VITE_SUPABASE_URL=https://your-project-id.supabase.co
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 ```
-> *Catatan: Jika kredensial Supabase dikosongkan, SEGARIS secara otomatis mengaktifkan **Mode Mock/Demo Terintegrasi** sehingga penguji juri tetap dapat mengeksplorasi seluruh fitur akun secara penuh tanpa kendala koneksi.*
+> *Catatan: Jika kredensial Supabase dikosongkan, NutriWise secara otomatis mengaktifkan **Mode Mock/Demo Terintegrasi** sehingga penguji juri tetap dapat mengeksplorasi seluruh fitur akun secara penuh tanpa kendala koneksi.*
 
 ### 5. Menjalankan Server Development
 ```bash
@@ -215,9 +214,9 @@ npm run preview
 ## 📁 Struktur Direktori Proyek
 
 ```text
-SEGARIS/
+NutriWise/
 ├── assets/                     # Aset gambar grafis, kartu interaktif, & palet
-├── public/                     # Aset statis (Favicon, Logo SEGARIS, Ilustrasi)
+├── public/                     # Aset statis (Favicon, Logo NutriWise, Ilustrasi)
 │   ├── hero_bg.png
 │   └── logo.png
 ├── src/
@@ -262,5 +261,5 @@ Proyek ini dirancang dan dikembangkan dengan penuh dedikasi oleh:
 
 <div align="center">
   <p>Dibuat dengan ❤️ untuk Masa Depan Indonesia yang Lebih Sehat & Berkelanjutan.</p>
-  <p><b>SEGARIS © 2026 — All Rights Reserved.</b></p>
+  <p><b>NutriWise © 2026 — All Rights Reserved.</b></p>
 </div>

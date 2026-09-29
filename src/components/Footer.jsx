@@ -7,7 +7,7 @@ export default function Footer({ onOpenPrivacy }) {
       <div className="container">
         <div className="footer-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '40px' }}>
           <div>
-            <h3 className="footer-brand">SEGARIS</h3>
+            <h3 className="footer-brand">NutriWise</h3>
             <p style={{ fontSize: '0.78rem', color: 'rgba(199, 220, 91, 0.8)', marginBottom: '8px', fontStyle: 'italic', letterSpacing: '0.01em' }}>
               Sistem Edukasi Gizi, Analisis, dan Rekomendasi Interaktif Sehat
             </p>
@@ -37,14 +37,14 @@ export default function Footer({ onOpenPrivacy }) {
 
         <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', paddingTop: '24px', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', flexWrap: 'wrap', fontSize: '0.9rem' }}>
-            <span>&copy; {new Date().getFullYear()} SEGARIS. Dibuat dengan</span>
+            <span>&copy; {new Date().getFullYear()} NutriWise. Dibuat dengan</span>
             <Heart size={15} color="#FF6B6B" fill="#FF6B6B" style={{ display: 'inline-block', verticalAlign: 'middle', margin: '0 2px' }} />
             <span>untuk gaya hidup sehat Indonesia.</span>
           </div>
           <div>
             <button 
               onClick={onOpenPrivacy} 
-              style={{ background: 'none', border: 'none', color: '#C7DC5B', cursor: 'pointer', fontSize: '0.88rem', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+              style={{ background: 'none', border: 'none', color: '#D4A373', cursor: 'pointer', fontSize: '0.88rem', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
             >
               <ShieldCheck size={16} /> Kebijakan Privasi &amp; Keamanan Data
             </button>

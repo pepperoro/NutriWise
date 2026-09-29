@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import Kalkulator from './Kalkulator';
 import Challenge30Days from './Challenge30Days';
@@ -12,7 +12,7 @@ export default function DashboardLayout({ currentUser, onLogout, onOpenPrivacy, 
     if (['challenge', 'kalkulator', 'kuis', 'mitos'].includes(hash)) {
       return hash;
     }
-    const saved = localStorage.getItem('SEGARIS_active_tab');
+    const saved = localStorage.getItem('NutriWise_active_tab');
     return saved && ['challenge', 'kalkulator', 'kuis', 'mitos'].includes(saved) ? saved : 'challenge';
   });
 
@@ -20,7 +20,7 @@ export default function DashboardLayout({ currentUser, onLogout, onOpenPrivacy, 
 
   const setActiveTab = (tab) => {
     setActiveTabState(tab);
-    localStorage.setItem('SEGARIS_active_tab', tab);
+    localStorage.setItem('NutriWise_active_tab', tab);
     window.location.hash = `#${tab}`;
   };
 
@@ -29,7 +29,7 @@ export default function DashboardLayout({ currentUser, onLogout, onOpenPrivacy, 
       const hash = window.location.hash.replace('#', '');
       if (['challenge', 'kalkulator', 'kuis', 'mitos'].includes(hash)) {
         setActiveTabState(hash);
-        localStorage.setItem('SEGARIS_active_tab', hash);
+        localStorage.setItem('NutriWise_active_tab', hash);
       }
     };
 

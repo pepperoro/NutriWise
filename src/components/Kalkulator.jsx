@@ -35,8 +35,8 @@ export default function Kalkulator({ currentUser, onNavigateToQuiz }) {
 
     const meta = currentUser.user_metadata || {};
     const uid = currentUser.id;
-    const bmiKey = `SEGARIS_bmi_data_${uid}`;
-    const savedBmi = meta.SEGARIS_bmi_data || JSON.parse(localStorage.getItem(bmiKey) || 'null');
+    const bmiKey = `NutriWise_bmi_data_${uid}`;
+    const savedBmi = meta.NutriWise_bmi_data || JSON.parse(localStorage.getItem(bmiKey) || 'null');
     setBmiResult(savedBmi);
   }, [currentUser]);
 
@@ -78,13 +78,13 @@ export default function Kalkulator({ currentUser, onNavigateToQuiz }) {
       };
 
       setBmiResult(resultObj);
-      const bmiKey = currentUser?.id ? `SEGARIS_bmi_data_${currentUser.id}` : 'SEGARIS_bmi_data';
+      const bmiKey = currentUser?.id ? `NutriWise_bmi_data_${currentUser.id}` : 'NutriWise_bmi_data';
       localStorage.setItem(bmiKey, JSON.stringify(resultObj));
 
       if (currentUser && isSupabaseConfigured && supabase) {
         try {
           await supabase.auth.updateUser({
-            data: { SEGARIS_bmi_data: resultObj }
+            data: { NutriWise_bmi_data: resultObj }
           });
         } catch (err) {
           console.error('Gagal menyimpan BMI ke Supabase:', err);
@@ -187,7 +187,7 @@ export default function Kalkulator({ currentUser, onNavigateToQuiz }) {
 
             {/* CTA Button to Quiz after BMI is calculated */}
             {bmiResult && (
-              <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(47, 99, 35, 0.15)' }}>
+              <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(36, 90, 59, 0.15)' }}>
                 <button
                   onClick={onNavigateToQuiz}
                   className="btn-nav-combined"

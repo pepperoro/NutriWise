@@ -2,8 +2,8 @@ import React from 'react';
 import { Flame, Calculator, ClipboardCheck, Lightbulb, LogOut, User, Edit3, X } from 'lucide-react';
 
 export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout, mobileOpen, setMobileOpen, onOpenProfile }) {
-  const displayName = currentUser?.user_metadata?.full_name || currentUser?.email?.split('@')[0] || 'Pengguna SEGARIS';
-  const email = currentUser?.email || 'user@SEGARIS.id';
+  const displayName = currentUser?.user_metadata?.full_name || currentUser?.email?.split('@')[0] || 'Pengguna NutriWise';
+  const email = currentUser?.email || 'user@nutriwise.id';
   const avatarUrl = currentUser?.user_metadata?.avatar_url;
 
   const menuItems = [
@@ -28,9 +28,9 @@ export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout
 
         {/* Brand Logo Header */}
         <div className="sidebar-brand">
-          <img src="/logo.png" alt="SEGARIS Logo" className="sidebar-logo-img" />
+          <img src="/logo.png" alt="NutriWise Logo" className="sidebar-logo-img" />
           <div className="sidebar-brand-text">
-            <span className="sidebar-title">SEGARIS</span>
+            <span className="sidebar-title">NutriWise</span>
             <span className="sidebar-tagline">Health Dashboard</span>
           </div>
         </div>
@@ -45,7 +45,7 @@ export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout
             {avatarUrl ? (
               <img src={avatarUrl} alt="Avatar" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
             ) : (
-              <User size={20} color="#2F6323" />
+              <User size={20} color="#245A3B" />
             )}
           </div>
           <div className="sidebar-user-info">

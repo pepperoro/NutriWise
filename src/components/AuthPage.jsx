@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { ArrowLeft, Mail, Lock, User, ShieldCheck, CheckCircle, AlertCircle } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
@@ -23,11 +23,13 @@ export default function AuthPage({ initialMode = 'login', onBackHome, onAuthSucc
         setTimeout(() => {
           const mockUser = {
             id: 'demo-user-123',
-            email: email || 'demo@SEGARIS.id',
+            email: email || 'demo@nutriwise.id',
             user_metadata: { 
-              full_name: fullName || email.split('@')[0] || 'Pengguna SEGARIS',
-              SEGARIS_days: [],
-              SEGARIS_today_habits: {}
+              full_name: fullName || email.split('@')[0] || 'Pengguna NutriWise',
+              NutriWise_days: [],
+              NutriWise_days: [],
+              NutriWise_today_habits: {},
+              NutriWise_today_habits: {}
             }
           };
           setSuccessMsg('Berhasil masuk mode demo!');
@@ -101,7 +103,7 @@ export default function AuthPage({ initialMode = 'login', onBackHome, onAuthSucc
             /* ================= LOGIN FORM SIDE (LEFT) ================= */
             <div className="auth-form-side">
               <h1 className="auth-form-title">Masuk</h1>
-              <p className="auth-form-subtitle">Gunakan akun SEGARIS Anda</p>
+              <p className="auth-form-subtitle">Gunakan akun NutriWise Anda</p>
 
               {!isSupabaseConfigured && (
                 <div className="auth-alert alert-demo">
@@ -181,7 +183,7 @@ export default function AuthPage({ initialMode = 'login', onBackHome, onAuthSucc
             /* ================= LOGIN BANNER SIDE (RIGHT) ================= */
             <div className="auth-banner-side banner-right-curve">
               <div className="banner-content">
-                <h2 className="banner-title">Halo, Sahabat SEGARIS!</h2>
+                <h2 className="banner-title">Halo, Sahabat NutriWise!</h2>
                 <p className="banner-text">
                   Daftar dengan data diri Anda untuk menggunakan seluruh fitur pelacak nutrisi &amp; kesehatan
                 </p>
@@ -266,7 +268,7 @@ export default function AuthPage({ initialMode = 'login', onBackHome, onAuthSucc
 
         {/* Security Footer Note */}
         <div className="auth-footer-security">
-          <ShieldCheck size={16} color="#2F6323" />
+          <ShieldCheck size={16} color="#245A3B" />
           <span>Keamanan Data Terjamin dengan Supabase Auth &amp; Encryption Standard &amp; Privacy Shield</span>
         </div>
       </div>
