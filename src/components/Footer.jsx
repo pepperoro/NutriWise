@@ -9,7 +9,7 @@ export default function Footer({ onOpenPrivacy }) {
           <div>
             <h3 className="footer-brand">NutriWise</h3>
             <p style={{ fontSize: '0.78rem', color: 'rgba(199, 220, 91, 0.8)', marginBottom: '8px', fontStyle: 'italic', letterSpacing: '0.01em' }}>
-              Sistem Edukasi Gizi, Analisis, dan Rekomendasi Interaktif Sehat
+              An Intelligent Digital Platform for Personalized Nutrition, Disease Prevention, and Healthy Lifestyle
             </p>
             <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.7)', maxWidth: '480px' }}>
               Inovasi Web Kesehatan &amp; Nutrisi Berbasis Sains untuk mendukung kebiasaan hidup sehat, pencegahan risiko kesehatan, dan edukasi nutrisi terukur.
