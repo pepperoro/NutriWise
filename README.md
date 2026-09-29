@@ -1,6 +1,7 @@
 <div align="center">
 
-  # SEGARIS
+  # NutriWise
+
   ### *Sistem Edukasi Gaya Hidup & Nutrisi Sehat Terintegrasi*
   **"Masa Depan Sehat & Sejahtera Dimulai dari Langkah Kecil Hari Ini"**
 
