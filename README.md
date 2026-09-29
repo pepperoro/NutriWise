@@ -1,7 +1,7 @@
 <div align="center">
 
   # NutriWise
-  ### *Sistem Edukasi Gaya Hidup & Nutrisi Sehat Terintegrasi*
+  ### *An Intelligent Digital Platform for Personalized Nutrition, Disease Prevention, and Healthy Lifestyle*
   **"Masa Depan Sehat & Sejahtera Dimulai dari Langkah Kecil Hari Ini"**
 
   <p align="center">
