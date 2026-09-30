@@ -1066,7 +1066,7 @@ h1, h2, h3, h4, .font-serif {
   transform: translateX(-4px);
 }
 
-/* Split Card Container */
+/* Split Card Container — now holds both forms + sliding overlay */
 .auth-split-card {
   width: 100%;
   min-height: 600px;
@@ -1074,10 +1074,30 @@ h1, h2, h3, h4, .font-serif {
   border-radius: 28px;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.09);
   overflow: hidden;
+  position: relative;
+}
+
+/* Forms Container: both login & register forms side by side */
+.auth-forms-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 600px;
+  width: 100%;
+}
+
+/* Each form panel takes a full half */
+.auth-form-panel {
+  transition: opacity 0.4s ease 0.15s;
+}
+
+.auth-form-panel.panel-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.auth-form-panel.panel-hidden {
+  opacity: 0.15;
+  pointer-events: none;
 }
 
 /* Form Column */
@@ -1088,6 +1108,7 @@ h1, h2, h3, h4, .font-serif {
   align-items: center;
   justify-content: center;
   text-align: center;
+  min-height: 600px;
 }
 
 .auth-form-title {
@@ -1175,30 +1196,75 @@ h1, h2, h3, h4, .font-serif {
   box-shadow: 0 8px 24px rgba(36, 90, 59, 0.35);
 }
 
-/* Banner Column with Curved Corner shape matching login.jpeg & reg.jpeg */
-.auth-banner-side {
+/* ============================================= */
+/* SLIDING OVERLAY — the green panel that slides */
+/* ============================================= */
+.auth-overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1),
+              border-radius 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: 10;
+  border-radius: 28px;
+}
+
+/* When overlay is on the RIGHT (Login mode — default) */
+.auth-overlay-container.overlay-right {
+  transform: translateX(0%);
+  border-top-left-radius: 180px;
+  border-bottom-left-radius: 180px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* When overlay slides to the LEFT (Register mode) */
+.auth-overlay-container.overlay-left {
+  transform: translateX(-100%);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 180px;
+  border-bottom-right-radius: 180px;
+}
+
+.auth-overlay {
   background: linear-gradient(135deg, #245A3B 0%, #1A4530 100%);
   color: #FFFFFF;
-  padding: 56px 48px;
+  position: relative;
+  width: 200%;
+  height: 100%;
+  display: flex;
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* When overlay-container is on the RIGHT, show the right panel content (shift overlay to show right half) */
+.overlay-right .auth-overlay {
+  transform: translateX(0%);
+}
+
+/* When overlay-container is on the LEFT, show the left panel content (shift overlay to show left half) */
+.overlay-left .auth-overlay {
+  transform: translateX(-50%);
+}
+
+.auth-overlay-panel {
+  width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  padding: 56px 48px;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.2s;
 }
 
-/* Curved shape on right side (Login mode) matching login.jpeg */
-.banner-right-curve {
-  border-top-left-radius: 180px;
-  border-bottom-left-radius: 180px;
-}
-
-/* Curved shape on left side (Register mode) matching reg.jpeg */
-.banner-left-curve {
-  border-top-right-radius: 180px;
-  border-bottom-right-radius: 180px;
+.auth-overlay-panel.overlay-panel-active {
+  opacity: 1;
 }
 
 .banner-content {
@@ -1292,18 +1358,48 @@ h1, h2, h3, h4, .font-serif {
 /* Responsive adjustment for auth split card */
 @media (max-width: 768px) {
   .auth-split-card {
-    grid-template-columns: 1fr;
     border-radius: 20px;
   }
 
-  .banner-right-curve,
-  .banner-left-curve {
-    border-radius: 0;
+  .auth-forms-container {
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
 
-  .auth-form-side,
-  .auth-banner-side {
+  /* On mobile, hide the overlay sliding mechanism and show a simpler toggle */
+  .auth-overlay-container {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 280px;
+    transform: none !important;
+    border-radius: 0 !important;
+  }
+
+  .auth-overlay {
+    width: 100%;
+    transform: none !important;
+  }
+
+  .auth-overlay-panel {
+    width: 100%;
     padding: 40px 24px;
+    display: none;
+  }
+
+  .auth-overlay-panel.overlay-panel-active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .auth-form-panel.panel-hidden {
+    display: none;
+  }
+
+  .auth-form-side {
+    padding: 40px 24px;
+    min-height: auto;
   }
 }
 
