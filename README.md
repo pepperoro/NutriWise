@@ -84,149 +84,38 @@ Bukan sekadar kalkulator sederhana, modul kalkulator NutriWise menggunakan formu
 - **Guest / Publik**: Landing page imersif dengan *single-page storytelling* dan akses instan ke edukasi tanpa registrasi yang memaksa.
 - **Authenticated User**: Dashboard pribadi *distraction-free* dengan navigasi sidebar lateral (*1 feature per page*), riwayat kuis, sinkronisasi cloud, dan manajemen akun mandiri.
 
-### 6. 🤖 NutriBot AI: Asisten Kesehatan Virtual Cerdas (Google Gemini Engine)
-- Didukung model bahasa mutakhir **Google Gemini AI** via Vercel Serverless Function terenkripsi (`/api/chat`).
-- **Strict Medical Ethics & Guidelines**: Dirancang khusus dengan *system prompt guardrails* (edukasi gizi preventif, bebas klaim diagnosis mandiri tanpa dasar medis, dan deteksi peringatan kegawatdaruratan).
-- **Intelligent Page Navigation**: NutriBot mampu memicu aksi alih halaman otomatis (*smart context navigation trigger*) seperti `[NAVIGATE:challenge]` atau `[NAVIGATE:kalkulator]` untuk memandu aksi konkret pengguna secara langsung.
-
-### 7. 🔔 Smart Web Push Notifications (Pusher Beams & Service Worker)
-- Mendorong kedisiplinan dan pembentukan kebiasaan hidup sehat (*health habit retention*) dengan pengingat ramah harian langsung di perangkat (*desktop & mobile*).
-- Terintegrasi dengan **Pusher Beams Cloud** dan **PWA Background Service Worker** yang hemat daya.
-- Dilengkapi pusat kontrol preferensi notifikasi terperinci di header dashboard pengguna (Pengingat Minum Air, Tips Nutrisi Harian, dan Evaluasi Risiko PTM) beserta fitur uji coba interaktif.
-
-
 ---
 
 ## 🏗️ Arsitektur Sistem & Alur Kerja
 
-NutriWise dirancang dengan arsitektur **Multi-Tier Decoupled & Privacy-First** yang mengutamakan pemrosesan lokal (*local-first*), responsivitas instan, modularitas tinggi, dan keamanan data sesuai regulasi:
-
-### 1. 🎨 Diagram Arsitektur Multi-Tier (Komponen & Topologi Layanan)
-
 ```mermaid
-flowchart TD
-    %% === Definisi Style & Warna ===
-    classDef userNode fill:#2F6323,stroke:#1B3D14,stroke-width:2px,color:#FFFFFF,font-weight:bold;
-    classDef appCore fill:#ECFDF5,stroke:#059669,stroke-width:2px,color:#064E3B,font-weight:bold;
-    classDef clientUI fill:#E0F2FE,stroke:#0284C7,stroke-width:2px,color:#0C4A6E;
-    classDef aiLayer fill:#F5F3FF,stroke:#7C3AED,stroke-width:2px,color:#4C1D95;
-    classDef notifLayer fill:#FFFBEB,stroke:#D97706,stroke-width:2px,color:#78350F;
-    classDef storageLayer fill:#F8FAFC,stroke:#475569,stroke-width:2px,color:#0F172A;
-    classDef securityLayer fill:#FEF2F2,stroke:#DC2626,stroke-width:2px,color:#7F1D1D;
-
-    User(["👤 Pengguna (Desktop / Tablet / Mobile Browser)"]):::userNode
-    User -->|Akses Web via HTTPS| App["🚀 NutriWise Core App (React 18 + Vite SPA)"]:::appCore
-
-    %% === Layer Frontend SPA ===
-    subgraph FE ["🖥️ CLIENT PRESENTATION LAYER (React 18 + Vite SPA)"]
-        Router{"Routing & Auth Guard"}:::clientUI
-        App --> Router
+graph TD
+    User([Pengguna / Klien]) -->|Akses Web| App[NutriWise Single Page App]
+    
+    subgraph "Client Layer (React 18 + Vite)"
+        App --> ViewRouter{Status Autentikasi?}
+        ViewRouter -->|Belum Login / Guest| LandingPage[Landing Page Publik]
+        ViewRouter -->|Sudah Login| Dashboard[Dedicated Dashboard Area]
         
-        Router -->|Tamu / Guest| Landing["🌐 Landing Page Publik (Storytelling)"]:::clientUI
-        Router -->|Terautentikasi| Dashboard["📊 Dedicated Dashboard Workspace"]:::clientUI
-
-        Landing --> Hero["🌿 Hero & Edukasi SDG 3"]:::clientUI
-        Landing --> CalcGuest["🧮 Kalkulator Nutrisi Klinis"]:::clientUI
-        Landing --> MythGuest["🃏 Mitos vs Fakta 3D Flip"]:::clientUI
-        Landing --> QuizTeaser["🩺 Kuis Skrining PTM (Teaser)"]:::clientUI
-
-        Dashboard --> DashHabit["🔥 30-Day Health Challenge & Habit Loops"]:::clientUI
-        Dashboard --> DashCalc["📈 Kalkulator Nutrisi & BMR Tracker"]:::clientUI
-        Dashboard --> DashQuiz["📋 Kuis Skrining PTM (Full 10-Indikator)"]:::clientUI
-        Dashboard --> DashMyth["💡 Mitos vs Fakta Nutrisi"]:::clientUI
-        Dashboard --> DashProfile["⚙️ Profil Pengguna & Privasi Data"]:::clientUI
-
-        ChatbotWidget["💬 NutriBot AI Floating Widget"]:::aiLayer
-        NotifManager["🔔 Notification Center & Header Controls"]:::notifLayer
-        Dashboard -.-> ChatbotWidget
-        Dashboard -.-> NotifManager
+        LandingPage --> HeroSec[Hero & Edukasi]
+        LandingPage --> CalcSec[Kalkulator Klinis]
+        LandingPage --> MythSec[Mitos vs Fakta 3D]
+        LandingPage --> QuizTeaser[Teaser Skrining PTM]
+        
+        Dashboard --> DashChallenge[30-Day Challenge Manager]
+        Dashboard --> DashCalc[Kalkulator & Health Stats]
+        Dashboard --> DashQuiz[Kuis Skrining PTM Interaktif]
+        Dashboard --> DashMyth[Mitos vs Fakta]
+        Dashboard --> DashProfile[Manajemen Profil & Akun]
     end
 
-    %% === Layer Serverless & Layanan Cloud AI/Notifikasi ===
-    subgraph API_MIDDLEWARE ["⚡ SERVERLESS & CLOUD INTELLIGENCE LAYER"]
-        VercelAPI["⚡ Vercel Serverless Function (/api/chat)"]:::aiLayer
-        GeminiAI["🤖 Google Gemini AI Engine (@google/genai)"]:::aiLayer
-        PusherBeams["📡 Pusher Beams Push Notification Cloud"]:::notifLayer
-        ServiceWorker["⚙️ Background Service Worker (PWA Web Push)"]:::notifLayer
-
-        ChatbotWidget -->|POST Prompt & Halaman Aktif| VercelAPI
-        VercelAPI -->|Generative Medical-Guideline AI| GeminiAI
-        GeminiAI -.->|Respon Edukatif + Auto-Navigation Trigger| ChatbotWidget
-
-        NotifManager -->|Register Interests & Preferences| PusherBeams
-        PusherBeams -->|Web Push Protocol / Payload| ServiceWorker
-        ServiceWorker -->|Native OS Push Notification| User
-    end
-
-    %% === Layer Data & Privasi ===
-    subgraph DATA_PERSISTENCE ["🛡️ DATA PERSISTENCE & PRIVACY-BY-DESIGN"]
-        LocalStorage[("💾 Client LocalStorage (Offline Cache / Local-First)")]:::storageLayer
-        SupabaseAuth[("☁️ Supabase Cloud Database (PostgreSQL)")]:::storageLayer
-        PDPPolicy["🔒 UU PDP Compliant Guard (TLS + JWT + RLS)"]:::securityLayer
-
-        CalcGuest -.->|Client-Side Only (Tanpa Server)| LocalStorage
-        DashHabit <-->|Instant Read/Write Cache| LocalStorage
-        DashHabit ===>|Auto Cloud Sync| SupabaseAuth
-        DashQuiz ===>|Simpan Histori Risiko & Rekomendasi| SupabaseAuth
-        DashProfile <===>|Manajemen Akun & Right-to-be-Forgotten| SupabaseAuth
-        SupabaseAuth --- PDPPolicy
-    end
-
-    %% Subgraph Styling
-    style FE fill:#F0FDF4,stroke:#16A34A,stroke-width:2px,color:#14532D
-    style API_MIDDLEWARE fill:#FAF5FF,stroke:#9333EA,stroke-width:2px,color:#581C87
-    style DATA_PERSISTENCE fill:#F8FAFC,stroke:#475569,stroke-width:2px,color:#0F172A
-```
-
----
-
-### 2. 🔄 Diagram Alur Kerja Pengguna Terintegrasi (End-to-End User Flow)
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Pengguna as 👤 Pengguna
-    participant Web as 🖥️ NutriWise Web App
-    participant AI as 🤖 NutriBot (Gemini AI)
-    participant Cloud as ☁️ Supabase Cloud (RLS)
-    participant Beams as 📡 Pusher Beams Cloud
-
-    %% Fase 1
-    Note over Pengguna,Web: 1. Eksplorasi Awal & Skrining Mandiri (Guest Mode)
-    Pengguna->>Web: Membuka NutriWise via Browser
-    Pengguna->>Web: Memasukkan data TB, BB, Usia, Aktivitas di Kalkulator
-    Web-->>Pengguna: Kalkulasi instan BMI, TDEE, & Hidrasi via Client-Side (Zero Server Latency)
-
-    %% Fase 2
-    Note over Pengguna,Cloud: 2. Autentikasi Akun & Akses Dashboard Pribadi
-    Pengguna->>Web: Registrasi / Masuk Akun
-    Web->>Cloud: Autentikasi aman melalui Supabase Auth
-    Cloud-->>Web: Mengembalikan JWT Token & Data Profil
-    Web->>Pengguna: Buka Dashboard Pribadi (Distraction-Free Workspace)
-
-    %% Fase 3
-    Note over Pengguna,Beams: 3. Pengaturan Smart Push Notification
-    Web->>Pengguna: Tampilkan Banner Notifikasi Pengingat Sehat
-    Pengguna->>Web: Klik "Aktifkan Notifikasi" (Pilih Topik Tips & Pengingat)
-    Web->>Beams: Daftarkan Token & Device Interest via Pusher Beams SDK
-    Beams-->>Pengguna: Kirim Notifikasi Uji / Pengingat Harian Otomatis
-
-    %% Fase 4
-    Note over Pengguna,AI: 4. Skrining Risiko PTM & Asistensi Interaktif NutriBot
-    Pengguna->>Web: Mengisi 10 Indikator Kuis Skrining PTM
-    Web->>Cloud: Simpan Skor Risiko, Kategori Klinis, & Tindakan Personal
-    Pengguna->>AI: Bertanya via NutriBot ("Bagaimana tips memulai diet rendah gula?")
-    AI->>Web: Memberikan Respon Medis Edukatif + Trigger Auto-Navigation ([NAVIGATE:challenge])
-    Web-->>Pengguna: Tampilan dialihkan otomatis ke Modul Tantangan 30 Hari
-
-    %% Fase 5
-    Note over Pengguna,Cloud: 5. Pembentukan Kebiasaan Sehat & Kedaulatan Privasi (UU PDP)
-    Pengguna->>Web: Melakukan Checklist Target Harian (Air, Olahraga, Gizi)
-    Web->>Cloud: Sinkronisasi Progres Streak & Kalender (Auto Sync)
-    alt Hak Menghapus Data (Right to be Forgotten)
-        Pengguna->>Web: Mengajukan Hapus Akun 2-Langkah pada Profil
-        Web->>Cloud: Menghapus Permanen Seluruh Record & Data Kredensial Pengguna
-        Web-->>Pengguna: Konfirmasi selesai, sesi dibersihkan 100%
+    subgraph "Data Storage & Privacy Layer"
+        CalcSec -.->|Local Processing| LocalStorage[(Browser LocalStorage)]
+        DashChallenge <-->|Local-First Cache| LocalStorage
+        
+        DashChallenge <===>|Auto Sync via Token| SupabaseAuth[(Supabase Auth & Metadata)]
+        DashQuiz ===>|Simpan Hasil Skrining| SupabaseAuth
+        DashCalc ===>|Simpan Nilai BMI| SupabaseAuth
     end
 ```
 
@@ -267,12 +156,9 @@ Desain antarmuka NutriWise mengusung estetika **Modern Botanical & Clinical Eleg
 
 | Kategori | Teknologi | Kegunaan |
 |---|---|---|
-| **Core Framework** | React 18.3 | Library komponen antarmuka reaktif, modular, dan berperforma tinggi |
+| **Core Framework** | React 18.3 | Library komponen antarmuka reaktif dan modular |
 | **Build Tool** | Vite 6.1 | Modul bundler ultra-cepat dengan Hot Module Replacement (HMR) instan |
-| **Styling** | Vanilla Modern CSS | Performa render maksimal, arsitektur modular tanpa overhead runtime |
-| **Generative AI** | Google Gemini AI (`@google/genai`) | Asisten nutrisi cerdas interaktif berbasis pedoman medis & auto-navigation |
-| **Serverless API** | Vercel Serverless Functions | Backend microservice tanpa server untuk komunikasi AI yang aman |
-| **Push Notification** | Pusher Beams & Web Push API | Layanan pengingat kebiasaan harian berbasis background Service Worker PWA |
+| **Styling** | Vanilla Modern CSS | Performa render maksimal, arsitektur modular tanpa overhead Tailwind runtime |
 | **Iconography** | Lucide React | Ikon modern, konsisten, dan ringan berformat SVG murni |
 | **Backend & Auth** | Supabase JS v2 | Layanan autentikasi akun, penyimpanan metadata pengguna, dan sinkronisasi awan |
 | **Design Standards** | Figma & Web Standards | Rancang bangun antarmuka responsif ramah seluler (*mobile-first*) |
@@ -308,8 +194,6 @@ Sesuaikan kredensial Supabase Anda di dalam `.env`:
 ```env
 VITE_SUPABASE_URL=https://your-project-id.supabase.co
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-VITE_PUSHER_BEAMS_INSTANCE_ID=your-pusher-beams-instance-id
-GEMINI_API_KEY=your-google-gemini-api-key
 ```
 > *Catatan: Jika kredensial Supabase dikosongkan, NutriWise secara otomatis mengaktifkan **Mode Mock/Demo Terintegrasi** sehingga penguji juri tetap dapat mengeksplorasi seluruh fitur akun secara penuh tanpa kendala koneksi.*
 
@@ -331,35 +215,26 @@ npm run preview
 
 ```text
 NutriWise/
-├── api/                        # Vercel Serverless Functions
-│   └── chat.js                 # Handler AI Gemini dengan prompt medis & navigasi
-├── assets/                     # Aset gambar grafis & visual pendukung
-├── public/                     # Aset statis & Service Worker PWA
-│   ├── hero_bg.png             # Latar belakang hero landing page
-│   ├── logo.png                # Logo resmi NutriWise
-│   ├── dino_logo.png           # Aset visual pendukung
-│   └── service-worker.js       # Background worker untuk Web Push Notifications
+├── assets/                     # Aset gambar grafis, kartu interaktif, & palet
+├── public/                     # Aset statis (Favicon, Logo NutriWise, Ilustrasi)
+│   ├── hero_bg.png
+│   └── logo.png
 ├── src/
 │   ├── components/             # Komponen modular aplikasi
-│   │   ├── AuthModal.jsx       # Modal dialog autentikasi cepat
 │   │   ├── AuthPage.jsx        # Halaman autentikasi login & registrasi split-view
-│   │   ├── Challenge30Days.jsx # Modul pelacak kebiasaan 30-Day Health Challenge
-│   │   ├── Chatbot.jsx         # Widget asisten pintar NutriBot AI (Gemini)
-│   │   ├── DashboardLayout.jsx # Tata letak dashboard pengguna dengan sidebar responsif
+│   │   ├── Challenge30Days.jsx # Modul pelacak kebiasaan 30-Day Challenge
+│   │   ├── DashboardLayout.jsx # Tata letak dashboard pengguna dengan sidebar
 │   │   ├── Footer.jsx          # Komponen footer dan rincian lisensi
 │   │   ├── Hero.jsx            # Banner pengantar landing page dengan tipografi
 │   │   ├── Kalkulator.jsx      # Kalkulator BMI, Mifflin-St Jeor, & Hidrasi
 │   │   ├── KuisSkrining.jsx    # Kuis 10 indikator risiko PTM & rekomendasi
 │   │   ├── KuisTeaser.jsx      # Pratinjau kuis interaktif untuk tamu
 │   │   ├── MitosFakta.jsx      # Kartu edukasi nutrisi 3D Flip
-│   │   ├── Navbar.jsx          # Navigasi utama dengan deteksi sesi & notifikasi
-│   │   ├── NotificationBanner.jsx # Banner ajakan aktivasi notifikasi pengingat
-│   │   ├── NotificationSettingsModal.jsx # Modal preferensi & uji notifikasi Beams
-│   │   ├── PrivacyModal.jsx    # Modal kebijakan privasi data pengguna (UU PDP)
-│   │   ├── ProfileModal.jsx    # Manajemen profil dan hak hapus akun permanen
+│   │   ├── Navbar.jsx          # Navigasi utama dengan deteksi sesi
+│   │   ├── PrivacyModal.jsx    # Modal kebijakan privasi data pengguna
+│   │   ├── ProfileModal.jsx    # Manajemen profil dan hapus akun
 │   │   └── Sidebar.jsx         # Navigasi sidebar terpadu untuk dashboard
 │   ├── lib/
-│   │   ├── pushNotifications.js # Handler Pusher Beams SDK & Service Worker
 │   │   └── supabase.js         # Konfigurasi klien dan validasi koneksi Supabase
 │   ├── App.jsx                 # Pengatur status aplikasi utama & router tampilan
 │   ├── index.css               # Desain sistem global, variabel CSS, & tipografi
