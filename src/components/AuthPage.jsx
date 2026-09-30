@@ -27,8 +27,6 @@ export default function AuthPage({ initialMode = 'login', onBackHome, onAuthSucc
             user_metadata: { 
               full_name: fullName || email.split('@')[0] || 'Pengguna NutriWise',
               NutriWise_days: [],
-              NutriWise_days: [],
-              NutriWise_today_habits: {},
               NutriWise_today_habits: {}
             }
           };

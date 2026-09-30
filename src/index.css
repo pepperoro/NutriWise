@@ -256,6 +256,31 @@ h1, h2, h3, h4, .font-serif {
   box-shadow: 0 4px 12px rgba(36, 90, 59, 0.25);
 }
 
+.btn-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border: 2px solid var(--color-forest);
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  background-color: var(--color-forest);
+  transition: var(--transition-normal);
+  cursor: pointer;
+  height: 44px;
+  box-sizing: border-box;
+}
+
+.btn-cta-primary:hover {
+  background-color: #1d4b31;
+  border-color: #1d4b31;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(36, 90, 59, 0.25);
+}
+
 .btn-auth-primary {
   display: inline-flex;
   align-items: center;
@@ -1569,8 +1594,8 @@ h1, h2, h3, h4, .font-serif {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile Sidebar Drawer Responsive */
-@media (max-width: 768px) {
+/* Tablet & Laptop Sidebar Drawer Responsive (1024px and below) */
+@media (max-width: 1024px) {
   .dashboard-sidebar {
     transform: translateX(-100%);
   }
@@ -1608,6 +1633,20 @@ h1, h2, h3, h4, .font-serif {
 
   .dashboard-main-view {
     padding: 16px;
+  }
+
+  .dashboard-page-title {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-page-title {
+    font-size: 1rem;
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
@@ -2481,7 +2520,9 @@ h1, h2, h3, h4, .font-serif {
   background: #F8FAFC;
   border: 1px solid #E2E8F0;
   border-radius: 16px;
-  padding: 16px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .setup-card h3 {
@@ -2513,10 +2554,19 @@ h1, h2, h3, h4, .font-serif {
 .setup-targets-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  max-height: 230px;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+  max-height: 380px;
   overflow-y: auto;
   padding-right: 4px;
+}
+
+@media (min-width: 1024px) {
+  .setup-targets-list {
+    max-height: 420px;
+    flex: 1;
+  }
 }
 
 .setup-target-item {
@@ -2525,8 +2575,14 @@ h1, h2, h3, h4, .font-serif {
   justify-content: space-between;
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  border-radius: 10px;
-  padding: 8px 12px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.setup-target-item:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .target-item-title {

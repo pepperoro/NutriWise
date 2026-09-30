@@ -13,6 +13,9 @@ import Footer from './components/Footer';
 import { LogOut, X } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from './lib/supabase';
 import Chatbot from './components/Chatbot';
+import NotificationSettingsModal from './components/NotificationSettingsModal';
+import { usePushNotifications } from './lib/pushNotifications';
+import './notifications.css';
 
 export default function App() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
@@ -22,6 +25,20 @@ export default function App() {
   const [authMode, setAuthMode] = useState('login'); // 'login' | 'register'
   const [currentUser, setCurrentUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [showAuthNotifModal, setShowAuthNotifModal] = useState(false);
+  const pushState = usePushNotifications(currentUser);
+
+  // Show notification turn on/off prompt after user registers or signs in
+  useEffect(() => {
+    if (currentUser?.id) {
+      const answered = localStorage.getItem(`NutriWise_notif_prompt_answered_${currentUser.id}`);
+      if (!answered) {
+        setShowAuthNotifModal(true);
+      }
+    } else {
+      setShowAuthNotifModal(false);
+    }
+  }, [currentUser]);
 
   useEffect(() => {
     // Sync URL hash for page navigation (#auth, #login, #register)
@@ -132,6 +149,7 @@ export default function App() {
           onAuthSuccess={(user) => {
             setCurrentUser(user);
             handleBackHome();
+            setShowAuthNotifModal(true);
           }}
         />
       ) : currentUser ? (
@@ -141,6 +159,7 @@ export default function App() {
           onLogout={triggerLogoutConfirm}
           onOpenPrivacy={() => setPrivacyOpen(true)}
           onOpenProfile={() => setProfileOpen(true)}
+          pushState={pushState}
         />
       ) : (
         /* 3. Public Guest View (Landing Page with Hero & Single Page Scrolling) */
@@ -224,8 +243,20 @@ export default function App() {
           </div>
         </div>
       )}
+      {/* Post-Registration / Post-SignIn Notification Turn ON/OFF Prompt Modal */}
+      {currentUser && (
+        <NotificationSettingsModal 
+          isOpen={showAuthNotifModal}
+          onClose={() => setShowAuthNotifModal(false)}
+          pushState={pushState}
+          currentUser={currentUser}
+          isAuthPrompt={true}
+        />
+      )}
+
       {/* Chatbot Widget */}
       <Chatbot 
+        currentUser={currentUser}
         currentPage={currentView === 'home' ? 'Beranda (Landing Page Utama)' : currentView === 'auth' ? 'Halaman Login/Register' : 'Dashboard Profil'} 
         onNavigate={handleBotNavigate} 
       />

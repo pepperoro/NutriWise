@@ -4,9 +4,17 @@ import Kalkulator from './Kalkulator';
 import Challenge30Days from './Challenge30Days';
 import MitosFakta from './MitosFakta';
 import KuisSkrining from './KuisSkrining';
-import { Menu, ShieldCheck } from 'lucide-react';
+import { Menu, ShieldCheck, Bell, BellRing, BellOff } from 'lucide-react';
+import NotificationSettingsModal from './NotificationSettingsModal';
 
-export default function DashboardLayout({ currentUser, onLogout, onOpenPrivacy, onOpenProfile }) {
+export default function DashboardLayout({ 
+  currentUser, 
+  onLogout, 
+  onOpenPrivacy, 
+  onOpenProfile,
+  pushState 
+}) {
+  const [notifModalOpen, setNotifModalOpen] = useState(false);
   const [activeTab, setActiveTabState] = useState(() => {
     const hash = window.location.hash.replace('#', '');
     if (['challenge', 'kalkulator', 'kuis', 'mitos'].includes(hash)) {
@@ -66,9 +74,33 @@ export default function DashboardLayout({ currentUser, onLogout, onOpenPrivacy, 
             </h2>
           </div>
 
-          <button onClick={onOpenPrivacy} className="btn-cta-outline" style={{ padding: '6px 14px', fontSize: '0.85rem' }}>
-            <ShieldCheck size={16} /> Privasi Data
-          </button>
+          <div className="dashboard-topbar-actions" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <button 
+              onClick={onOpenPrivacy} 
+              className="btn-cta-outline header-action-btn privacy-header-btn" 
+              style={{ padding: '6px 14px', fontSize: '0.85rem' }}
+              title="Privasi Data"
+            >
+              <ShieldCheck size={16} /> 
+              <span className="header-btn-text">Privasi Data</span>
+            </button>
+            <button 
+              onClick={() => setNotifModalOpen(true)} 
+              className={`btn-cta-outline notif-header-btn header-action-btn ${pushState?.isEnabled ? 'notif-enabled' : 'notif-disabled'}`} 
+              style={{ padding: '6px 14px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '6px' }}
+              title={pushState?.isEnabled ? 'Pengaturan Notifikasi (Aktif)' : 'Pengaturan Notifikasi (Nonaktif)'}
+            >
+              {pushState?.isEnabled ? (
+                <BellRing size={16} />
+              ) : (
+                <BellOff size={16} />
+              )}
+              <span className="header-btn-text">Notifikasi</span>
+              <span className={`notif-status-badge-inline ${pushState?.isEnabled ? 'active' : 'inactive'}`}>
+                {pushState?.isEnabled ? 'ON' : 'OFF'}
+              </span>
+            </button>
+          </div>
         </header>
 
         {/* Feature Page Container (No Hero, 1 Feature per Page) */}
@@ -98,6 +130,16 @@ export default function DashboardLayout({ currentUser, onLogout, onOpenPrivacy, 
           )}
         </main>
       </div>
+
+      {/* Notification Settings Modal */}
+      {pushState && (
+        <NotificationSettingsModal 
+          isOpen={notifModalOpen} 
+          onClose={() => setNotifModalOpen(false)}
+          pushState={pushState}
+          currentUser={currentUser}
+        />
+      )}
     </div>
   );
 }

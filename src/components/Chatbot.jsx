@@ -2,11 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquare, X, Send, Bot, Loader2, HeartPulse } from 'lucide-react';
 import '../chatbot.css';
 
-export default function Chatbot({ currentPage, onNavigate }) {
+export default function Chatbot({ currentPage, onNavigate, currentUser }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { role: 'ai', content: 'Halo! Saya asisten AI NutriWise. Ada yang bisa saya bantu terkait kesehatan, gaya hidup, atau fitur di website ini?' }
-  ]);
+  const defaultMessage = { role: 'ai', content: 'Halo! Saya asisten AI NutriWise. Ada yang bisa saya bantu terkait kesehatan, gaya hidup, atau fitur di website ini?' };
+  const [messages, setMessages] = useState([defaultMessage]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
@@ -20,6 +19,30 @@ export default function Chatbot({ currentPage, onNavigate }) {
       scrollToBottom();
     }
   }, [messages, isOpen]);
+
+  useEffect(() => {
+    if (currentUser) {
+      const savedChat = localStorage.getItem(`NutriWise_chat_${currentUser.id}`);
+      if (savedChat) {
+        try {
+          setMessages(JSON.parse(savedChat));
+        } catch (e) {
+          console.error("Error parsing chat history:", e);
+          setMessages([defaultMessage]);
+        }
+      } else {
+        setMessages([defaultMessage]);
+      }
+    } else {
+      setMessages([defaultMessage]);
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (currentUser && messages.length > 0) {
+      localStorage.setItem(`NutriWise_chat_${currentUser.id}`, JSON.stringify(messages));
+    }
+  }, [messages, currentUser]);
 
   const handleSend = async (e) => {
     e?.preventDefault();
@@ -136,6 +159,11 @@ export default function Chatbot({ currentPage, onNavigate }) {
 
         <div className="chatbot-footer-info">
           Edukasi medis saja. Bukan pengganti diagnosis dokter.
+          {!currentUser && (
+            <div style={{ marginTop: '4px', color: '#f59e0b', fontSize: '0.7rem' }}>
+              ⚠️ Anda belum login. Percakapan ini tidak akan disimpan.
+            </div>
+          )}
         </div>
         
         <form className="chatbot-input-area" onSubmit={handleSend}>
