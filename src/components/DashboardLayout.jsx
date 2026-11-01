@@ -4,7 +4,7 @@ import Kalkulator from './Kalkulator';
 import Challenge30Days from './Challenge30Days';
 import MitosFakta from './MitosFakta';
 import KuisSkrining from './KuisSkrining';
-import { Menu, ShieldCheck, Bell, BellRing, BellOff } from 'lucide-react';
+import { Menu, ShieldCheck, BellRing, BellOff } from 'lucide-react';
 import NotificationSettingsModal from './NotificationSettingsModal';
 import ThemeToggle from './ThemeToggle';
 
@@ -127,7 +127,7 @@ export default function DashboardLayout({
 
           {activeTab === 'mitos' && (
             <div className="dashboard-tab-pane">
-              <MitosFakta />
+              <MitosFakta isDashboard={true} />
             </div>
           )}
         </main>

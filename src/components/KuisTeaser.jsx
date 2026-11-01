@@ -1,68 +1,195 @@
 import React, { useState } from 'react';
-import { ClipboardCheck, Activity, Heart, ShieldAlert, ArrowRight, Lock, X } from 'lucide-react';
+import {
+  ClipboardCheck,
+  Activity,
+  Heart,
+  ShieldAlert,
+  ArrowRight,
+  Lock,
+  X,
+  Salad,
+  Moon,
+  Flame,
+  Sparkles,
+  CheckCircle2
+} from 'lucide-react';
+
+const HEALTH_TOPICS = [
+  'Indeks BMI Tubuh',
+  'Konsumsi Sayur & Buah',
+  'Asupan Minuman Manis',
+  'Makanan Cepat Saji',
+  'Kadar Garam Harian',
+  'Rutin Olahraga',
+  'Riwayat Kesehatan Keluarga',
+  'Paparan Asap Rokok',
+  'Kualitas Tidur Malam',
+  'Keseimbangan Stres'
+];
+
+const HEALTH_DOMAINS = [
+  {
+    title: 'Kesehatan Metabolisme',
+    sub: 'Keseimbangan berat badan, serat & gula darah',
+    badge: 'Terpantau Baik',
+    pct: '88%',
+    color: '#4ADE80',
+    icon: Salad
+  },
+  {
+    title: 'Kebugaran Jantung & Pembuluh',
+    sub: 'Kontrol natrium, lemak & aktivitas fisik harian',
+    badge: 'Perlu Dijaga',
+    pct: '76%',
+    color: '#FBBF24',
+    icon: Heart
+  },
+  {
+    title: 'Kualitas Istirahat & Pikiran',
+    sub: 'Durasi tidur 7–8 jam & pengelolaan stres',
+    badge: 'Optimal',
+    pct: '92%',
+    color: '#86EFAC',
+    icon: Moon
+  }
+];
 
 export default function KuisTeaser({ onOpenAuth }) {
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
 
   return (
-    <section id="kuis-skrining" className="container" style={{ margin: '80px auto' }}>
-      <div className="quiz-card quiz-intro-card" style={{ background: 'var(--color-card-bg)', border: '1px solid var(--color-border)', borderRadius: '24px', padding: '40px', boxShadow: 'var(--shadow-card)' }}>
-        <div className="quiz-intro-header" style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div className="quiz-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-cream)', color: 'var(--color-forest)', padding: '6px 16px', borderRadius: '50px', fontWeight: 800, fontSize: '0.85rem', border: '1px solid var(--color-border)', marginBottom: '16px' }}>
-            <ClipboardCheck size={18} /> Skrining Mandiri PTM
+    <section id="kuis-skrining" className="container nw-bio-quiz-wrap">
+      <div className="nw-bio-quiz-card">
+        {/* Soft Organic Decorative Leaves/Circles */}
+        <div className="nw-bio-quiz-glow" aria-hidden="true" />
+
+        <div className="nw-bio-quiz-top">
+          {/* Left: Friendly Health Narrative */}
+          <div className="nw-bio-quiz-copy">
+            <div className="nw-bio-quiz-badge">
+              <ClipboardCheck size={16} />
+              <span>Skrining Gaya Hidup &amp; Kesehatan Mandiri</span>
+            </div>
+
+            <h2 className="nw-bio-quiz-title">
+              Kenali kondisi kesehatan &amp; kebiasaan harianmu dalam{' '}
+              <span className="nw-bio-quiz-highlight">3 menit.</span>
+            </h2>
+
+            <p className="nw-bio-quiz-desc">
+              Pencegahan selalu lebih baik daripada pengobatan. Evaluasi indikator gaya hidup harianmu untuk mendeteksi potensi risiko awal{' '}
+              <strong>Diabetes Tipe 2, Hipertensi, dan Kesehatan Jantung</strong> secara ramah dan mudah dipahami.
+            </p>
+
+            {/* Natural Topic Pills */}
+            <div className="nw-bio-topic-pills">
+              {HEALTH_TOPICS.map((topic) => (
+                <span key={topic} className="nw-bio-topic-pill">
+                  <CheckCircle2 size={13} className="nw-bio-topic-icon" />
+                  <span>{topic}</span>
+                </span>
+              ))}
+            </div>
+
+            <div className="nw-bio-quiz-cta-row">
+              <button
+                type="button"
+                onClick={() => setShowAuthPrompt(true)}
+                className="nw-bio-quiz-btn"
+              >
+                <span>Mulai Kuis Skrining</span>
+                <ArrowRight size={18} />
+              </button>
+              <span className="nw-bio-quiz-note">
+                *Gratis &amp; langsung dapatkan panduan kebiasaan sehat pribadi Anda.
+              </span>
+            </div>
           </div>
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.2rem', fontWeight: 800, color: 'var(--color-dark)', marginBottom: '12px' }}>
-            Kuis Skrining Risiko Kesehatan &amp; Gaya Hidup
-          </h2>
-          <p style={{ color: 'var(--color-muted)', fontSize: '1rem', lineHeight: 1.6, maxWidth: '680px', margin: '0 auto' }}>
-            Uji indikator gaya hidup Anda dalam 3 menit untuk mendeteksi potensi risiko awal Penyakit Tidak Menular (Diabetes Tipe 2, Hipertensi, dan Penyakit Jantung).
-          </p>
+
+          {/* Right: Warm Visual Health Domain Preview Card */}
+          <div className="nw-bio-domain-preview">
+            <div className="nw-bio-domain-card">
+              <div className="nw-bio-domain-head">
+                <span className="nw-bio-domain-tag">
+                  <Sparkles size={14} /> Pratinjau Analisis Kesehatan
+                </span>
+                <span className="nw-bio-domain-time">~3 Menit</span>
+              </div>
+
+              <h3 className="nw-bio-domain-heading">
+                3 Aspek Utama yang Dievaluasi
+              </h3>
+
+              <div className="nw-bio-domain-list">
+                {HEALTH_DOMAINS.map((dom) => {
+                  const Icon = dom.icon;
+                  return (
+                    <div key={dom.title} className="nw-bio-domain-item">
+                      <div className="nw-bio-domain-item__top">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <span className="nw-bio-domain-icon">
+                            <Icon size={17} color={dom.color} />
+                          </span>
+                          <div>
+                            <div className="nw-bio-domain-name">{dom.title}</div>
+                            <div className="nw-bio-domain-sub">{dom.sub}</div>
+                          </div>
+                        </div>
+                        <span
+                          className="nw-bio-domain-pill"
+                          style={{ color: dom.color, borderColor: `${dom.color}44` }}
+                        >
+                          {dom.badge}
+                        </span>
+                      </div>
+                      <div className="nw-bio-domain-bar">
+                        <span style={{ width: dom.pct, background: dom.color }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="quiz-highlights-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '36px' }}>
-          <div className="quiz-highlight-item" style={{ background: 'var(--color-cream)', padding: '20px', borderRadius: '16px', border: '1px solid var(--color-border)', textAlign: 'left' }}>
-            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(56, 179, 114, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
-              <Activity size={22} color="var(--color-forest)" />
+        {/* Bottom 3 Highlights Grid */}
+        <div className="nw-bio-quiz-pillars">
+          <div className="nw-bio-quiz-pillar">
+            <div className="nw-bio-quiz-pillar__icon">
+              <Activity size={20} />
             </div>
-            <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px' }}>9 Pertanyaan Berbobot</h4>
-            <p style={{ fontSize: '0.86rem', color: 'var(--color-muted)', lineHeight: 1.5, margin: 0 }}>
-              Evaluasi pola makan, hidrasi harian, durasi tidur, tingkat aktivitas fisik, dan riwayat kesehatan.
-            </p>
+            <div>
+              <h4>9 Pertanyaan + Integrasi BMI</h4>
+              <p>
+                Mencakup pola makan harian, konsumsi gula &amp; garam, jam tidur, olahraga, serta riwayat kesehatan keluarga.
+              </p>
+            </div>
           </div>
 
-          <div className="quiz-highlight-item" style={{ background: 'var(--color-cream)', padding: '20px', borderRadius: '16px', border: '1px solid var(--color-border)', textAlign: 'left' }}>
-            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(56, 179, 114, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
-              <ShieldAlert size={22} color="var(--color-forest)" />
+          <div className="nw-bio-quiz-pillar">
+            <div className="nw-bio-quiz-pillar__icon">
+              <ShieldAlert size={20} />
             </div>
-            <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px' }}>Algoritma Skor Berbobot</h4>
-            <p style={{ fontSize: '0.86rem', color: 'var(--color-muted)', lineHeight: 1.5, margin: 0 }}>
-              Mengkalkulasi tingkat risiko gaya hidup Anda (Rendah, Sedang, atau Tinggi) berbasis standar medis &amp; rekomendasi kesehatan.
-            </p>
+            <div>
+              <h4>Pemetaan Tingkat Risiko</h4>
+              <p>
+                Memberikan gambaran kondisi gaya hidup Anda (Risiko Rendah, Sedang, atau Tinggi) berdasarkan pedoman kesehatan.
+              </p>
+            </div>
           </div>
 
-          <div className="quiz-highlight-item" style={{ background: 'var(--color-cream)', padding: '20px', borderRadius: '16px', border: '1px solid var(--color-border)', textAlign: 'left' }}>
-            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(56, 179, 114, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
-              <Heart size={22} color="var(--color-forest)" />
+          <div className="nw-bio-quiz-pillar">
+            <div className="nw-bio-quiz-pillar__icon">
+              <Heart size={20} />
             </div>
-            <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px' }}>Rekomendasi Personal</h4>
-            <p style={{ fontSize: '0.86rem', color: 'var(--color-muted)', lineHeight: 1.5, margin: 0 }}>
-              Dapatkan panduan aksi konkret yang dipersonalisasi untuk memperbaiki kebiasaan harian Anda.
-            </p>
+            <div>
+              <h4>Rekomendasi Kebiasaan Nyata</h4>
+              <p>
+                Dapatkan saran langkah kecil yang dapat langsung ditambahkan ke target harian di 30-Day Health Challenge.
+              </p>
+            </div>
           </div>
-        </div>
-
-        <div className="quiz-start-actions" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
-          <button 
-            onClick={() => setShowAuthPrompt(true)}
-            className="btn-nav-combined" 
-            style={{ minWidth: '240px', padding: '14px 32px', height: '48px', fontSize: '1rem' }}
-          >
-            <span className="btn-text-default">Mulai Kuis Skrining <ArrowRight size={18} /></span>
-            <span className="btn-text-hover"><Lock size={16} /> Masuk untuk Mencoba</span>
-          </button>
-          <span style={{ fontSize: '0.82rem', color: 'var(--color-muted)' }}>
-            *Gratis &amp; langsung dapatkan analisis risiko kesehatan pribadi Anda.
-          </span>
         </div>
       </div>
 

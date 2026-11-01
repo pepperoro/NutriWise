@@ -129,11 +129,11 @@ export default function App() {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'var(--color-cream)',
-        color: 'var(--color-forest)'
+        color: 'var(--color-dark)'
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
           <img src="/logo.png" alt="NutriWise" style={{ width: '56px', height: '56px' }} />
-          <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--color-forest)', fontFamily: 'var(--font-serif)' }}>Memuat NutriWise...</span>
+          <span style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--color-forest)' }}>Memuat NutriWise...</span>
         </div>
       </div>
     );
@@ -173,14 +173,22 @@ export default function App() {
           />
 
           <main>
-            <Hero />
-            <Kalkulator currentUser={currentUser} />
+            <Hero onOpenAuth={() => handleOpenAuth('login')} />
+            <Kalkulator 
+              currentUser={currentUser} 
+              onNavigateToQuiz={() => {
+                document.getElementById('kuis-skrining')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            />
             <MitosFakta />
             <KuisTeaser onOpenAuth={() => handleOpenAuth('login')} />
             <Challenge30Days currentUser={currentUser} onOpenAuth={() => handleOpenAuth('login')} />
           </main>
 
-          <Footer onOpenPrivacy={() => setPrivacyOpen(true)} />
+          <Footer 
+            onOpenPrivacy={() => setPrivacyOpen(true)} 
+            onOpenAuth={() => handleOpenAuth('login')}
+          />
         </>
       )}
 
@@ -208,7 +216,7 @@ export default function App() {
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(239, 68, 68, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <LogOut size={20} color="#DC2626" />
                 </div>
-                <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)', fontFamily: 'var(--font-serif)' }}>
+                <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)', fontFamily: 'var(--font-display)' }}>
                   Keluar dari Akun NutriWise?
                 </h3>
               </div>

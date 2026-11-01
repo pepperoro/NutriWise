@@ -31,13 +31,13 @@ export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout
           <img src="/logo.png" alt="NutriWise Logo" className="sidebar-logo-img" />
           <div className="sidebar-brand-text">
             <span className="sidebar-title">NutriWise</span>
-            <span className="sidebar-tagline">Health Dashboard</span>
+            <span className="sidebar-tagline">Sahabat Gizi &amp; Kesehatan</span>
           </div>
         </div>
 
         {/* User Profile Card (Clean View & Hover Edit Overlay) */}
-        <div 
-          className="sidebar-user-card" 
+        <div
+          className="sidebar-user-card"
           onClick={onOpenProfile}
           title="Klik untuk Edit Profil"
         >
@@ -52,7 +52,7 @@ export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout
             <div className="sidebar-user-name">{displayName}</div>
             <div className="sidebar-user-email">{email}</div>
           </div>
-          
+
           {/* Hover Overlay */}
           <div className="sidebar-user-overlay">
             <Edit3 size={16} />

@@ -4484,3 +4484,1622 @@ body,
   background-color: #13110D;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+/* ==========================================================================
+   WARM BOTANICAL & NATURAL HEALTH DESIGN SYSTEM (NutriWise Organic Rework)
+   ========================================================================== */
+
+:root {
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --nw-ink: #162A1E;
+  --nw-emerald: #4ADE80;
+  --nw-gold: #D4A373;
+}
+
+/* --- Natural Section Headings --- */
+.nw-natural-section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(36, 90, 59, 0.1);
+  color: var(--color-forest);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+[data-theme="dark"] .nw-natural-section-tag {
+  background: rgba(118, 160, 95, 0.16);
+  color: var(--color-sage);
+}
+
+.nw-natural-h2 {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.18 !important;
+  color: var(--color-dark) !important;
+  margin-bottom: 8px !important;
+}
+
+.nw-natural-subtitle {
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+  color: var(--color-muted) !important;
+  max-width: 620px;
+  margin-bottom: 0 !important;
+}
+
+.nw-section {
+  scroll-margin-top: 84px;
+}
+
+.nw-section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+/* ==========================================================================
+   STICKY BOTANICAL GLASS NAVBAR (.nw-natural-navbar)
+   ========================================================================== */
+.navbar-wrapper.nw-natural-navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0;
+  background: rgba(245, 242, 234, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(36, 90, 59, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-wrapper.nw-natural-navbar.scrolled {
+  background: rgba(250, 248, 243, 0.96);
+  box-shadow: 0 4px 20px rgba(36, 90, 59, 0.07);
+}
+
+[data-theme="dark"] .navbar-wrapper.nw-natural-navbar,
+[data-theme="dark"] .navbar-wrapper.nw-natural-navbar.scrolled {
+  background: rgba(26, 24, 20, 0.92);
+  border-bottom: 1px solid rgba(237, 230, 216, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.nw-natural-navbar .nw-natural-navbar-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  height: 72px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.nw-natural-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  color: var(--color-dark) !important;
+}
+
+.nw-natural-logo-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #FFFFFF;
+  border: 1px solid rgba(36, 90, 59, 0.14);
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(36, 90, 59, 0.08);
+}
+
+.nw-natural-logo-wrap img {
+  width: 26px !important;
+  height: 26px !important;
+  object-fit: contain;
+}
+
+.nw-natural-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.nw-natural-brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-forest);
+  letter-spacing: -0.02em;
+}
+
+.nw-natural-brand-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.nw-natural-menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nw-natural-menu a::after {
+  display: none !important;
+}
+
+.nw-natural-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-dark) !important;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nw-natural-link:hover {
+  background: rgba(36, 90, 59, 0.08);
+  color: var(--color-forest) !important;
+}
+
+.nw-natural-link.is-active {
+  background: rgba(36, 90, 59, 0.12);
+  color: var(--color-forest) !important;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .nw-natural-link:hover,
+[data-theme="dark"] .nw-natural-link.is-active {
+  background: rgba(118, 160, 95, 0.18);
+  color: var(--color-sage) !important;
+}
+
+.nw-natural-privacy-btn .privacy-icon {
+  color: var(--color-forest) !important;
+}
+
+.nw-natural-scroll-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--color-forest), var(--color-sage), var(--color-lime));
+  transform-origin: left;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   WARM BOTANICAL & ORGANIC WELLNESS HERO (#beranda.nw-bio-hero)
+   ========================================================================== */
+.nw-bio-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 44px 0 68px;
+  background: linear-gradient(155deg, #F5F2EA 0%, #E6F0E3 50%, #F4EFE5 100%);
+  border-bottom: 1px solid rgba(36, 90, 59, 0.1);
+}
+
+[data-theme="dark"] .nw-bio-hero {
+  background: linear-gradient(155deg, #191B15 0%, #1F281B 50%, #1A1814 100%);
+  border-bottom: 1px solid rgba(237, 230, 216, 0.08);
+}
+
+.nw-bio-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(65px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nw-bio-blob--1 {
+  width: 440px;
+  height: 440px;
+  top: -120px;
+  left: -100px;
+  background: rgba(101, 144, 78, 0.18);
+}
+
+.nw-bio-blob--2 {
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  right: -80px;
+  background: rgba(212, 163, 115, 0.2);
+}
+
+.nw-bio-hero-container {
+  position: relative;
+  z-index: 2;
+}
+
+.nw-bio-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.95fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.nw-bio-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(36, 90, 59, 0.18);
+  color: var(--color-forest);
+  font-size: 0.82rem;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(36, 90, 59, 0.06);
+}
+
+[data-theme="dark"] .nw-bio-pill {
+  background: rgba(36, 33, 27, 0.85);
+  border-color: rgba(118, 160, 95, 0.3);
+  color: var(--color-sage);
+}
+
+.nw-bio-pill__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-forest);
+  box-shadow: 0 0 0 4px rgba(36, 90, 59, 0.18);
+}
+
+.nw-bio-headline {
+  margin-top: 20px;
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 4.2vw, 3.55rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-dark);
+  letter-spacing: -0.02em;
+}
+
+.nw-bio-italic {
+  font-style: italic;
+  color: var(--color-forest);
+  position: relative;
+}
+
+.nw-bio-lead {
+  margin-top: 18px;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-muted);
+  max-width: 560px;
+}
+
+.nw-bio-lead strong {
+  color: var(--color-dark);
+}
+
+.nw-bio-actions {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.nw-bio-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: var(--color-forest);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.96rem;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(36, 90, 59, 0.25);
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nw-bio-btn-primary:hover {
+  background: #1d4b31;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(36, 90, 59, 0.32);
+}
+
+[data-theme="dark"] .nw-bio-btn-primary {
+  color: #1A1814;
+}
+
+.nw-bio-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1.5px solid rgba(36, 90, 59, 0.28);
+  color: var(--color-forest);
+  font-weight: 700;
+  font-size: 0.96rem;
+  text-decoration: none;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.nw-bio-btn-secondary:hover {
+  background: #FFFFFF;
+  border-color: var(--color-forest);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .nw-bio-btn-secondary {
+  background: rgba(36, 33, 27, 0.85);
+  border-color: rgba(118, 160, 95, 0.35);
+  color: var(--color-sage);
+}
+
+.nw-bio-arrow {
+  transition: transform 0.2s ease;
+}
+
+.nw-bio-btn-primary:hover .nw-bio-arrow,
+.nw-bio-pillar-card:hover .nw-bio-arrow {
+  transform: translateX(4px);
+}
+
+.nw-bio-trust-row {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(36, 90, 59, 0.12);
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.nw-bio-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  white-space: nowrap;
+}
+
+.nw-bio-trust-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(36, 90, 59, 0.12);
+  color: var(--color-forest);
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+}
+
+/* --- Right Column: Botanical Arch Frame & 4 Floating Wellness Cards --- */
+.nw-bio-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.nw-bio-arch-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  padding: 14px 20px;
+}
+
+.nw-bio-arch-backdrop {
+  position: absolute;
+  top: 28px;
+  right: 6px;
+  bottom: 4px;
+  left: 34px;
+  border-radius: 200px 200px 36px 36px;
+  background: linear-gradient(145deg, rgba(36, 90, 59, 0.18), rgba(212, 163, 115, 0.25));
+  border: 1.5px dashed rgba(36, 90, 59, 0.25);
+  z-index: 0;
+}
+
+.nw-bio-arch-card {
+  position: relative;
+  z-index: 1;
+  height: 440px;
+  border-radius: 200px 200px 32px 32px;
+  overflow: hidden;
+  border: 6px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 50px rgba(36, 90, 59, 0.16);
+}
+
+[data-theme="dark"] .nw-bio-arch-card {
+  border-color: #2A2720;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5);
+}
+
+.nw-bio-arch-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.14);
+  transition: transform 0.6s ease;
+}
+
+.nw-bio-arch-card:hover .nw-bio-arch-img {
+  transform: scale(1.19);
+}
+
+.nw-bio-arch-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 40, 28, 0.05) 45%, rgba(20, 40, 28, 0.78) 100%);
+}
+
+.nw-bio-arch-caption {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  color: #1E293B;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.nw-float-card {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(36, 90, 59, 0.14);
+  box-shadow: 0 12px 26px rgba(30, 41, 59, 0.12);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+[data-theme="dark"] .nw-float-card {
+  background: rgba(38, 35, 28, 0.95);
+  border-color: rgba(118, 160, 95, 0.28);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+.nw-float-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: var(--color-forest);
+}
+
+/* 4 Floating Feature Cards around the Arch Image */
+.nw-float-card--1 {
+  top: 38px;
+  left: -26px;
+  animation: nwGentleFloat 5s ease-in-out infinite;
+}
+
+.nw-float-card--2 {
+  top: 105px;
+  right: -26px;
+  animation: nwGentleFloat 5.8s ease-in-out infinite 1s;
+}
+
+.nw-float-card--3 {
+  bottom: 148px;
+  left: -26px;
+  animation: nwGentleFloat 5.4s ease-in-out infinite 0.5s;
+}
+
+.nw-float-card--4 {
+  bottom: 72px;
+  right: -26px;
+  animation: nwGentleFloat 6s ease-in-out infinite 1.4s;
+}
+
+@keyframes nwGentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
+.nw-float-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+}
+
+.nw-float-icon--water {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284C7;
+}
+
+.nw-float-icon--leaf {
+  background: rgba(36, 90, 59, 0.12);
+  color: var(--color-forest);
+}
+
+.nw-float-icon--sage {
+  background: rgba(101, 144, 78, 0.16);
+  color: #3B7A57;
+}
+
+.nw-float-icon--warm {
+  background: rgba(212, 163, 115, 0.2);
+  color: #B87D4B;
+}
+
+.nw-float-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.nw-float-value {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--color-dark);
+}
+
+/* --- Bottom 4 Natural Wellness Pillars Explorer --- */
+.nw-bio-pillars-wrap {
+  margin-top: 52px;
+}
+
+.nw-bio-pillars-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.nw-bio-pillars-label {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-forest);
+  white-space: nowrap;
+}
+
+.nw-bio-pillars-line {
+  height: 1px;
+  flex: 1;
+  background: rgba(36, 90, 59, 0.15);
+}
+
+.nw-bio-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.nw-bio-pillar-card {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(36, 90, 59, 0.12);
+  text-decoration: none;
+  color: var(--color-dark);
+  box-shadow: 0 6px 20px rgba(36, 90, 59, 0.05);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+[data-theme="dark"] .nw-bio-pillar-card {
+  background: rgba(36, 33, 27, 0.9);
+  border-color: rgba(237, 230, 216, 0.1);
+}
+
+.nw-bio-pillar-card:hover,
+.nw-bio-pillar-card.is-active {
+  transform: translateY(-5px);
+  background: var(--color-card-bg);
+  border-color: var(--color-forest);
+  box-shadow: 0 16px 34px rgba(36, 90, 59, 0.12);
+}
+
+.nw-bio-pillar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.nw-bio-pillar-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  display: grid;
+  place-content: center;
+}
+
+.nw-bio-pillar-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-cream);
+  color: var(--color-muted);
+}
+
+.nw-bio-pillar-title {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 6px;
+}
+
+.nw-bio-pillar-question {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--color-forest);
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.nw-bio-pillar-desc {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  flex: 1;
+}
+
+.nw-bio-pillar-link {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(36, 90, 59, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   COMPACT FIT-TO-WINDOW KALKULATOR NUTRISI (.nw-compact-calc-*)
+   ========================================================================== */
+.nw-calc-dashboard-sec {
+  padding: 4px 0 12px !important;
+}
+
+.nw-calc-landing-sec {
+  padding: 56px 0 !important;
+  scroll-margin-top: 76px;
+}
+
+.nw-calc-dash-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+}
+
+.nw-calc-dash-hint {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+}
+
+.nw-calc-landing-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.nw-algo-info-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(36, 90, 59, 0.25);
+  background: var(--color-card-bg);
+  color: var(--color-forest);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.nw-algo-info-btn:hover {
+  background: var(--color-forest);
+  border-color: var(--color-forest);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .nw-algo-info-btn:hover {
+  color: #1A1814;
+}
+
+.nw-compact-calc-grid {
+  gap: 20px !important;
+}
+
+.nw-compact-calc-card {
+  padding: 20px 22px !important;
+  border-radius: 20px !important;
+}
+
+.nw-compact-card-head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nw-compact-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+}
+
+.nw-compact-icon--green {
+  background: rgba(36, 90, 59, 0.12);
+  color: var(--color-forest);
+}
+
+.nw-compact-icon--gold {
+  background: rgba(212, 163, 115, 0.2);
+  color: #B47B44;
+}
+
+.nw-compact-icon--sky {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284C7;
+}
+
+.nw-compact-title {
+  font-size: 1.15rem !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.nw-compact-fg {
+  margin-bottom: 10px !important;
+}
+
+.nw-compact-fg .form-label {
+  font-size: 0.78rem !important;
+  margin-bottom: 4px !important;
+}
+
+.nw-compact-input {
+  padding: 9px 12px !important;
+  font-size: 0.88rem !important;
+}
+
+.nw-compact-submit {
+  padding: 10px 14px !important;
+  margin-top: 6px !important;
+  font-size: 0.88rem !important;
+  border-radius: 10px !important;
+}
+
+.nw-compact-result {
+  margin-top: 14px !important;
+  padding: 14px 16px !important;
+  border-radius: 14px !important;
+}
+
+.nw-compact-result.has-result {
+  border-color: var(--color-forest);
+}
+
+.nw-compact-res-num {
+  font-size: 1.75rem !important;
+}
+
+.nw-bmi-scale {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.nw-bmi-seg {
+  height: 5px;
+  border-radius: 999px;
+  opacity: 0.28;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.nw-bmi-seg.seg-under { background: #38BDF8; }
+.nw-bmi-seg.seg-norm  { background: #22C55E; }
+.nw-bmi-seg.seg-over  { background: #F59E0B; }
+.nw-bmi-seg.seg-obese { background: #EF4444; }
+
+.nw-bmi-seg.is-active {
+  opacity: 1;
+  transform: scaleY(1.4);
+}
+
+/* --- Algorithm Info Modal List --- */
+.nw-algo-modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nw-algo-modal-item {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.nw-algo-modal-item__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--color-dark);
+  margin-bottom: 6px;
+}
+
+.nw-algo-modal-item p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+.nw-algo-modal-item code {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(36, 90, 59, 0.1);
+  color: var(--color-forest);
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   MITOS VS FAKTA 3D CARDS (PRESERVED AS REQUESTED BY USER)
+   ========================================================================== */
+.nw-pulse {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--nw-gold);
+  flex-shrink: 0;
+}
+
+.nw-pulse--sm {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+}
+
+.nw-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: nwPulseRing 2.4s ease-out infinite;
+}
+
+@keyframes nwPulseRing {
+  0%   { transform: scale(1); opacity: 0.75; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+.nw-myth-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nw-myth-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-dark);
+}
+
+.nw-myth-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--color-forest);
+  background: transparent;
+  color: var(--color-forest);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nw-myth-toggle-btn:hover {
+  background: var(--color-forest);
+  color: #FFFFFF;
+}
+
+.nw-flip-front {
+  justify-content: space-between !important;
+  align-items: stretch !important;
+  text-align: left !important;
+  padding: 22px 24px !important;
+  background: var(--color-card-bg);
+  border: 1.5px solid rgba(36, 90, 59, 0.22);
+  box-shadow: var(--shadow-sm);
+}
+
+.nw-flip-front__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nw-flip-code {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+}
+
+.flip-card-container:not(.flipped):hover .nw-flip-code {
+  color: var(--nw-gold);
+}
+
+.nw-flip-icon-box {
+  position: static !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px;
+  background: rgba(36, 90, 59, 0.08);
+  display: grid;
+  place-content: center;
+}
+
+.flip-card-container:not(.flipped):hover .nw-flip-icon-box {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.nw-flip-icon-box--dark {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nw-flip-front__body {
+  position: relative;
+  margin: auto 0;
+  padding: 10px 0;
+}
+
+.nw-flip-qmark {
+  position: absolute;
+  right: -4px;
+  bottom: -24px;
+  font-family: var(--font-display);
+  font-size: 6.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-forest);
+  opacity: 0.06;
+  pointer-events: none;
+  user-select: none;
+}
+
+.flip-card-container:not(.flipped):hover .nw-flip-qmark {
+  color: #FFFFFF;
+  opacity: 0.1;
+}
+
+.nw-flip-front .flip-card-question {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1.4;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.nw-flip-front__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(36, 90, 59, 0.18);
+}
+
+.flip-card-container:not(.flipped):hover .nw-flip-front__bottom {
+  border-top-color: rgba(255, 255, 255, 0.22);
+}
+
+.nw-flip-hint-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+}
+
+.flip-card-container:not(.flipped):hover .nw-flip-hint-pill {
+  color: #FFFFFF;
+}
+
+.nw-flip-back {
+  background: var(--nw-ink) !important;
+  border: 1.5px solid rgba(74, 222, 128, 0.35) !important;
+  padding: 22px 24px !important;
+}
+
+.nw-flip-back.is-mitos {
+  border-color: rgba(248, 113, 113, 0.4) !important;
+}
+
+.nw-flip-back__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nw-badge-verdict {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-family: var(--font-mono) !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.14em !important;
+  margin-bottom: 0 !important;
+}
+
+.nw-badge-verdict.mitos {
+  background: rgba(239, 68, 68, 0.16);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #FCA5A5;
+}
+
+.nw-badge-verdict.fakta {
+  background: rgba(74, 222, 128, 0.16);
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  color: #86EFAC;
+}
+
+.nw-flip-back__body .back-heading {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--nw-gold);
+  margin-bottom: 8px;
+}
+
+.nw-flip-back__body .back-explanation {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #E2E8F0;
+}
+
+.nw-flip-back__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #94A3B8;
+}
+
+/* ==========================================================================
+   BOTANICAL WELLNESS QUIZ SHOWCASE (#kuis-skrining.nw-bio-quiz-wrap)
+   ========================================================================== */
+.nw-bio-quiz-wrap {
+  margin: 40px auto;
+  scroll-margin-top: 84px;
+}
+
+.nw-bio-quiz-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  padding: 44px;
+  background: linear-gradient(140deg, #1E462F 0%, #245A3B 55%, #1A3A27 100%);
+  color: #FFFFFF;
+  box-shadow: 0 24px 60px rgba(36, 90, 59, 0.22);
+}
+
+.nw-bio-quiz-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(36rem 28rem at 90% 10%, rgba(212, 163, 115, 0.24), transparent 70%),
+    radial-gradient(32rem 26rem at 10% 90%, rgba(134, 239, 172, 0.18), transparent 70%);
+}
+
+.nw-bio-quiz-top {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.2fr 0.95fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.nw-bio-quiz-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 15px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #E2F2E6;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.nw-bio-quiz-title {
+  margin-top: 16px;
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 3.2vw, 2.55rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+
+.nw-bio-quiz-highlight {
+  font-style: italic;
+  color: #FDE68A;
+}
+
+.nw-bio-quiz-desc {
+  margin-top: 14px;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.nw-bio-topic-pills {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nw-bio-topic-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #F1F5F9;
+}
+
+.nw-bio-topic-icon {
+  color: #86EFAC;
+}
+
+.nw-bio-quiz-cta-row {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.nw-bio-quiz-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  background: #F2EFE7;
+  color: #1E462F;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.nw-bio-quiz-btn:hover {
+  background: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.nw-bio-quiz-note {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* --- Right Health Domain Preview Card --- */
+.nw-bio-domain-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(16, 38, 25, 0.72);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.nw-bio-domain-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.76rem;
+  color: #A7F3D0;
+  font-weight: 700;
+}
+
+.nw-bio-domain-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nw-bio-domain-time {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.nw-bio-domain-heading {
+  margin: 12px 0 16px;
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  color: #FFFFFF;
+}
+
+.nw-bio-domain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nw-bio-domain-item {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nw-bio-domain-item__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.nw-bio-domain-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+}
+
+.nw-bio-domain-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.nw-bio-domain-sub {
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.nw-bio-domain-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.nw-bio-domain-bar {
+  margin-top: 10px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.nw-bio-domain-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+/* --- Bottom 3 Pillars inside Quiz Card --- */
+.nw-bio-quiz-pillars {
+  position: relative;
+  z-index: 2;
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.nw-bio-quiz-pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.nw-bio-quiz-pillar__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(134, 239, 172, 0.18);
+  color: #86EFAC;
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+}
+
+.nw-bio-quiz-pillar h4 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.nw-bio-quiz-pillar p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ==========================================================================
+   WARM PRE-FOOTER BOTANICAL CALLOUT (.nw-bio-footer-cta)
+   ========================================================================== */
+.nw-bio-footer-cta {
+  margin-bottom: 48px;
+  padding: 36px 40px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #245A3B 0%, #356E48 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.nw-bio-footer-cta__copy {
+  max-width: 580px;
+}
+
+.nw-bio-footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #FDE68A;
+  margin-bottom: 8px;
+}
+
+.nw-bio-footer-cta__copy h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.6vw, 2.05rem);
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.nw-bio-footer-cta__copy p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.nw-bio-footer-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nw-bio-footer-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  border: none;
+  background: #F2EFE7;
+  color: #1E462F;
+  font-weight: 800;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.nw-bio-footer-btn-primary:hover {
+  background: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.nw-bio-footer-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 22px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  transition: background-color 0.2s ease;
+}
+
+.nw-bio-footer-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS FOR NATURAL BOTANICAL REWORK
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .nw-bio-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .nw-bio-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nw-bio-quiz-top {
+    grid-template-columns: 1fr;
+  }
+
+  .nw-bio-quiz-pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .nw-bio-trust-row {
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+
+  .nw-bio-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nw-bio-quiz-card {
+    padding: 28px 20px;
+  }
+
+  .nw-float-card--1,
+  .nw-float-card--2,
+  .nw-float-card--3,
+  .nw-float-card--4 {
+    position: static;
+    margin-top: 10px;
+    animation: none;
+  }
+
+  .nw-bio-arch-wrapper {
+    padding: 0;
+  }
+}
+
+/* Mobile Burger Button Styling & Desktop Hide */
+.nw-natural-navbar .mobile-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #FFFFFF;
+  border: 1px solid rgba(36, 90, 59, 0.18);
+  color: var(--color-forest);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(36, 90, 59, 0.08);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.nw-natural-navbar .mobile-toggle:hover {
+  background: rgba(36, 90, 59, 0.08);
+  border-color: var(--color-forest);
+}
+
+[data-theme="dark"] .nw-natural-navbar .mobile-toggle {
+  background: #2A2720;
+  border-color: rgba(118, 160, 95, 0.3);
+  color: var(--color-sage);
+}
+
+@media (max-width: 1024px) {
+  .nw-natural-navbar .mobile-toggle {
+    display: inline-flex !important;
+  }
+}

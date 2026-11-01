@@ -606,7 +606,20 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
   const isSetupChanged = timezone !== initialTz || JSON.stringify(targets) !== JSON.stringify(initialTargets);
 
   return (
-    <section id="challenge" className="section container">
+    <section id="challenge" className={`container ${currentUser ? 'nw-calc-dashboard-sec' : 'section nw-section'}`}>
+      {!currentUser && (
+        <div className="nw-challenge-landing-intro">
+          <div className="nw-section-header" style={{ marginBottom: '24px' }}>
+            <div>
+              <span className="nw-natural-section-tag">Rutinitas Sehat Berkelanjutan</span>
+              <h2 className="section-title nw-natural-h2">30-Day Health Habit Challenge</h2>
+              <p className="section-subtitle nw-natural-subtitle">
+                Bangun kebiasaan hidup sehat secara konsisten selama 30 hari penuh dengan pelacak target harian, penyesuaian zona waktu otomatis, dan kalender progres.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       {/* ================= 1. ONBOARDING SETUP UI (if not setup yet or modal open) ================= */}
       {(!setupDone || showSetupModal) ? (
         <div className="challenge-setup-wrapper">
