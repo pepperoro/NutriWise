@@ -128,12 +128,12 @@ export default function App() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#FAF9F6',
-        color: '#245A3B'
+        backgroundColor: 'var(--color-cream)',
+        color: 'var(--color-forest)'
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
           <img src="/logo.png" alt="NutriWise" style={{ width: '56px', height: '56px' }} />
-          <span style={{ fontWeight: 700, fontSize: '1rem', color: '#245A3B', fontFamily: 'var(--font-serif)' }}>Memuat NutriWise...</span>
+          <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--color-forest)', fontFamily: 'var(--font-serif)' }}>Memuat NutriWise...</span>
         </div>
       </div>
     );
@@ -205,7 +205,7 @@ export default function App() {
           <div className="modal-card" style={{ maxWidth: '440px', padding: '28px' }} onClick={(e) => e.stopPropagation()}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#FEF2F2', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(239, 68, 68, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <LogOut size={20} color="#DC2626" />
                 </div>
                 <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)', fontFamily: 'var(--font-serif)' }}>
@@ -214,13 +214,13 @@ export default function App() {
               </div>
               <button
                 onClick={() => setShowLogoutConfirmModal(false)}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94A3B8' }}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-muted)' }}
               >
                 <X size={20} />
               </button>
             </div>
 
-            <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: 1.5, marginBottom: '24px', textAlign: 'left' }}>
+            <p style={{ fontSize: '0.92rem', color: 'var(--color-muted)', lineHeight: 1.5, marginBottom: '24px', textAlign: 'left' }}>
               Apakah Anda yakin ingin keluar dari akun? Anda perlu masuk kembali untuk mengakses sinkronisasi progres 30-Day Challenge dan profil kesehatan Anda.
             </p>
 

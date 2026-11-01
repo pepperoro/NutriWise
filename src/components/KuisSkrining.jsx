@@ -220,16 +220,6 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
           triggers.push(opt.trigger);
         }
 
-        // Mapping 9 questions (0-indexed):
-        // 0: veggies (Q2) -> metabolic
-        // 1: sweets (Q3) -> metabolic
-        // 2: fast food (Q4) -> cardio
-        // 3: salt (Q5) -> cardio
-        // 4: activity (Q6) -> metabolic
-        // 5: family (Q7) -> lifestyle
-        // 6: smoking (Q8) -> cardio
-        // 7: sleep (Q9) -> lifestyle
-        // 8: stress (Q10) -> cardio
         if (idx === 0 || idx === 1 || idx === 4) metabolicPoints += opt.points;
         if (idx === 2 || idx === 3 || idx === 6 || idx === 8) cardioPoints += opt.points;
         if (idx === 5 || idx === 7) lifestylePoints += opt.points;
@@ -281,7 +271,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
       colorClass,
       badgeColor,
       summaryText,
-      bmiInfo: userBmiData ? `${userBmiData.bmi} (${userBmiData.rawCategory})` : 'Tidk ada',
+      bmiInfo: userBmiData ? `${userBmiData.bmi} (${userBmiData.rawCategory})` : 'Tidak ada',
       metabolicPoints,
       cardioPoints,
       lifestylePoints,
@@ -321,7 +311,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
             Kuis Skrining PTM Terkunci
           </h2>
 
-          <p style={{ color: '#64748B', fontSize: '1rem', lineHeight: 1.6, maxWidth: '560px', margin: '0 auto 28px' }}>
+          <p style={{ color: 'var(--color-muted)', fontSize: '1rem', lineHeight: 1.6, maxWidth: '560px', margin: '0 auto 28px' }}>
             Anda belum menghitung Indeks Massa Tubuh (BMI) di <strong>Kalkulator Nutrisi</strong>. Kuis skrining kesehatan membutuhkan data BMI awal Anda untuk menganalisis risiko Penyakit Tidak Menular secara akurat.
           </p>
 
@@ -372,11 +362,11 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
           </div>
 
           {/* Auto-Pulled BMI Info Banner */}
-          <div style={{ background: '#F0FDF4', border: '1px solid #A7F3D0', borderRadius: '16px', padding: '14px 18px', marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
+          <div className="quiz-bmi-banner" style={{ borderRadius: '16px', padding: '14px 18px', marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <Activity size={20} color="#059669" />
+              <Activity size={20} color="var(--color-forest)" />
               <div>
-                <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#065F46' }}>Data BMI Terhubung dari Kalkulator:</span>
+                <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--color-forest)' }}>Data BMI Terhubung dari Kalkulator:</span>
                 <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--color-dark)' }}>
                   BMI {userBmiData.bmi} kg/m² • {userBmiData.category} ({userBmiData.points} Poin Risiko)
                 </div>
@@ -390,7 +380,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
 
           <div className="quiz-features-grid">
             <div className="quiz-feature-item">
-              <Zap size={22} color="#245A3B" />
+              <Zap size={22} color="var(--color-forest)" />
               <div>
                 <h4>9 Pertanyaan Singkat</h4>
                 <p>Hanya membutuhkan waktu 1–2 menit untuk diselesaikan.</p>
@@ -398,7 +388,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
             </div>
 
             <div className="quiz-feature-item">
-              <Activity size={22} color="#245A3B" />
+              <Activity size={22} color="var(--color-forest)" />
               <div>
                 <h4>Algoritma Skor Berbobot</h4>
                 <p>Analisis 3 faktor risiko: Metabolik, Kardiovaskular, dan Genetik.</p>
@@ -406,7 +396,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
             </div>
 
             <div className="quiz-feature-item">
-              <Heart size={22} color="#245A3B" />
+              <Heart size={22} color="var(--color-forest)" />
               <div>
                 <h4>Rekomendasi Personal</h4>
                 <p>Mendapatkan fokus perbaikan spesifik berbasis hasil jawaban Anda.</p>
@@ -484,7 +474,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
                   className={`quiz-option-card ${isSelected ? 'selected' : ''}`}
                 >
                   <div className="quiz-radio-indicator">
-                    {isSelected && <CheckCircle2 size={18} color="#245A3B" />}
+                    {isSelected && <CheckCircle2 size={18} color="var(--color-forest)" />}
                   </div>
                   <span className="quiz-option-text">{opt.text}</span>
                 </div>
@@ -498,22 +488,22 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
               onClick={handlePrevStep}
               disabled={currentStep === 1}
               className="btn-warning-outline"
-              style={{
-                opacity: currentStep === 1 ? 0.4 : 1,
-                cursor: currentStep === 1 ? 'not-allowed' : 'pointer',
-                minWidth: '130px'
-              }}
+              style={{ opacity: currentStep === 1 ? 0.4 : 1, cursor: currentStep === 1 ? 'not-allowed' : 'pointer' }}
             >
-              <ArrowLeft size={16} /> Kembali
+              <ArrowLeft size={16} /> Sebelumnya
             </button>
 
             <button
               onClick={handleNextStep}
               disabled={!answers[currentStep - 1]}
               className="btn-auth-primary"
-              style={{ minWidth: '150px' }}
+              style={{
+                opacity: !answers[currentStep - 1] ? 0.45 : 1,
+                cursor: !answers[currentStep - 1] ? 'not-allowed' : 'pointer',
+                minWidth: '150px'
+              }}
             >
-              {currentStep === 9 ? 'Lihat Hasil' : 'Lanjut'} <ArrowRight size={16} />
+              {currentStep === 9 ? 'Lihat Hasil Analisis' : 'Selanjutnya'} <ArrowRight size={16} />
             </button>
           </div>
         </div>
@@ -522,25 +512,37 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
       {/* ================= STEP 10: RESULTS DASHBOARD ================= */}
       {currentStep === 10 && savedQuizResult && (
         <div className="quiz-card quiz-results-card">
-          <div className="results-header">
-            <div className="badge-risk-hero" style={{ backgroundColor: savedQuizResult.badgeColor }}>
-              {savedQuizResult.category}
+          <div className="results-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
+            <div style={{ textAlign: 'left' }}>
+              <span className="badge-risk-hero" style={{ background: savedQuizResult.badgeColor }}>
+                Tingkat: {savedQuizResult.category}
+              </span>
+              <h2>Laporan Skrining Mandiri PTM</h2>
+              <div className="results-date">Dianalisis pada {savedQuizResult.date}</div>
             </div>
-            <h2>Laporan Skrining Risiko Kesehatan</h2>
-            <p className="results-date">Diselesaikan pada {savedQuizResult.date}</p>
+
+            <button
+              type="button"
+              onClick={() => setShowExitConfirmModal(true)}
+              className="btn-exit-quiz"
+              title="Keluar dari Laporan Kuis"
+            >
+              <LogOut size={14} style={{ marginRight: '4px', flexShrink: 0 }} /> Keluar Kuis
+            </button>
           </div>
 
-          {/* Score Overview Row */}
+          {/* Score Circle & Summary Banner */}
           <div className="results-score-banner">
-            <div className="score-big-circle" style={{ borderColor: savedQuizResult.badgeColor }}>
+            <div className="score-big-circle">
               <span className="score-num">{savedQuizResult.score}</span>
-              <span className="score-max">/ 37 Poin</span>
+              <span className="score-max">Skor Total</span>
             </div>
+
             <div className="score-summary-text">
               <h3>Status Indikator Kesehatan</h3>
               <p>{savedQuizResult.summaryText}</p>
               {userBmiData && (
-                <div style={{ marginTop: '8px', fontSize: '0.85rem', color: '#059669', fontWeight: 700 }}>
+                <div style={{ marginTop: '8px', fontSize: '0.85rem', color: 'var(--color-forest)', fontWeight: 700 }}>
                   ✓ Termasuk Skor BMI: {userBmiData.bmi} ({userBmiData.rawCategory} • {userBmiData.points} Poin)
                 </div>
               )}
@@ -552,7 +554,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
           <div className="subrisk-grid">
             <div className="subrisk-item">
               <div className="subrisk-icon-box">
-                <Activity size={20} color="#059669" />
+                <Activity size={20} color="var(--color-forest)" />
               </div>
               <div className="subrisk-info">
                 <h5>Risiko Metabolik &amp; Diabetes</h5>
@@ -598,35 +600,18 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
           <div className="quiz-disclaimer">
             <AlertTriangle size={18} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
             <p>
-              <strong>Disclaimer Medis:</strong> Hasil skrining ini adalah estimasi berbasis gaya hidup untuk tujuan edukasi, bukan diagnosis medis resmi. Untuk kepastian kondisi kesehatan, konsultasikan dengan dokter atau tenaga kesehatan profesional.
+              <strong>Catatan Medis:</strong> Skrining mandiri ini adalah sarana edukasi dan deteksi dini berbasis algoritma faktor risiko gaya hidup, bukan diagnosis medis resmi. Konsultasikan dengan dokter spesialis untuk tes klinis lebih mendalam (cek laboratorium darah puasa, HbA1c, profil lipid, dan rekam jantung).
             </p>
           </div>
 
-          {/* Action Buttons (Swapped: Kembali ke Menu on Left in Red, Ulangi on Right in Green Outline) */}
+          {/* Action Buttons */}
           <div className="results-actions">
-            <button
-              onClick={() => setCurrentStep(0)}
-              className="btn-danger-outline"
-              style={{ minWidth: '180px' }}
-            >
-              <Home size={16} style={{ marginRight: '8px', flexShrink: 0 }} /> Kembali ke Menu
-            </button>
-
             <button
               onClick={() => {
                 setAnswers({});
-                setSavedQuizResult(null);
-                const quizKey = currentUser?.id ? `NutriWise_quiz_result_${currentUser.id}` : 'NutriWise_quiz_result';
-                localStorage.removeItem(quizKey);
-                if (currentUser && isSupabaseConfigured && supabase) {
-                  supabase.auth.updateUser({
-                    data: { NutriWise_quiz_result: null }
-                  });
-                }
                 setCurrentStep(1);
               }}
-              className="btn-cta-outline"
-              style={{ minWidth: '180px' }}
+              className="btn-warning-outline"
             >
               <RotateCcw size={16} style={{ marginRight: '8px', flexShrink: 0 }} /> Ulangi Kuis Skrining
             </button>
@@ -640,7 +625,7 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
           <div className="modal-card" style={{ maxWidth: '440px', padding: '28px' }} onClick={(e) => e.stopPropagation()}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#FEF2F2', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(239, 68, 68, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <AlertTriangle size={22} color="#DC2626" />
                 </div>
                 <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)', fontFamily: 'var(--font-serif)' }}>
@@ -649,13 +634,13 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
               </div>
               <button
                 onClick={() => setShowExitConfirmModal(false)}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94A3B8' }}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-muted)' }}
               >
                 <X size={20} />
               </button>
             </div>
 
-            <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: 1.5, marginBottom: '24px', textAlign: 'left' }}>
+            <p style={{ fontSize: '0.92rem', color: 'var(--color-muted)', lineHeight: 1.5, marginBottom: '24px', textAlign: 'left' }}>
               {currentStep >= 1 && currentStep <= 9
                 ? 'Jawaban kuis Anda saat ini tidak akan disimpan jika Anda keluar sekarang. Yakin ingin membatalkan kuis dan kembali ke menu?'
                 : 'Apakah Anda yakin ingin keluar dari kuis skrining kesehatan dan kembali ke menu utama?'}

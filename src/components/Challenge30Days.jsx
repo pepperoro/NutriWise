@@ -620,7 +620,7 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
             {/* Left Card: Timezone & General Settings */}
             {!setupDone && (
             <div className="setup-card">
-              <h3><Clock size={20} color="#245A3B" /> 1. Zona Waktu &amp; Jadwal</h3>
+              <h3><Clock size={20} color="var(--color-forest)" /> 1. Zona Waktu &amp; Jadwal</h3>
               <p className="setup-subtext">Penentuan pergantian hari otomatis disesuaikan dengan zona lokasi Anda.</p>
 
               {/* Auto-sync toggle — only active when TZ not yet saved (first-time setup) */}
@@ -688,7 +688,7 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
             {/* Right Card: Custom Target List Manager */}
             <div className="setup-card">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                <h3><Edit3 size={20} color="#245A3B" /> {setupDone ? 'Target Harian & Custom' : '2. Target Harian & Custom'}</h3>
+                <h3><Edit3 size={20} color="var(--color-forest)" /> {setupDone ? 'Target Harian & Custom' : '2. Target Harian & Custom'}</h3>
                 <button 
                   type="button" 
                   onClick={() => setShowAddForm(!showAddForm)}
@@ -835,7 +835,7 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
           {!currentUser && (
             <div className="preview-mode-banner">
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <Lock size={20} color="#245A3B" />
+                <Lock size={20} color="var(--color-forest)" />
                 <span>Mode Pratinjau: Masuk atau daftar akun untuk menyimpan progres Anda.</span>
               </div>
               <button onClick={() => setShowAuthPrompt(true)} className="btn-nav-combined" style={{ height: '36px', minWidth: '140px', fontSize: '0.85rem' }}>
@@ -871,18 +871,18 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
 
           {/* Dynamic Recommendations Panel */}
           {recommendedTargets.filter((rt) => !targets.some((t) => t.id === rt.id)).length > 0 && (
-            <div className="recommendation-banner" style={{ marginTop: '24px', marginBottom: '24px', background: '#F0FDF4', border: '1px solid #86EFAC', borderRadius: '16px', padding: '16px 20px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', color: '#166534', fontWeight: 800 }}>
-                <Sparkles size={20} color="#166534" /> 
+            <div className="recommendation-banner" style={{ marginTop: '24px', marginBottom: '24px', borderRadius: '16px', padding: '16px 20px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', color: 'var(--color-forest)', fontWeight: 800 }}>
+                <Sparkles size={20} color="var(--color-forest)" /> 
                 <h3 style={{ margin: 0, fontSize: '1.1rem' }}>Rekomendasi Target Khusus Anda</h3>
               </div>
-              <p style={{ fontSize: '0.9rem', color: '#15803D', marginBottom: '16px', lineHeight: 1.5 }}>
+              <p style={{ fontSize: '0.9rem', color: 'var(--color-muted)', marginBottom: '16px', lineHeight: 1.5 }}>
                 Berdasarkan hasil Kuis Skrining PTM Anda, kami menyarankan menambahkan target berikut untuk memaksimalkan gaya hidup sehat Anda.
               </p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {recommendedTargets.filter((rt) => !targets.some((t) => t.id === rt.id)).map((rt) => (
-                  <div key={rt.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'white', padding: '12px 16px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+                  <div key={rt.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--color-card-bg)', border: '1px solid var(--color-border)', padding: '12px 16px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
                     <div>
                       <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--color-dark)' }}>{rt.text}</div>
                       <div style={{ fontSize: '0.8rem', color: '#64748B', marginTop: '2px' }}>
@@ -979,7 +979,7 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
                 >
                   <span className="day-label">H-{day}</span>
                   <div className="day-icon-wrap">
-                    {status === 'green' && <Check size={18} color="#059669" />}
+                    {status === 'green' && <Check size={18} color="var(--color-forest)" />}
                     {status === 'yellow' && <span className="day-symbol yellow">~</span>}
                     {status === 'orange' && <span className="day-symbol orange">-</span>}
                     {status === 'red' && <span className="day-symbol red">✕</span>}
@@ -1009,8 +1009,8 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
             <button className="modal-close" onClick={() => setShowAuthPrompt(false)}>
               <X size={20} />
             </button>
-            <div style={{ width: '64px', height: '64px', background: 'rgba(36, 90, 59, 0.12)', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-              <Lock color="#245A3B" size={32} />
+            <div style={{ width: '64px', height: '64px', background: 'rgba(56, 179, 114, 0.15)', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+              <Lock color="var(--color-forest)" size={32} />
             </div>
             <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 700, marginBottom: '10px', color: 'var(--color-dark)' }}>
               Akses Fitur Terkunci

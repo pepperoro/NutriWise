@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ShieldCheck, User, LogOut } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar({ onOpenPrivacy, onOpenAuth, currentUser, onLogout, onNavigateHome }) {
   const [scrolled, setScrolled] = useState(false);
@@ -58,10 +59,14 @@ export default function Navbar({ onOpenPrivacy, onOpenAuth, currentUser, onLogou
 
           {/* CTA Action Item Inside Mobile Drawer (<= 1024px) */}
           <li className="mobile-drawer-cta">
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '12px' }}>
+              <ThemeToggle />
+            </div>
+
             {currentUser ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', paddingTop: '10px', borderTop: '1px solid rgba(36, 90, 59, 0.15)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'var(--color-cream)', padding: '10px 16px', borderRadius: '30px', fontSize: '0.9rem', fontWeight: 700, border: '1px solid rgba(36, 90, 59, 0.2)' }}>
-                  <User size={16} color="#245A3B" />
+                  <User size={16} color="var(--color-forest)" />
                   <span>{displayName}</span>
                 </div>
                 <button 
@@ -86,21 +91,24 @@ export default function Navbar({ onOpenPrivacy, onOpenAuth, currentUser, onLogou
 
         {/* Desktop-only action area (> 1024px) */}
         <div className="desktop-nav-actions">
+          {/* Single Theme Toggle for desktop */}
+          <ThemeToggle />
+
           {currentUser ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <a href="#challenge" onClick={(e) => { e.preventDefault(); handleNavClick('#challenge'); }} className="btn-cta-outline" style={{ padding: '8px 18px', fontSize: '0.88rem' }}>
                 30-Day Challenge
               </a>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'var(--color-cream)', padding: '6px 14px', borderRadius: '30px', fontSize: '0.9rem', fontWeight: 700, border: '1px solid rgba(36, 90, 59, 0.2)' }}>
-                <User size={16} color="#245A3B" />
+                <User size={16} color="var(--color-forest)" />
                 <span>{displayName}</span>
               </div>
               <button 
                 onClick={onLogout}
                 title="Keluar"
-                style={{ background: 'none', border: '1px solid #E2E8F0', padding: '8px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                style={{ background: 'none', border: '1px solid var(--color-border)', padding: '8px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                <LogOut size={16} color="#94A3B8" />
+                <LogOut size={16} color="var(--color-muted)" />
               </button>
             </div>
           ) : (

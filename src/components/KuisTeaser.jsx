@@ -6,46 +6,46 @@ export default function KuisTeaser({ onOpenAuth }) {
 
   return (
     <section id="kuis-skrining" className="container" style={{ margin: '80px auto' }}>
-      <div className="quiz-card quiz-intro-card" style={{ background: '#FFFFFF', border: '1px solid rgba(36, 90, 59, 0.15)', borderRadius: '24px', padding: '40px', boxShadow: '0 12px 32px rgba(0, 0, 0, 0.05)' }}>
+      <div className="quiz-card quiz-intro-card" style={{ background: 'var(--color-card-bg)', border: '1px solid var(--color-border)', borderRadius: '24px', padding: '40px', boxShadow: 'var(--shadow-card)' }}>
         <div className="quiz-intro-header" style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div className="quiz-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-cream)', color: 'var(--color-forest)', padding: '6px 16px', borderRadius: '50px', fontWeight: 800, fontSize: '0.85rem', border: '1px solid rgba(36, 90, 59, 0.2)', marginBottom: '16px' }}>
+          <div className="quiz-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'var(--color-cream)', color: 'var(--color-forest)', padding: '6px 16px', borderRadius: '50px', fontWeight: 800, fontSize: '0.85rem', border: '1px solid var(--color-border)', marginBottom: '16px' }}>
             <ClipboardCheck size={18} /> Skrining Mandiri PTM
           </div>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.2rem', fontWeight: 800, color: 'var(--color-dark)', marginBottom: '12px' }}>
             Kuis Skrining Risiko Kesehatan &amp; Gaya Hidup
           </h2>
-          <p style={{ color: '#475569', fontSize: '1rem', lineHeight: 1.6, maxWidth: '680px', margin: '0 auto' }}>
+          <p style={{ color: 'var(--color-muted)', fontSize: '1rem', lineHeight: 1.6, maxWidth: '680px', margin: '0 auto' }}>
             Uji indikator gaya hidup Anda dalam 3 menit untuk mendeteksi potensi risiko awal Penyakit Tidak Menular (Diabetes Tipe 2, Hipertensi, dan Penyakit Jantung).
           </p>
         </div>
 
         <div className="quiz-highlights-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '36px' }}>
-          <div className="quiz-highlight-item" style={{ background: '#FAF9F6', padding: '20px', borderRadius: '16px', border: '1px solid #E2E8F0', textAlign: 'left' }}>
-            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(36, 90, 59, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
+          <div className="quiz-highlight-item" style={{ background: 'var(--color-cream)', padding: '20px', borderRadius: '16px', border: '1px solid var(--color-border)', textAlign: 'left' }}>
+            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(56, 179, 114, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
               <Activity size={22} color="var(--color-forest)" />
             </div>
             <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px' }}>9 Pertanyaan Berbobot</h4>
-            <p style={{ fontSize: '0.86rem', color: '#64748B', lineHeight: 1.5, margin: 0 }}>
+            <p style={{ fontSize: '0.86rem', color: 'var(--color-muted)', lineHeight: 1.5, margin: 0 }}>
               Evaluasi pola makan, hidrasi harian, durasi tidur, tingkat aktivitas fisik, dan riwayat kesehatan.
             </p>
           </div>
 
-          <div className="quiz-highlight-item" style={{ background: '#FAF9F6', padding: '20px', borderRadius: '16px', border: '1px solid #E2E8F0', textAlign: 'left' }}>
-            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(36, 90, 59, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
+          <div className="quiz-highlight-item" style={{ background: 'var(--color-cream)', padding: '20px', borderRadius: '16px', border: '1px solid var(--color-border)', textAlign: 'left' }}>
+            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(56, 179, 114, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
               <ShieldAlert size={22} color="var(--color-forest)" />
             </div>
             <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px' }}>Algoritma Skor Berbobot</h4>
-            <p style={{ fontSize: '0.86rem', color: '#64748B', lineHeight: 1.5, margin: 0 }}>
+            <p style={{ fontSize: '0.86rem', color: 'var(--color-muted)', lineHeight: 1.5, margin: 0 }}>
               Mengkalkulasi tingkat risiko gaya hidup Anda (Rendah, Sedang, atau Tinggi) berbasis standar medis &amp; rekomendasi kesehatan.
             </p>
           </div>
 
-          <div className="quiz-highlight-item" style={{ background: '#FAF9F6', padding: '20px', borderRadius: '16px', border: '1px solid #E2E8F0', textAlign: 'left' }}>
-            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(36, 90, 59, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
+          <div className="quiz-highlight-item" style={{ background: 'var(--color-cream)', padding: '20px', borderRadius: '16px', border: '1px solid var(--color-border)', textAlign: 'left' }}>
+            <div className="highlight-icon-box" style={{ width: '44px', height: '44px', borderRadius: '12px', background: 'rgba(56, 179, 114, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
               <Heart size={22} color="var(--color-forest)" />
             </div>
             <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px' }}>Rekomendasi Personal</h4>
-            <p style={{ fontSize: '0.86rem', color: '#64748B', lineHeight: 1.5, margin: 0 }}>
+            <p style={{ fontSize: '0.86rem', color: 'var(--color-muted)', lineHeight: 1.5, margin: 0 }}>
               Dapatkan panduan aksi konkret yang dipersonalisasi untuk memperbaiki kebiasaan harian Anda.
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function KuisTeaser({ onOpenAuth }) {
             <span className="btn-text-default">Mulai Kuis Skrining <ArrowRight size={18} /></span>
             <span className="btn-text-hover"><Lock size={16} /> Masuk untuk Mencoba</span>
           </button>
-          <span style={{ fontSize: '0.82rem', color: '#94A3B8' }}>
+          <span style={{ fontSize: '0.82rem', color: 'var(--color-muted)' }}>
             *Gratis &amp; langsung dapatkan analisis risiko kesehatan pribadi Anda.
           </span>
         </div>
@@ -73,8 +73,8 @@ export default function KuisTeaser({ onOpenAuth }) {
             <button className="modal-close" onClick={() => setShowAuthPrompt(false)}>
               <X size={20} />
             </button>
-            <div style={{ width: '64px', height: '64px', background: 'rgba(36, 90, 59, 0.12)', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-              <Lock color="#245A3B" size={32} />
+            <div style={{ width: '64px', height: '64px', background: 'rgba(56, 179, 114, 0.15)', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+              <Lock color="var(--color-forest)" size={32} />
             </div>
             <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 700, marginBottom: '10px', color: 'var(--color-dark)' }}>
               Akses Fitur Terkunci

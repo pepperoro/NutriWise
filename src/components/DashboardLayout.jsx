@@ -6,6 +6,7 @@ import MitosFakta from './MitosFakta';
 import KuisSkrining from './KuisSkrining';
 import { Menu, ShieldCheck, Bell, BellRing, BellOff } from 'lucide-react';
 import NotificationSettingsModal from './NotificationSettingsModal';
+import ThemeToggle from './ThemeToggle';
 
 export default function DashboardLayout({ 
   currentUser, 
@@ -100,6 +101,7 @@ export default function DashboardLayout({
                 {pushState?.isEnabled ? 'ON' : 'OFF'}
               </span>
             </button>
+            <ThemeToggle />
           </div>
         </header>
 

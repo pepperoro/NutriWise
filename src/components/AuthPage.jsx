@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Mail, Lock, User, ShieldCheck, CheckCircle, AlertCircle } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import ThemeToggle from './ThemeToggle';
 
 export default function AuthPage({ initialMode = 'login', onBackHome, onAuthSuccess }) {
   const [isLogin, setIsLogin] = useState(initialMode === 'login');
@@ -88,10 +89,11 @@ export default function AuthPage({ initialMode = 'login', onBackHome, onAuthSucc
     <div className="auth-page-wrapper">
       <div className="auth-page-container">
         {/* Top Header Navigation */}
-        <div className="auth-header-bar">
+        <div className="auth-header-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <button onClick={onBackHome} className="btn-back-home">
             <ArrowLeft size={18} /> Kembali ke Beranda
           </button>
+          <ThemeToggle />
         </div>
 
         {/* Main Split Card matching login.jpeg / reg.jpeg design */}
@@ -266,7 +268,7 @@ export default function AuthPage({ initialMode = 'login', onBackHome, onAuthSucc
 
         {/* Security Footer Note */}
         <div className="auth-footer-security">
-          <ShieldCheck size={16} color="#245A3B" />
+          <ShieldCheck size={16} color="var(--color-forest)" />
           <span>Keamanan Data Terjamin dengan Supabase Auth &amp; Encryption Standard &amp; Privacy Shield</span>
         </div>
       </div>

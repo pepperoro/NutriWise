@@ -62,20 +62,20 @@ export default function NotificationSettingsModal({
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div className={`notif-icon-circle ${isEnabled ? 'active' : 'inactive'}`}>
-              {isEnabled ? <BellRing size={22} color="#166534" /> : <BellOff size={22} color="#64748b" />}
+              {isEnabled ? <BellRing size={22} color="var(--color-forest)" /> : <BellOff size={22} color="var(--color-muted)" />}
             </div>
             <div>
               <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-dark)', fontFamily: 'var(--font-serif)' }}>
                 {isAuthPrompt ? 'Pengaturan Notifikasi Harian' : 'Pengaturan Notifikasi'}
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--color-muted)' }}>
                 {isAuthPrompt ? 'Atur preferensi pengingat otomatis Anda' : 'Kelola notifikasi tantangan & edukasi'}
               </p>
             </div>
           </div>
           <button 
             onClick={onClose} 
-            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94A3B8', padding: '4px' }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-muted)', padding: '4px' }}
             aria-label="Tutup"
           >
             <X size={20} />
@@ -85,13 +85,13 @@ export default function NotificationSettingsModal({
         {/* Auth prompt greeting */}
         {isAuthPrompt && (
           <div style={{ 
-            background: '#F0FDF4', 
-            border: '1px solid #BBF7D0', 
+            background: 'rgba(56, 179, 114, 0.15)', 
+            border: '1px solid rgba(56, 179, 114, 0.3)', 
             borderRadius: '12px', 
             padding: '12px 14px', 
             marginBottom: '16px',
             fontSize: '0.86rem',
-            color: '#166534',
+            color: 'var(--color-forest)',
             lineHeight: 1.45
           }}>
             👋 Halo <strong>{currentUser?.user_metadata?.full_name || currentUser?.email?.split('@')[0] || 'Sobat NutriWise'}</strong>! Ingin menyalakan notifikasi pengingat harian otomatis?
@@ -100,8 +100,8 @@ export default function NotificationSettingsModal({
 
         {/* Status card */}
         <div style={{ 
-          background: isEnabled ? '#F0FDF4' : '#F8FAFC', 
-          border: `1px solid ${isEnabled ? '#BBF7D0' : '#E2E8F0'}`, 
+          background: isEnabled ? 'rgba(34, 197, 94, 0.12)' : 'var(--color-cream)', 
+          border: `1px solid ${isEnabled ? 'rgba(34, 197, 94, 0.35)' : 'var(--color-border)'}`, 
           borderRadius: '14px', 
           padding: '16px',
           marginBottom: '20px',
@@ -112,11 +112,11 @@ export default function NotificationSettingsModal({
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
               <span className={`notif-status-dot-pulse ${isEnabled ? 'active' : 'inactive'}`} />
-              <strong style={{ fontSize: '0.95rem', color: isEnabled ? '#166534' : '#475569' }}>
+              <strong style={{ fontSize: '0.95rem', color: isEnabled ? 'var(--color-forest)' : 'var(--color-dark)' }}>
                 {isEnabled ? 'Notifikasi Sedang Aktif' : 'Notifikasi Dinonaktifkan'}
               </strong>
             </div>
-            <p style={{ margin: 0, fontSize: '0.78rem', color: isEnabled ? '#15803d' : '#64748b' }}>
+            <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--color-muted)' }}>
               {isEnabled 
                 ? 'Anda akan menerima pengingat harian jam 20:00 jika target belum lengkap.' 
                 : 'Anda tidak akan menerima notifikasi pengingat.'}
@@ -142,24 +142,24 @@ export default function NotificationSettingsModal({
 
         {/* Feature explanation */}
         <div style={{ 
-          background: '#FAFAF9', 
-          border: '1px solid #E7E5E4', 
+          background: 'var(--color-cream)', 
+          border: '1px solid var(--color-border)', 
           borderRadius: '14px', 
           padding: '16px',
           marginBottom: '20px'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <Clock size={16} color="#245A3B" />
-            <strong style={{ fontSize: '0.88rem', color: '#1C1917' }}>
+            <Clock size={16} color="var(--color-forest)" />
+            <strong style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
               Pengingat Otomatis Jam 20:00
             </strong>
           </div>
-          <p style={{ margin: '0 0 10px 0', fontSize: '0.8rem', color: '#57534E', lineHeight: 1.5 }}>
+          <p style={{ margin: '0 0 10px 0', fontSize: '0.8rem', color: 'var(--color-muted)', lineHeight: 1.5 }}>
             Sistem NutriWise akan memeriksa progres 30-Day Challenge Anda setiap hari pukul <strong>20:00</strong>. Jika semua target telah terpenuhi, Anda tidak akan terganggu.
           </p>
-          <div style={{ fontSize: '0.76rem', color: '#78716C', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <div style={{ fontSize: '0.76rem', color: 'var(--color-muted)', display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span>Zona Waktu Aktif:</span>
-            <code style={{ background: '#E7E5E4', padding: '2px 8px', borderRadius: '4px', color: '#292524', fontWeight: 600 }}>
+            <code style={{ background: 'var(--color-card-bg)', border: '1px solid var(--color-border)', padding: '2px 8px', borderRadius: '4px', color: 'var(--color-forest)', fontWeight: 600 }}>
               {userTz}
             </code>
           </div>
@@ -168,8 +168,8 @@ export default function NotificationSettingsModal({
         {/* Error message */}
         {error && (
           <div style={{ 
-            background: '#FEF2F2', 
-            border: '1px solid #FECACA', 
+            background: 'rgba(239, 68, 68, 0.15)', 
+            border: '1px solid rgba(239, 68, 68, 0.3)', 
             borderRadius: '10px', 
             padding: '10px 12px', 
             marginBottom: '16px',
@@ -177,7 +177,7 @@ export default function NotificationSettingsModal({
             alignItems: 'center',
             gap: '8px',
             fontSize: '0.8rem',
-            color: '#991B1B'
+            color: '#EF4444'
           }}>
             <AlertTriangle size={16} style={{ flexShrink: 0 }} />
             <span>{error}</span>
@@ -187,8 +187,8 @@ export default function NotificationSettingsModal({
         {/* Test feedback */}
         {testSent && (
           <div style={{ 
-            background: '#F0FDF4', 
-            border: '1px solid #BBF7D0', 
+            background: 'rgba(34, 197, 94, 0.15)', 
+            border: '1px solid rgba(34, 197, 94, 0.3)', 
             borderRadius: '10px', 
             padding: '10px 12px', 
             marginBottom: '16px',
@@ -196,7 +196,7 @@ export default function NotificationSettingsModal({
             alignItems: 'center',
             gap: '8px',
             fontSize: '0.8rem',
-            color: '#166534'
+            color: 'var(--color-forest)'
           }}>
             <CheckCircle2 size={16} style={{ flexShrink: 0 }} />
             <span>Notifikasi uji coba berhasil dikirim ke perangkat Anda!</span>
@@ -225,7 +225,7 @@ export default function NotificationSettingsModal({
         </div>
 
         {isAuthPrompt && (
-          <p style={{ textAlign: 'center', fontSize: '0.74rem', color: '#94A3B8', marginTop: '14px', marginBottom: 0 }}>
+          <p style={{ textAlign: 'center', fontSize: '0.74rem', color: 'var(--color-muted)', marginTop: '14px', marginBottom: 0 }}>
             * Anda dapat mengubah pengaturan ini sewaktu-waktu melalui tombol <strong>Notifikasi</strong> di header dashboard.
           </p>
         )}

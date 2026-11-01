@@ -45,7 +45,7 @@ export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout
             {avatarUrl ? (
               <img src={avatarUrl} alt="Avatar" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
             ) : (
-              <User size={20} color="#245A3B" />
+              <User size={20} color="var(--color-forest)" />
             )}
           </div>
           <div className="sidebar-user-info">
@@ -81,7 +81,7 @@ export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout
           })}
         </nav>
 
-        {/* Sidebar Footer Logout Button */}
+        {/* Sidebar Footer with Logout Button */}
         <div className="sidebar-footer">
           <button onClick={onLogout} className="sidebar-logout-btn">
             <LogOut size={18} />

@@ -622,3 +622,80 @@
   }
 }
 
+
+
+/* ==========================================================================
+   Notifications Dark Mode Theme Styles
+   ========================================================================== */
+
+[data-theme="dark"] .notif-popover-menu {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .notif-popover-header {
+  background: #2A2720;
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] .notif-popover-header strong {
+  color: var(--color-dark);
+}
+
+[data-theme="dark"] .notif-popover-close {
+  color: var(--color-muted);
+}
+
+[data-theme="dark"] .notif-popover-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-dark);
+}
+
+[data-theme="dark"] .notif-status-badge {
+  color: #B5CC98;
+  background: rgba(127, 168, 102, 0.15);
+  border: 1px solid rgba(127, 168, 102, 0.35);
+}
+
+[data-theme="dark"] .notif-info-box {
+  background: #2A2720;
+  border: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] .info-title {
+  color: var(--color-dark);
+}
+
+[data-theme="dark"] .info-desc {
+  color: var(--color-muted);
+}
+
+[data-theme="dark"] .info-tz {
+  color: var(--color-muted);
+}
+
+[data-theme="dark"] .info-tz code {
+  background: #201D17;
+  color: #B5CC98;
+}
+
+[data-theme="dark"] .notif-status-badge-inline.active {
+  background: rgba(127, 168, 102, 0.2);
+  color: #B5CC98;
+  border-color: rgba(127, 168, 102, 0.4);
+}
+
+[data-theme="dark"] .notif-status-badge-inline.inactive {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-muted);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .notif-icon-circle.active {
+  background: rgba(127, 168, 102, 0.2);
+}
+
+[data-theme="dark"] .notif-icon-circle.inactive {
+  background: #2A2720;
+}
