@@ -1096,7 +1096,7 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .auth-form-panel.panel-hidden {
-  opacity: 0.15;
+  opacity: 0;
   pointer-events: none;
 }
 
@@ -1240,14 +1240,14 @@ h1, h2, h3, h4, .font-serif {
   transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* When overlay-container is on the RIGHT, show the right panel content (shift overlay to show right half) */
+/* When overlay-container is on the RIGHT (Login mode), show the right panel content */
 .overlay-right .auth-overlay {
-  transform: translateX(0%);
+  transform: translateX(-50%);
 }
 
-/* When overlay-container is on the LEFT, show the left panel content (shift overlay to show left half) */
+/* When overlay-container is on the LEFT (Register mode), show the left panel content */
 .overlay-left .auth-overlay {
-  transform: translateX(-50%);
+  transform: translateX(0%);
 }
 
 .auth-overlay-panel {
@@ -1260,11 +1260,22 @@ h1, h2, h3, h4, .font-serif {
   text-align: center;
   padding: 56px 48px;
   opacity: 0;
-  transition: opacity 0.4s ease 0.2s;
+  pointer-events: none;
+  transition: opacity 0.4s ease 0.15s, transform 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.15s;
+}
+
+.overlay-panel-left {
+  transform: translateX(-20px);
+}
+
+.overlay-panel-right {
+  transform: translateX(20px);
 }
 
 .auth-overlay-panel.overlay-panel-active {
   opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
 }
 
 .banner-content {
@@ -1386,6 +1397,7 @@ h1, h2, h3, h4, .font-serif {
     width: 100%;
     padding: 40px 24px;
     display: none;
+    transform: none !important;
   }
 
   .auth-overlay-panel.overlay-panel-active {
@@ -4458,6 +4470,7 @@ body,
   color: var(--color-forest);
 }
 
+[data-theme="dark"] .auth-overlay,
 [data-theme="dark"] .auth-banner-side {
   background: linear-gradient(135deg, #3D4A30 0%, #272419 100%);
 }
