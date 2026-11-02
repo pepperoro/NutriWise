@@ -190,7 +190,7 @@ export default function Kalkulator({ currentUser, onNavigateToQuiz }) {
       <div className="calc-grid nw-compact-calc-grid">
         {/* Card 1: BMI */}
         <div className="calc-card nw-compact-calc-card">
-          <div>
+          <div className="nw-calc-card-body">
             <div className="nw-compact-card-head">
               <span className="nw-compact-icon nw-compact-icon--green">
                 <Activity size={19} />
@@ -198,7 +198,7 @@ export default function Kalkulator({ currentUser, onNavigateToQuiz }) {
               <h3 className="calc-title nw-compact-title">Indeks Massa Tubuh (BMI)</h3>
             </div>
 
-            <form onSubmit={handleCalcBmi}>
+            <form onSubmit={handleCalcBmi} className="nw-calc-form">
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                 <div className="form-group nw-compact-fg">
                   <label className="form-label">Berat (kg)</label>
@@ -266,7 +266,7 @@ export default function Kalkulator({ currentUser, onNavigateToQuiz }) {
 
         {/* Card 2: Kalori Harian */}
         <div className="calc-card nw-compact-calc-card">
-          <div>
+          <div className="nw-calc-card-body">
             <div className="nw-compact-card-head">
               <span className="nw-compact-icon nw-compact-icon--gold">
                 <Flame size={19} />
@@ -274,7 +274,7 @@ export default function Kalkulator({ currentUser, onNavigateToQuiz }) {
               <h3 className="calc-title nw-compact-title">Kebutuhan Kalori Harian</h3>
             </div>
 
-            <form onSubmit={handleCalcCalories}>
+            <form onSubmit={handleCalcCalories} className="nw-calc-form">
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                 <div className="form-group nw-compact-fg">
                   <label className="form-label">Berat (kg)</label>
@@ -361,7 +361,7 @@ export default function Kalkulator({ currentUser, onNavigateToQuiz }) {
 
         {/* Card 3: Air Harian */}
         <div className="calc-card nw-compact-calc-card">
-          <div>
+          <div className="nw-calc-card-body">
             <div className="nw-compact-card-head">
               <span className="nw-compact-icon nw-compact-icon--sky">
                 <Droplets size={19} />
@@ -369,7 +369,7 @@ export default function Kalkulator({ currentUser, onNavigateToQuiz }) {
               <h3 className="calc-title nw-compact-title">Kebutuhan Air Harian</h3>
             </div>
 
-            <form onSubmit={handleCalcWater}>
+            <form onSubmit={handleCalcWater} className="nw-calc-form">
               <div className="form-group nw-compact-fg">
                 <label className="form-label">Berat Badan (kg)</label>
                 <input

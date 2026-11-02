@@ -342,18 +342,8 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
       {currentStep === 0 && (
         <div className="quiz-card quiz-intro-card">
           <div className="quiz-intro-header">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '12px' }}>
-              <div className="quiz-badge" style={{ margin: 0 }}>
-                <ClipboardCheck size={18} /> Skrining Mandiri PTM
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowExitConfirmModal(true)}
-                className="btn-exit-quiz"
-                title="Keluar dari Kuis Skrining"
-              >
-                <LogOut size={14} style={{ marginRight: '4px', flexShrink: 0 }} /> Keluar Kuis
-              </button>
+            <div className="quiz-badge">
+              <ClipboardCheck size={18} /> Skrining Mandiri PTM
             </div>
             <h2>Kuis Skrining Risiko Kesehatan &amp; Gaya Hidup</h2>
             <p>
@@ -520,15 +510,6 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
               <h2>Laporan Skrining Mandiri PTM</h2>
               <div className="results-date">Dianalisis pada {savedQuizResult.date}</div>
             </div>
-
-            <button
-              type="button"
-              onClick={() => setShowExitConfirmModal(true)}
-              className="btn-exit-quiz"
-              title="Keluar dari Laporan Kuis"
-            >
-              <LogOut size={14} style={{ marginRight: '4px', flexShrink: 0 }} /> Keluar Kuis
-            </button>
           </div>
 
           {/* Score Circle & Summary Banner */}

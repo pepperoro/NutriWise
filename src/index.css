@@ -1675,8 +1675,11 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .dashboard-main-view {
-  padding: 20px 32px 32px;
+  padding: 18px 32px 20px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .dashboard-main-view .section {
@@ -1686,6 +1689,7 @@ h1, h2, h3, h4, .font-serif {
 .dashboard-main-view .container {
   padding: 0;
   max-width: 100%;
+  width: 100%;
 }
 
 .dashboard-main-view .section-title,
@@ -1695,6 +1699,10 @@ h1, h2, h3, h4, .font-serif {
 
 .dashboard-tab-pane {
   animation: fadeIn 0.3s ease;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 @keyframes fadeIn {
@@ -2046,7 +2054,8 @@ h1, h2, h3, h4, .font-serif {
 
 /* Kuis Skrining PTM Section Styling */
 .quiz-container {
-  max-width: 860px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -4551,29 +4560,59 @@ body,
    STICKY BOTANICAL GLASS NAVBAR (.nw-natural-navbar)
    ========================================================================== */
 .navbar-wrapper.nw-natural-navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
   padding: 0;
-  background: rgba(245, 242, 234, 0.88);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              backdrop-filter 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              -webkit-backdrop-filter 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-wrapper.nw-natural-navbar.scrolled,
+.navbar-wrapper.nw-natural-navbar.menu-open {
+  background: rgba(250, 248, 243, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(36, 90, 59, 0.1);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(36, 90, 59, 0.08);
 }
 
-.navbar-wrapper.nw-natural-navbar.scrolled {
-  background: rgba(250, 248, 243, 0.96);
-  box-shadow: 0 4px 20px rgba(36, 90, 59, 0.07);
+.navbar-wrapper.nw-natural-navbar.menu-open {
+  border-bottom-color: transparent;
+  box-shadow: none;
 }
 
-[data-theme="dark"] .navbar-wrapper.nw-natural-navbar,
-[data-theme="dark"] .navbar-wrapper.nw-natural-navbar.scrolled {
-  background: rgba(26, 24, 20, 0.92);
+[data-theme="dark"] .navbar-wrapper.nw-natural-navbar {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .navbar-wrapper.nw-natural-navbar.scrolled,
+[data-theme="dark"] .navbar-wrapper.nw-natural-navbar.menu-open {
+  background: rgba(26, 24, 20, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(237, 230, 216, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .navbar-wrapper.nw-natural-navbar.menu-open {
+  background: #211E18;
+  border-bottom-color: transparent;
+  box-shadow: none;
 }
 
 .nw-natural-navbar .nw-natural-navbar-inner {
@@ -4594,27 +4633,29 @@ body,
 .nw-natural-brand {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 12px;
   text-decoration: none;
   color: var(--color-dark) !important;
 }
 
 .nw-natural-logo-wrap {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: #FFFFFF;
-  border: 1px solid rgba(36, 90, 59, 0.14);
-  display: grid;
-  place-content: center;
+  width: auto;
+  height: 44px;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(36, 90, 59, 0.08);
+  box-shadow: none;
 }
 
 .nw-natural-logo-wrap img {
-  width: 26px !important;
-  height: 26px !important;
+  width: auto !important;
+  height: 42px !important;
   object-fit: contain;
+  display: block;
 }
 
 .nw-natural-brand-text {
@@ -4701,7 +4742,7 @@ body,
 .nw-bio-hero {
   position: relative;
   overflow: hidden;
-  padding: 44px 0 68px;
+  padding: 108px 0 68px;
   background: linear-gradient(155deg, #F5F2EA 0%, #E6F0E3 50%, #F4EFE5 100%);
   border-bottom: 1px solid rgba(36, 90, 59, 0.1);
 }
@@ -5198,12 +5239,29 @@ body,
    COMPACT FIT-TO-WINDOW KALKULATOR NUTRISI (.nw-compact-calc-*)
    ========================================================================== */
 .nw-calc-dashboard-sec {
-  padding: 4px 0 12px !important;
+  padding: 0 !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .nw-calc-landing-sec {
-  padding: 56px 0 !important;
-  scroll-margin-top: 76px;
+  padding: 44px 24px !important;
+  scroll-margin-top: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 1025px) and (min-height: 640px) {
+  #kalkulator.nw-calc-dashboard-sec {
+    min-height: calc(100vh - 108px);
+  }
+
+  #kalkulator.nw-calc-landing-sec {
+    min-height: calc(100vh - 72px);
+  }
 }
 
 .nw-calc-dash-bar {
@@ -5217,6 +5275,12 @@ body,
   border-radius: 14px;
   background: var(--color-card-bg);
   border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.nw-myth-dash-bar {
+  margin-bottom: 12px;
+  padding: 8px 16px;
 }
 
 .nw-calc-dash-hint {
@@ -5232,6 +5296,7 @@ body,
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 24px;
+  flex-shrink: 0;
 }
 
 .nw-algo-info-btn {
@@ -5263,18 +5328,36 @@ body,
 
 .nw-compact-calc-grid {
   gap: 20px !important;
+  flex: 1;
+  align-items: stretch;
 }
 
 .nw-compact-calc-card {
-  padding: 20px 22px !important;
+  padding: clamp(20px, 2.6vh, 30px) 24px !important;
   border-radius: 20px !important;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nw-calc-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.nw-calc-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .nw-compact-card-head {
   display: flex;
   align-items: center;
   gap: 11px;
-  margin-bottom: 14px;
+  margin-bottom: clamp(14px, 2vh, 22px);
   padding-bottom: 12px;
   border-bottom: 1px solid var(--color-border);
 }
@@ -5310,30 +5393,34 @@ body,
 }
 
 .nw-compact-fg {
-  margin-bottom: 10px !important;
+  margin-bottom: clamp(10px, 1.5vh, 16px) !important;
 }
 
 .nw-compact-fg .form-label {
-  font-size: 0.78rem !important;
-  margin-bottom: 4px !important;
+  font-size: 0.8rem !important;
+  margin-bottom: 5px !important;
 }
 
 .nw-compact-input {
-  padding: 9px 12px !important;
-  font-size: 0.88rem !important;
+  padding: clamp(9px, 1.3vh, 13px) 13px !important;
+  font-size: 0.9rem !important;
 }
 
 .nw-compact-submit {
-  padding: 10px 14px !important;
-  margin-top: 6px !important;
-  font-size: 0.88rem !important;
+  padding: clamp(10px, 1.5vh, 14px) 14px !important;
+  margin-top: auto !important;
+  font-size: 0.9rem !important;
   border-radius: 10px !important;
 }
 
 .nw-compact-result {
-  margin-top: 14px !important;
-  padding: 14px 16px !important;
+  margin-top: clamp(14px, 2vh, 24px) !important;
+  padding: clamp(16px, 2.4vh, 26px) 18px !important;
   border-radius: 14px !important;
+  min-height: 132px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .nw-compact-result.has-result {
@@ -5654,6 +5741,64 @@ body,
   font-family: var(--font-mono);
   font-size: 0.68rem;
   color: #94A3B8;
+}
+
+/* Fit Mitos vs Fakta cleanly within Laptop L viewport without extra scroll */
+#mitos-fakta.nw-section {
+  padding: 40px 24px !important;
+  scroll-margin-top: 72px;
+}
+
+#mitos-fakta .nw-section-header {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 1025px) and (min-height: 640px) {
+  #mitos-fakta.nw-calc-dashboard-sec {
+    height: calc(100vh - 108px);
+    max-height: calc(100vh - 108px);
+    overflow: hidden;
+  }
+
+  #mitos-fakta.nw-calc-dashboard-sec .nw-myth-grid {
+    flex: 1;
+    min-height: 0;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  #mitos-fakta.nw-calc-dashboard-sec .flip-card-container,
+  #mitos-fakta.nw-calc-dashboard-sec .flip-card-inner {
+    height: 100%;
+    min-height: 0;
+  }
+
+  #mitos-fakta.nw-calc-dashboard-sec .nw-flip-front,
+  #mitos-fakta.nw-calc-dashboard-sec .nw-flip-back {
+    padding: 18px 20px !important;
+    overflow: hidden;
+  }
+
+  #mitos-fakta.nw-calc-dashboard-sec .nw-flip-front .flip-card-question {
+    font-size: 1.12rem;
+  }
+
+  #mitos-fakta.nw-calc-dashboard-sec .nw-flip-back__body .back-explanation {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  #mitos-fakta.nw-section .flip-card-container,
+  #mitos-fakta.nw-section .flip-card-inner {
+    height: clamp(230px, 31vh, 285px);
+    min-height: 230px;
+  }
+
+  #mitos-fakta.nw-section .nw-flip-front,
+  #mitos-fakta.nw-section .nw-flip-back {
+    padding: 18px 22px !important;
+    overflow: hidden;
+  }
 }
 
 /* ==========================================================================
@@ -6071,7 +6216,13 @@ body,
   }
 }
 
-/* Mobile Burger Button Styling & Desktop Hide */
+/* Mobile Header Actions & Burger Button Styling */
+.mobile-header-actions {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
 .nw-natural-navbar .mobile-toggle {
   display: none;
   width: 40px;
@@ -6098,8 +6249,150 @@ body,
   color: var(--color-sage);
 }
 
+.nw-natural-navbar.menu-open .nw-natural-scroll-bar {
+  opacity: 0;
+}
+
 @media (max-width: 1024px) {
+  .mobile-header-actions {
+    display: inline-flex !important;
+  }
+
   .nw-natural-navbar .mobile-toggle {
     display: inline-flex !important;
+  }
+
+  /* Seamless Burger Popup Menu (0px gap from header, padded CTA at bottom) */
+  .nw-natural-navbar .nw-natural-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0 !important;
+    padding: 14px 24px 28px !important;
+    gap: 6px !important;
+    background: rgba(250, 248, 243, 0.98) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(36, 90, 59, 0.08) !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1.5px solid rgba(36, 90, 59, 0.16) !important;
+    border-radius: 0 0 24px 24px !important;
+    box-shadow: 0 18px 36px rgba(30, 41, 59, 0.12) !important;
+    transform: translateY(-8px);
+  }
+
+  .nw-natural-navbar .nw-natural-menu.active {
+    transform: translateY(0);
+  }
+
+  [data-theme="dark"] .nw-natural-navbar .nw-natural-menu {
+    background: #211E18 !important;
+    border-top: 1px solid rgba(237, 230, 216, 0.08) !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1.5px solid rgba(237, 230, 216, 0.14) !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55) !important;
+  }
+
+  .nw-natural-navbar .nw-natural-menu > li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nw-natural-navbar .nw-natural-link {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+    padding: 10px 16px !important;
+    border-bottom: none !important;
+    border-radius: 999px;
+  }
+
+  .nw-natural-navbar .mobile-drawer-cta {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-top: 12px;
+    margin-top: 4px;
+    border-top: 1px solid rgba(36, 90, 59, 0.1);
+  }
+
+  [data-theme="dark"] .nw-natural-navbar .mobile-drawer-cta {
+    border-top-color: rgba(237, 230, 216, 0.1);
+  }
+}
+
+/* Responsive Mobile Brand Sizing (Slightly Smaller Logo & Text) */
+@media (max-width: 768px) {
+  .nw-natural-navbar .nw-natural-navbar-inner {
+    height: 62px;
+    padding: 0 16px;
+  }
+
+  .nw-natural-brand {
+    gap: 9px;
+  }
+
+  .nw-natural-logo-wrap {
+    height: 34px;
+  }
+
+  .nw-natural-logo-wrap img {
+    height: 32px !important;
+    width: auto !important;
+  }
+
+  .nw-natural-brand-name {
+    font-size: 1.12rem;
+  }
+
+  .nw-natural-brand-tag {
+    font-size: 0.63rem;
+  }
+
+  .mobile-header-actions {
+    gap: 8px;
+  }
+
+  .mobile-header-actions .theme-toggle-btn,
+  .nw-natural-navbar .mobile-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nw-bio-hero {
+    padding-top: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nw-natural-navbar .nw-natural-navbar-inner {
+    height: 58px;
+    padding: 0 14px;
+  }
+
+  .nw-natural-brand {
+    gap: 8px;
+  }
+
+  .nw-natural-logo-wrap {
+    height: 30px;
+  }
+
+  .nw-natural-logo-wrap img {
+    height: 28px !important;
+    width: auto !important;
+  }
+
+  .nw-natural-brand-name {
+    font-size: 1.04rem;
+  }
+
+  .nw-natural-brand-tag {
+    font-size: 0.59rem;
   }
 }

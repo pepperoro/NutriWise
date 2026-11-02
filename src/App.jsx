@@ -28,17 +28,28 @@ export default function App() {
   const [showAuthNotifModal, setShowAuthNotifModal] = useState(false);
   const pushState = usePushNotifications(currentUser);
 
-  // Show notification turn on/off prompt after user registers or signs in
+  // Show notification turn on/off prompt ONLY the first time a user registers or signs in
   useEffect(() => {
     if (currentUser?.id) {
-      const answered = localStorage.getItem(`NutriWise_notif_prompt_answered_${currentUser.id}`);
-      if (!answered) {
+      const answeredKey = `NutriWise_notif_prompt_answered_${currentUser.id}`;
+      const localAnswered = localStorage.getItem(answeredKey) === 'true';
+      const metaAnswered = currentUser.user_metadata?.NutriWise_notif_prompt_answered === true;
+
+      if (!localAnswered && !metaAnswered) {
+        localStorage.setItem(answeredKey, 'true');
         setShowAuthNotifModal(true);
+        if (isSupabaseConfigured && supabase) {
+          supabase.auth.updateUser({
+            data: { NutriWise_notif_prompt_answered: true }
+          }).catch(() => {});
+        }
+      } else if (metaAnswered && !localAnswered) {
+        localStorage.setItem(answeredKey, 'true');
       }
     } else {
       setShowAuthNotifModal(false);
     }
-  }, [currentUser]);
+  }, [currentUser?.id]);
 
   useEffect(() => {
     // Sync URL hash for page navigation (#auth, #login, #register)
@@ -149,7 +160,6 @@ export default function App() {
           onAuthSuccess={(user) => {
             setCurrentUser(user);
             handleBackHome();
-            setShowAuthNotifModal(true);
           }}
         />
       ) : currentUser ? (

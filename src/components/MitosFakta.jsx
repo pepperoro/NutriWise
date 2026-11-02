@@ -89,7 +89,7 @@ export default function MitosFakta({ isDashboard = false }) {
       className={`container ${isDashboard ? 'nw-calc-dashboard-sec' : 'section nw-section'}`}
     >
       {isDashboard ? (
-        <div className="nw-calc-dash-bar" style={{ marginBottom: '20px' }}>
+        <div className="nw-calc-dash-bar nw-myth-dash-bar">
           <p className="nw-calc-dash-hint">
             Klik pada kartu 3D untuk membalik dan membuka fakta medis di balik anggapan nutrisi populer.
           </p>

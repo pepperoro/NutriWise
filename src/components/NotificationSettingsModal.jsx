@@ -27,21 +27,36 @@ export default function NotificationSettingsModal({
 
   if (!isOpen) return null;
 
+  const markPromptAnswered = () => {
+    if (currentUser?.id) {
+      localStorage.setItem(`NutriWise_notif_prompt_answered_${currentUser.id}`, 'true');
+    }
+  };
+
+  const handleModalClose = () => {
+    if (isAuthPrompt) {
+      markPromptAnswered();
+    }
+    onClose();
+  };
+
   const handleTurnOn = async () => {
     setLoading(true);
+    markPromptAnswered();
     await enableNotifications();
     setLoading(false);
     if (isAuthPrompt) {
-      setTimeout(() => onClose(), 600);
+      setTimeout(() => handleModalClose(), 600);
     }
   };
 
   const handleTurnOff = async () => {
     setLoading(true);
+    markPromptAnswered();
     await disableNotifications();
     setLoading(false);
     if (isAuthPrompt) {
-      onClose();
+      handleModalClose();
     }
   };
 
@@ -52,7 +67,7 @@ export default function NotificationSettingsModal({
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose} style={{ zIndex: 9999 }}>
+    <div className="modal-overlay" onClick={handleModalClose} style={{ zIndex: 9999 }}>
       <div 
         className="modal-card notif-settings-modal" 
         onClick={(e) => e.stopPropagation()}
@@ -74,7 +89,7 @@ export default function NotificationSettingsModal({
             </div>
           </div>
           <button 
-            onClick={onClose} 
+            onClick={handleModalClose} 
             style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-muted)', padding: '4px' }}
             aria-label="Tutup"
           >
@@ -216,7 +231,7 @@ export default function NotificationSettingsModal({
           )}
 
           <button
-            onClick={onClose}
+            onClick={handleModalClose}
             className="btn-cta-primary"
             style={{ padding: '8px 20px', fontSize: '0.84rem' }}
           >

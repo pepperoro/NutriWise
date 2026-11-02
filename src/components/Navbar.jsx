@@ -77,7 +77,7 @@ export default function Navbar({ onOpenAuth, currentUser, onLogout, onNavigateHo
   const displayName = currentUser?.user_metadata?.full_name || currentUser?.email?.split('@')[0] || 'Pengguna';
 
   return (
-    <header className={`navbar-wrapper nw-natural-navbar ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`navbar-wrapper nw-natural-navbar ${scrolled ? 'scrolled' : ''} ${mobileMenuOpen ? 'menu-open' : ''}`}>
       <div className="navbar-inner nw-natural-navbar-inner">
         <a
           href="#beranda"
@@ -118,15 +118,8 @@ export default function Navbar({ onOpenAuth, currentUser, onLogout, onNavigateHo
 
           {/* CTA Action Item Inside Mobile Drawer (<= 1024px) */}
           <li className="mobile-drawer-cta">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', padding: '4px 8px' }}>
-              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--color-muted)' }}>
-                Tema Tampilan
-              </span>
-              <ThemeToggle />
-            </div>
-
             {currentUser ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', paddingTop: '10px', borderTop: '1px solid var(--color-border)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', paddingTop: '8px', borderTop: '1px solid var(--color-border)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'var(--color-cream)', padding: '10px 16px', borderRadius: '30px', fontSize: '0.9rem', fontWeight: 700, color: 'var(--color-dark)', border: '1px solid var(--color-border)' }}>
                   <User size={16} color="var(--color-forest)" />
                   <span>{displayName}</span>
@@ -149,7 +142,7 @@ export default function Navbar({ onOpenAuth, currentUser, onLogout, onNavigateHo
                   onOpenAuth();
                 }}
                 className="btn-auth-primary"
-                style={{ width: '100%', height: '44px', marginTop: '4px' }}
+                style={{ width: '100%', maxWidth: '280px', height: '44px', margin: '6px auto 0' }}
               >
                 Mulai Challenge / Masuk
               </button>
@@ -194,14 +187,17 @@ export default function Navbar({ onOpenAuth, currentUser, onLogout, onNavigateHo
           )}
         </div>
 
-        {/* Mobile Menu Toggle Button (Only visible <= 1024px) */}
-        <button
-          className="mobile-toggle"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle Menu"
-        >
-          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile Header Actions: Theme Toggle (left of burger) + Burger Menu Toggle (<= 1024px) */}
+        <div className="mobile-header-actions">
+          <ThemeToggle />
+          <button
+            className="mobile-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Subtle Leaf Green Scroll Progress Bar */}
