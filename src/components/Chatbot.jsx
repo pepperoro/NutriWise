@@ -2,6 +2,85 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquare, X, Send, Bot, Loader2, HeartPulse } from 'lucide-react';
 import '../chatbot.css';
 
+
+function renderInlineFormatting(str) {
+  if (!str) return null;
+  const regex = /(\*{3}[^*]+?\*{3}|\*{2}[^*]+?\*{2}|\*[^*\s][^*]*?[^*\s]\*|\*[^*\s]\*|___[^_]+?___|__[^_]+?__|_[^_\s][^_]*?[^_\s]_|_[^_\s]_|`[^`]+`)/g;
+  const parts = str.split(regex);
+
+  return parts.map((part, index) => {
+    if (!part) return null;
+    if ((part.startsWith('***') && part.endsWith('***') && part.length >= 6) ||
+        (part.startsWith('___') && part.endsWith('___') && part.length >= 6)) {
+      return <strong key={index} className="chat-bold-italic">{part.slice(3, -3)}</strong>;
+    }
+    if ((part.startsWith('**') && part.endsWith('**') && part.length >= 4) ||
+        (part.startsWith('__') && part.endsWith('__') && part.length >= 4)) {
+      return <strong key={index} className="chat-bold">{part.slice(2, -2)}</strong>;
+    }
+    if ((part.startsWith('*') && part.endsWith('*') && part.length >= 2) ||
+        (part.startsWith('_') && part.endsWith('_') && part.length >= 2)) {
+      return <em key={index} className="chat-italic">{part.slice(1, -1)}</em>;
+    }
+    if (part.startsWith('`') && part.endsWith('`') && part.length >= 2) {
+      return <code key={index} className="chat-inline-code">{part.slice(1, -1)}</code>;
+    }
+    return part;
+  });
+}
+
+function FormattedChatMessage({ content }) {
+  if (!content) return null;
+  const lines = content.split('\n');
+
+  return (
+    <div className="chat-formatted-body">
+      {lines.map((line, idx) => {
+        const trimmed = line.trim();
+        if (!trimmed) {
+          return <div key={idx} className="chat-spacer" />;
+        }
+
+        const headerMatch = trimmed.match(/^(#{1,3})\s+(.*)$/);
+        if (headerMatch) {
+          const level = headerMatch[1].length;
+          return (
+            <div key={idx} className={`chat-heading chat-h${level}`}>
+              {renderInlineFormatting(headerMatch[2])}
+            </div>
+          );
+        }
+
+        const numMatch = trimmed.match(/^(\d+)\.\s+(.*)$/);
+        if (numMatch) {
+          return (
+            <div key={idx} className="chat-list-item">
+              <span className="chat-list-num">{numMatch[1]}.</span>
+              <span className="chat-list-text">{renderInlineFormatting(numMatch[2])}</span>
+            </div>
+          );
+        }
+
+        const bulletMatch = trimmed.match(/^[\*\-•]\s+(.*)$/);
+        if (bulletMatch) {
+          return (
+            <div key={idx} className="chat-list-item">
+              <span className="chat-list-bullet">•</span>
+              <span className="chat-list-text">{renderInlineFormatting(bulletMatch[1])}</span>
+            </div>
+          );
+        }
+
+        return (
+          <div key={idx} className="chat-line">
+            {renderInlineFormatting(line)}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function Chatbot({ currentPage, onNavigate, currentUser }) {
   const [isOpen, setIsOpen] = useState(false);
   const defaultMessage = { role: 'ai', content: 'Halo! Saya asisten AI NutriWise. Ada yang bisa saya bantu terkait kesehatan, gaya hidup, atau fitur di website ini?' };
@@ -136,12 +215,7 @@ export default function Chatbot({ currentPage, onNavigate, currentUser }) {
                 </div>
               )}
               <div className={`chat-bubble ${msg.role}`}>
-                {msg.content.split('\n').map((line, i) => (
-                  <React.Fragment key={i}>
-                    {line}
-                    {i !== msg.content.split('\n').length - 1 && <br />}
-                  </React.Fragment>
-                ))}
+                <FormattedChatMessage content={msg.content} />
               </div>
             </div>
           ))}
