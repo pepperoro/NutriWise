@@ -40,12 +40,22 @@ export default async function handler(req, res) {
 
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+    // Hemat token: hanya kirim beberapa pesan terakhir & potong pesan yang terlalu panjang
+    const MAX_HISTORY_MESSAGES = 8;
+    const MAX_CHARS_PER_MESSAGE = 800;
+
     // Format history for context
     let formattedHistory = '';
-    if (chatHistory && chatHistory.length > 0) {
+    if (Array.isArray(chatHistory) && chatHistory.length > 0) {
+      const recentHistory = chatHistory.slice(-MAX_HISTORY_MESSAGES);
       formattedHistory =
         'Riwayat Percakapan Sebelumnya:\n' +
-        chatHistory.map((msg) => `${msg.role === 'user' ? 'User' : 'AI'}: ${msg.content}`).join('\n') +
+        recentHistory
+          .map((msg) => {
+            const content = String(msg.content || '').slice(0, MAX_CHARS_PER_MESSAGE);
+            return `${msg.role === 'user' ? 'User' : 'AI'}: ${content}`;
+          })
+          .join('\n') +
         '\n\n';
     }
 
@@ -53,21 +63,40 @@ export default async function handler(req, res) {
       `${SYSTEM_PROMPT}\n\n` +
       `Konteks Sistem: Pengguna saat ini sedang melihat bagian/halaman "${currentPage || 'Beranda'}".\n\n` +
       `${formattedHistory}` +
-      `Pesan Pengguna Saat Ini: ${message}\n\nBalasan AI:`;
+      `Pesan Pengguna Saat Ini: ${message}\n\nBalasan AI (jawab ringkas, maksimal sekitar 150 kata):`;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.1-flash-lite',
-      contents: prompt,
-    });
+    // Coba model utama, lalu fallback ke model lain jika gagal (mis. kuota/model tidak tersedia untuk key ini)
+    const MODELS = (process.env.GEMINI_MODEL ? [process.env.GEMINI_MODEL] : [])
+      .concat(['gemini-3.1-flash-lite', 'gemini-3.5-flash-lite', 'gemini-3-flash-preview']);
 
-    const responseText = response.text;
+    let responseText = null;
+    let lastError = null;
+
+    for (const model of MODELS) {
+      try {
+        const response = await ai.models.generateContent({
+          model,
+          contents: prompt,
+          config: { maxOutputTokens: 800 },
+        });
+        responseText = response.text;
+        if (responseText) break;
+      } catch (err) {
+        lastError = err;
+        console.error(`Gemini error (model: ${model}):`, err?.status, err?.message);
+      }
+    }
+
+    if (!responseText) {
+      throw lastError || new Error('Respons AI kosong.');
+    }
 
     res.status(200).json({ reply: responseText });
   } catch (error) {
     console.error('Error in chat API:', error);
     res.status(500).json({ 
       error: 'Terjadi kesalahan pada server AI. Silakan coba lagi.',
-      details: error.message 
+      details: error?.message || String(error)
     });
   }
 }

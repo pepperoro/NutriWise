@@ -67,6 +67,7 @@ export default function Chatbot({ currentPage, onNavigate, currentUser }) {
 
       const data = await response.json();
       if (data.error) {
+        if (data.details) console.error('Chatbot API details:', data.details);
         setMessages([...newMessages, { role: 'ai', content: `Maaf, terjadi kesalahan: ${data.error}` }]);
       } else {
         let replyText = data.reply;
