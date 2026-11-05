@@ -6170,9 +6170,50 @@ body,
    RESPONSIVE BREAKPOINTS FOR NATURAL BOTANICAL REWORK
    ========================================================================== */
 @media (max-width: 1024px) {
+  /* Reduce top padding so content shifts up and fits in 1 window view */
+  .nw-bio-hero {
+    padding-top: 72px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .nw-bio-headline {
+    margin-top: 0 !important;
+  }
+
+  .nw-bio-lead {
+    margin-top: 14px;
+  }
+
+  .nw-bio-trust-row {
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+
   .nw-bio-hero-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 28px;
+  }
+
+  /* Hide "Sahabat Gizi & Gaya Hidup Sehat Harianmu" pill so hero fits in 1 view */
+  .nw-bio-pill {
+    display: none !important;
+  }
+
+  /* Make arch image taller vertically so "4 Langkah..." is pushed off-screen initially */
+  .nw-bio-arch-card {
+    height: 420px;
+  }
+
+  /* Fix 30-day challenge section: ensure proper left-right padding */
+  #challenge.section.nw-section,
+  #challenge.nw-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .nw-challenge-landing-intro {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .nw-bio-pillars-grid {
@@ -6188,31 +6229,237 @@ body,
   }
 }
 
+@media (max-width: 768px) {
+  /* Fix 30-day challenge section side padding */
+  #challenge.section.nw-section,
+  #challenge.nw-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Keep hero arch tall vertically on tablet so "4 Langkah..." stays below fold */
+  .nw-bio-arch-card {
+    height: 440px;
+  }
+
+  /* Hide 10 health topic pills in skrining section */
+  .nw-bio-topic-pills {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE (Hero Background & Floating Cards Removal)
+   ========================================================================== */
 @media (max-width: 640px) {
+  /* Fix 30-day challenge section side padding on mobile */
+  #challenge.section.nw-section,
+  #challenge.nw-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Hero Section: Keep the original natural cream background color (no green tint) */
+  .nw-bio-hero {
+    position: relative;
+    padding: 76px 0 36px 0 !important;
+    background: linear-gradient(155deg, #F5F2EA 0%, #E6F0E3 50%, #F4EFE5 100%) !important;
+    border-bottom: 1px solid rgba(36, 90, 59, 0.1);
+  }
+
+  [data-theme="dark"] .nw-bio-hero {
+    background: linear-gradient(155deg, #191B15 0%, #1F281B 50%, #1A1814 100%) !important;
+    border-bottom: 1px solid rgba(237, 230, 216, 0.08);
+  }
+
+  /* Top Hero Grid: Natural flow without awkward gaps/margins */
+  .nw-bio-hero-grid {
+    position: relative;
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    padding: 16px 0 0 0;
+  }
+
+  /* Photo layer: 65% opacity (60-70%), fades out seamlessly before the pillars section */
+  .nw-bio-hero-grid::before {
+    content: '';
+    position: absolute;
+    top: -76px;
+    left: -16px;
+    right: -16px;
+    bottom: -16px;
+    background-image:
+      linear-gradient(180deg,
+        rgba(245, 242, 234, 0.52) 0%,
+        rgba(245, 242, 234, 0.70) 45%,
+        rgba(245, 242, 234, 0.94) 85%,
+        rgba(245, 242, 234, 1.0) 100%),
+      url('/hero_bg.png');
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.65; /* 60% - 70% opacity */
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  [data-theme="dark"] .nw-bio-hero-grid::before {
+    background-image:
+      linear-gradient(180deg,
+        rgba(25, 27, 21, 0.58) 0%,
+        rgba(25, 27, 21, 0.76) 45%,
+        rgba(25, 27, 21, 0.95) 85%,
+        rgba(25, 27, 21, 1.0) 100%),
+      url('/hero_bg.png');
+  }
+
+  /* Hide visual column: image is now integrated as background above */
+  .nw-bio-visual {
+    display: none !important;
+  }
+
+  /* Explicitly hide the 4 button cards that were previously on/under the image */
+  .nw-float-card,
+  .nw-float-card--1,
+  .nw-float-card--2,
+  .nw-float-card--3,
+  .nw-float-card--4 {
+    display: none !important;
+  }
+
+  /* Hide decorative blobs on mobile */
+  .nw-bio-blob {
+    display: none !important;
+  }
+
+  /* Foreground copy text styling: Dark text for high contrast & perfect readability */
+  .nw-bio-copy {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+  }
+
+  .nw-bio-headline {
+    color: var(--color-dark) !important;
+    font-size: clamp(1.8rem, 5.5vw, 2.3rem) !important;
+    line-height: 1.25 !important;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+    margin-top: 6px;
+  }
+
+  [data-theme="dark"] .nw-bio-headline {
+    color: var(--color-dark) !important;
+    text-shadow: none;
+  }
+
+  .nw-bio-italic {
+    color: var(--color-forest) !important;
+    font-style: italic;
+  }
+
+  [data-theme="dark"] .nw-bio-italic {
+    color: var(--color-sage) !important;
+  }
+
+  .nw-bio-lead {
+    color: #334155 !important;
+    font-size: 0.94rem !important;
+    line-height: 1.65 !important;
+    margin-top: 14px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+  }
+
+  [data-theme="dark"] .nw-bio-lead {
+    color: var(--color-muted) !important;
+    text-shadow: none;
+  }
+
+  .nw-bio-lead strong {
+    color: var(--color-dark) !important;
+    font-weight: 700;
+  }
+
   .nw-bio-trust-row {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(36, 90, 59, 0.16);
     flex-wrap: wrap;
     gap: 10px 14px;
   }
 
+  .nw-bio-trust-item {
+    color: var(--color-dark) !important;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .nw-bio-trust-icon {
+    background: rgba(36, 90, 59, 0.12) !important;
+    color: var(--color-forest) !important;
+  }
+
+  [data-theme="dark"] .nw-bio-trust-icon {
+    background: rgba(118, 160, 95, 0.18) !important;
+    color: var(--color-sage) !important;
+  }
+
+  /* Pillars section: stays on the pure original background color without photo */
+  .nw-bio-pillars-wrap {
+    position: relative;
+    z-index: 2;
+    margin-top: 28px;
+  }
+
   .nw-bio-pillars-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+  }
+
+  .nw-bio-pillars-label {
+    color: var(--color-forest) !important;
+    font-size: 0.95rem;
+  }
+
+  [data-theme="dark"] .nw-bio-pillars-label {
+    color: var(--color-sage) !important;
+  }
+
+  .nw-bio-pillars-line {
+    background: rgba(36, 90, 59, 0.15) !important;
+  }
+
+  [data-theme="dark"] .nw-bio-pillars-line {
+    background: rgba(237, 230, 216, 0.12) !important;
+  }
+
+  .nw-bio-pillar-card {
+    background: #FFFFFF !important;
+    border: 1.5px solid rgba(36, 90, 59, 0.12) !important;
+    color: var(--color-dark) !important;
+    box-shadow: 0 4px 14px rgba(36, 90, 59, 0.05);
+  }
+
+  [data-theme="dark"] .nw-bio-pillar-card {
+    background: rgba(36, 33, 27, 0.92) !important;
+    border-color: rgba(237, 230, 216, 0.12) !important;
   }
 
   .nw-bio-quiz-card {
     padding: 28px 20px;
   }
+}
 
-  .nw-float-card--1,
-  .nw-float-card--2,
-  .nw-float-card--3,
-  .nw-float-card--4 {
-    position: static;
-    margin-top: 10px;
-    animation: none;
+/* Adjustments for smaller mobile screens (480px and 425px) */
+@media (max-width: 480px) {
+  .nw-bio-hero-grid::before {
+    left: -12px;
+    right: -12px;
   }
+}
 
-  .nw-bio-arch-wrapper {
-    padding: 0;
+@media (max-width: 425px) {
+  #challenge.section.nw-section,
+  #challenge.nw-section {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
@@ -6362,10 +6609,6 @@ body,
   .nw-natural-navbar .mobile-toggle {
     width: 36px;
     height: 36px;
-  }
-
-  .nw-bio-hero {
-    padding-top: 90px;
   }
 }
 
