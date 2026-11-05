@@ -514,7 +514,10 @@ export default function KuisSkrining({ currentUser, onNavigateToCalc }) {
 
           {/* Score Circle & Summary Banner */}
           <div className="results-score-banner">
-            <div className="score-big-circle">
+            <div 
+              className="score-big-circle"
+              style={{ borderColor: savedQuizResult.badgeColor, '--circle-risk-color': savedQuizResult.badgeColor }}
+            >
               <span className="score-num">{savedQuizResult.score}</span>
               <span className="score-max">Skor Total</span>
             </div>

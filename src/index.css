@@ -894,6 +894,7 @@ h1, h2, h3, h4, .font-serif {
   justify-content: center;
   padding: 24px;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .modal-card {
@@ -903,6 +904,7 @@ h1, h2, h3, h4, .font-serif {
   width: 100%;
   max-height: 88vh;
   overflow: hidden;
+  overscroll-behavior: contain;
   position: relative;
   box-shadow: var(--shadow-lg);
 }
@@ -1435,7 +1437,11 @@ h1, h2, h3, h4, .font-serif {
   left: 0;
   z-index: 100;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.02);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sidebar-overlay {
+  display: none;
 }
 
 .sidebar-mobile-close {
@@ -1714,10 +1720,14 @@ h1, h2, h3, h4, .font-serif {
 @media (max-width: 1024px) {
   .dashboard-sidebar {
     transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+    will-change: transform;
+    box-shadow: none;
   }
 
   .dashboard-sidebar.mobile-active {
     transform: translateX(0);
+    box-shadow: 6px 0 32px rgba(0, 0, 0, 0.28);
   }
 
   .sidebar-mobile-close {
@@ -1725,6 +1735,7 @@ h1, h2, h3, h4, .font-serif {
   }
 
   .sidebar-overlay {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -1733,6 +1744,14 @@ h1, h2, h3, h4, .font-serif {
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sidebar-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .dashboard-content-area {

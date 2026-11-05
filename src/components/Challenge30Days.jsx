@@ -904,10 +904,11 @@ export default function Challenge30Days({ currentUser, onOpenAuth }) {
                     </div>
                     <button 
                       onClick={() => handleAddRecommendedTarget(rt)}
-                      className="btn-auth-primary"
-                      style={{ padding: '6px 12px', fontSize: '0.85rem', minWidth: '100px', height: '36px', flexShrink: 0, whiteSpace: 'nowrap' }}
+                      className="btn-auth-primary btn-add-rec-target"
+                      title="Tambah Target"
                     >
-                      <Plus size={16} style={{ marginRight: '4px' }} /> Tambah
+                      <Plus size={16} className="btn-add-rec-icon" />
+                      <span className="btn-add-rec-text">Tambah</span>
                     </button>
                   </div>
                 ))}

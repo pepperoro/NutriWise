@@ -16,9 +16,10 @@ export default function Sidebar({ activeTab, setActiveTab, currentUser, onLogout
   return (
     <>
       {/* Mobile Drawer Overlay */}
-      {mobileOpen && (
-        <div className="sidebar-overlay" onClick={() => setMobileOpen(false)} />
-      )}
+      <div 
+        className={`sidebar-overlay ${mobileOpen ? 'open' : ''}`} 
+        onClick={() => setMobileOpen(false)} 
+      />
 
       <aside className={`dashboard-sidebar ${mobileOpen ? 'mobile-active' : ''}`}>
         {/* Mobile Close Button */}

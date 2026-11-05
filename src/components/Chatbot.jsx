@@ -87,17 +87,71 @@ export default function Chatbot({ currentPage, onNavigate, currentUser }) {
   const [messages, setMessages] = useState([defaultMessage]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
+  const latestMessageRef = useRef(null);
+  const windowRef = useRef(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
+  // Auto-scroll inside chat container ONLY (does NOT scroll parent window or dashboard)
   useEffect(() => {
-    if (isOpen) {
-      scrollToBottom();
+    if (!isOpen || !messagesContainerRef.current) return;
+
+    const container = messagesContainerRef.current;
+    const lastMsg = messages[messages.length - 1];
+
+    // If last message is AI response, scroll to the top/beginning of this response
+    if (lastMsg?.role === 'ai' && latestMessageRef.current) {
+      const timer = setTimeout(() => {
+        if (!latestMessageRef.current || !container) return;
+        const targetTop = latestMessageRef.current.offsetTop - container.offsetTop - 8;
+        container.scrollTo({
+          top: Math.max(0, targetTop),
+          behavior: 'smooth'
+        });
+      }, 50);
+      return () => clearTimeout(timer);
+    } else {
+      // If user typed or loading, scroll to bottom of the chat container
+      const timer = setTimeout(() => {
+        if (!container) return;
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: 'smooth'
+        });
+      }, 50);
+      return () => clearTimeout(timer);
     }
-  }, [messages, isOpen]);
+  }, [messages, isOpen, isLoading]);
+
+  // Prevent mouse wheel from scrolling the background page (dashboard/landing)
+  useEffect(() => {
+    const win = windowRef.current;
+    if (!win || !isOpen) return;
+
+    const handleWheel = (e) => {
+      const container = messagesContainerRef.current;
+      if (!container) {
+        e.preventDefault();
+        return;
+      }
+
+      const maxScroll = container.scrollHeight - container.clientHeight;
+      if (maxScroll <= 0) {
+        e.preventDefault();
+        return;
+      }
+
+      const atTop = container.scrollTop <= 0 && e.deltaY < 0;
+      const atBottom = container.scrollTop >= maxScroll - 1 && e.deltaY > 0;
+      if (atTop || atBottom) {
+        e.preventDefault();
+      }
+    };
+
+    win.addEventListener('wheel', handleWheel, { passive: false });
+    return () => {
+      win.removeEventListener('wheel', handleWheel);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (currentUser) {
@@ -190,7 +244,7 @@ export default function Chatbot({ currentPage, onNavigate, currentUser }) {
       </button>
 
       {/* Chatbot Window */}
-      <div className={`chatbot-window ${isOpen ? 'open' : ''}`}>
+      <div className={`chatbot-window ${isOpen ? 'open' : ''}`} ref={windowRef}>
         <div className="chatbot-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div className="chatbot-avatar">
@@ -206,19 +260,26 @@ export default function Chatbot({ currentPage, onNavigate, currentUser }) {
           </button>
         </div>
 
-        <div className="chatbot-messages">
-          {messages.map((msg, idx) => (
-            <div key={idx} className={`chat-message-wrapper ${msg.role === 'user' ? 'user' : 'ai'}`}>
-              {msg.role === 'ai' && (
-                <div className="chat-avatar-small">
-                  <Bot size={14} color="#166534" />
+        <div className="chatbot-messages" ref={messagesContainerRef}>
+          {messages.map((msg, idx) => {
+            const isLatest = idx === messages.length - 1;
+            return (
+              <div 
+                key={idx} 
+                ref={isLatest ? latestMessageRef : null}
+                className={`chat-message-wrapper ${msg.role === 'user' ? 'user' : 'ai'}`}
+              >
+                {msg.role === 'ai' && (
+                  <div className="chat-avatar-small">
+                    <Bot size={14} color="#166534" />
+                  </div>
+                )}
+                <div className={`chat-bubble ${msg.role}`}>
+                  <FormattedChatMessage content={msg.content} />
                 </div>
-              )}
-              <div className={`chat-bubble ${msg.role}`}>
-                <FormattedChatMessage content={msg.content} />
               </div>
-            </div>
-          ))}
+            );
+          })}
           {isLoading && (
             <div className="chat-message-wrapper ai">
               <div className="chat-avatar-small">
@@ -229,7 +290,6 @@ export default function Chatbot({ currentPage, onNavigate, currentUser }) {
               </div>
             </div>
           )}
-          <div ref={messagesEndRef} />
         </div>
 
         <div className="chatbot-footer-info">
